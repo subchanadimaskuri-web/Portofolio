@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subchan's Hub - Personal Website</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --bg: #fcfcfc;
+      --text: #1f2937;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid #111;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    h1.logo { font-size: 26px; margin: 0; letter-spacing: -0.5px; }
+    nav a {
+      font-family: sans-serif;
+      text-decoration: none;
+      color: #4b5563;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    nav a.active { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 3px; }
+    .section-title {
+      font-family: sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card-body { padding: 15px; }
+    .card-body h3 { margin: 0 0 8px 0; font-size: 15px; line-height: 1.3; }
+    .card-body p { font-family: sans-serif; font-size: 12px; color: #6b7280; margin: 0; }
+    .main-layout { display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; }
+    @media (max-width: 768px) { .main-layout { grid-template-columns: 1fr; } }
+    .sidebar-widget {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; }
+    .social-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      margin-top: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+      box-sizing: border-box;
+    }
+    .btn-wa { background: #16a34a; }
+    .btn-ig { background: #e1306c; }
+    .btn-li { background: #0a66c2; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1 class="logo">SUBCHAN'S HUB</h1>
+    <nav>
+      <a href="#" class="active">Portofolio</a>
+      <a href="#">Tentang Saya</a>
+      <a href="#">Epustaka & Podcast</a>
+    </nav>
+  </header>
+
+  <div class="section-title">🎓 Sertifikat & Pelatihan Utama</div>
+  <div class="grid" id="cert-container">
+    <p style="font-family: sans-serif; font-size: 13px; color: #888;">Memuat data dari Google Drive...</p>
+  </div>
+
+  <div class="main-layout">
+    <div>
+      <div class="section-title">📝 Karya, Artikel & Project</div>
+      <div class="grid" id="portfolio-container">
+        <p style="font-family: sans-serif; font-size: 13px; color: #888;">Memuat data dari Google Drive...</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Berinteraksi</div>
+      <div class="sidebar-widget">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" class="avatar" alt="Subchan">
+        <h3 style="margin: 0 0 5px 0; font-size: 18px;">Subchan</h3>
+        <p style="font-family: sans-serif; font-size: 12px; color: #64748b; margin: 0 0 15px 0;">
+          Human Capital Enthusiast & Penulis
+        </p>
+        <hr style="border: none; border-top: 1px solid #e2e8f0; margin-bottom: 15px;">
+        <a href="https://wa.me/" class="social-btn btn-wa" target="_blank">💬 WhatsApp Saya</a>
+        <a href="https://instagram.com/" class="social-btn btn-ig" target="_blank">📸 Instagram</a>
+        <a href="https://linkedin.com/" class="social-btn btn-li" target="_blank">💼 LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbxsvh5he87Ok5vx1clkxnFSwnCfzJIKDZ6XmnSGZWLMfo29j7ffHJqjS5nGi5tnfqQ/exec";
+
+  async function loadDriveData() {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      console.log("Data Drive Terhubung:", data);
+      
+      document.getElementById('cert-container').innerHTML = `<p style="font-family: sans-serif; font-size: 13px; color: #16a34a;">✅ Terhubung ke Google Drive! Masukkan folder project untuk menampilkan kartu.</p>`;
+      document.getElementById('portfolio-container').innerHTML = `<p style="font-family: sans-serif; font-size: 13px; color: #16a34a;">✅ Terhubung ke Google Drive! Masukkan folder project untuk menampilkan kartu.</p>`;
+    } catch (error) {
+      console.error("Gagal memuat data:", error);
+    }
+  }
+
+  loadDriveData();
+</script>
+
+</body>
+</html>
