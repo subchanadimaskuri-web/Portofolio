@@ -4,26 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=5">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Tambahan kecil agar Foto Profil melingkar rapi di atas Header */
-    .hero-section { position: relative; text-align: center; margin-bottom: 60px; }
-    .hero-cover { width: 100%; height: auto; max-height: 300px; object-fit: cover; }
-    .profile-pic { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.2); object-fit: cover; background: #fff; }
-  </style>
 </head>
 <body>
 
 <div class="container">
   
-  <!-- HERO BANNER & FOTO PROFIL (Mengambil dari Luar / Root) -->
+  <!-- HERO BANNER DENGAN FOTO PROFIL MELAYANG (Posisi Kiri Sesuai Desain Awal) -->
   <div class="hero-section">
-    <img src="Header Cover.png" alt="Header Cover" class="hero-cover">
-    <img src="Foto Profil.png" alt="Foto Profil" class="profile-pic">
+    <img src="Header%20Cover.png" alt="Header Cover" class="hero-cover">
+    <img src="Foto%20Profil.png" alt="Foto Profil" class="profile-pic">
   </div>
 
-  <!-- NAVIGASI & KONTAK -->
+  <!-- NAVIGASI & SOSMED -->
   <div class="nav-social-bar">
     <div class="nav-menu">
       <a href="index.html" class="active">Tentang Saya</a>
@@ -41,22 +35,23 @@
     </div>
   </div>
 
-  <!-- GALERI SLIDER & AUDIO -->
+  <!-- GALERI SLIDER & AUDIO PLAYER -->
   <div class="gallery-audio-section">
-    <div class="slider-wrapper">
-      <i class="fa-solid fa-angles-left"></i>
-      <!-- Area ini akan diisi otomatis oleh script.js -->
-      <i class="fa-solid fa-angles-right"></i>
+    <div class="slider-container">
+      <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
+      <div class="slider-wrapper" id="sliderWrapper">
+        <!-- Foto & Video Galeri dimuat otomatis oleh script.js -->
+      </div>
+      <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
     </div>
     
     <div class="audio-player">
-      <!-- PERHATIKAN: ID playBtn sudah terpasang -->
-      <i id="playBtn" class="fa-regular fa-circle-play" style="cursor:pointer;"></i>
+      <i id="playBtn" class="fa-regular fa-circle-play"></i>
       <i class="fa-solid fa-volume-high"></i>
       <div class="audio-bar"><div class="audio-dot"></div></div>
       <div class="audio-time">12:45</div>
-      <!-- AUDIO AUDIO MENGAMBIL DARI FOLDER 'Tentang Saya' -->
-      <audio id="perkenalanAudio" src="Tentang Saya/Perkenalan.mp3"></audio>
+      <!-- Path Audio dengan URL Encoding (%20 pengganti spasi) -->
+      <audio id="perkenalanAudio" src="Tentang%20Saya/Perkenalan.mp3"></audio>
     </div>
   </div>
 
@@ -66,33 +61,31 @@
   </div>
 
   <!-- LAYOUT BAWAH (2 KOLOM) -->
-  <div class="main-layout" style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 40px;">
+  <div class="main-layout">
     
     <!-- KOLOM KIRI -->
-    <div class="left-column" style="flex: 2; min-width: 300px;">
+    <div class="left-column">
       
       <!-- Section Cerita Saya & Biografi -->
-      <div class="bio-section-group" style="display: flex; gap: 20px; margin-bottom: 30px; align-items: center;">
-        <a href="cerita.html" class="cover-card-link" style="width: 130px; height: 180px; flex-shrink: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-          <!-- GAMBAR COVER CERITA SAYA DARI FOLDER -->
-          <img src="Tentang Saya/Cover Cerita Saya.jpg" alt="Cover Cerita" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="bio-section-group">
+        <a href="cerita.html" class="cover-card-link">
+          <img src="Tentang%20Saya/Cover%20Cerita%20Saya.jpg" alt="COVER Cerita Saya" class="cover-img">
         </a>
         <div class="bio-info-box">
-          <h3>Biografi</h3>
-          <p>NAMA : Subchan Adi Maskuri</p>
-          <p>TTL : Jember, 01 Oktober 1999</p>
-          <p>Alamat : Palu, Sulawesi Tengah</p>
+          <h3>BIOGRAFI</h3>
+          <p><strong>NAMA :</strong> Subchan Adi Maskuri</p>
+          <p><strong>TTL :</strong> Jember, 01 Oktober 1999</p>
+          <p><strong>Alamat :</strong> Palu, Sulawesi Tengah</p>
         </div>
       </div>
 
       <!-- Section Pengalaman & Pendidikan -->
-      <div class="bio-section-group" style="display: flex; gap: 20px; margin-bottom: 30px; align-items: center;">
-        <a href="portofolio.html" class="cover-card-link" style="width: 130px; height: 180px; flex-shrink: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-          <!-- GAMBAR COVER PENGALAMAN DARI FOLDER -->
-          <img src="Tentang Saya/Cover Pengalaman & Mata Kuliah.jpg" alt="Cover Pengalaman" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="bio-section-group">
+        <a href="portofolio.html" class="cover-card-link">
+          <img src="Tentang%20Saya/Cover%20Pengalaman%20%26%20Mata%20Kuliah.jpg" alt="COVER Pengalaman & Mata Kuliah" class="cover-img">
         </a>
         <div class="bio-info-box">
-          <h3>Pendidikan & Sertifikasi</h3>
+          <h3>PENDIDIKAN & SERTIFIKASI</h3>
           <p>SMKN 1 Sigi | Teknik Komputer & Jaringan</p>
           <p>UIN Datokarama Palu | Aqidah & Filsafat Islam</p>
           <p>Human Capital University | BNSP Human Capital Supervisor</p>
@@ -102,27 +95,34 @@
       <!-- Riwayat Pekerjaan -->
       <div class="section-title-line">
         <h3>Riwayat Pekerjaan</h3>
-        <a href="#">Klik Jabatan Untuk Melihat Selengkapnya</a>
+        <a href="#" class="sub-link">Klik Jabatan Untuk Melihat Selengkapnya</a>
       </div>
 
       <div class="job-item">
         <div class="job-title">General Affair & Administrator | PT. Mangkuraja Samudra</div>
         <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
+        <div class="job-highlights">
+          <strong>Highlights & Pencapaian Utama:</strong><br>
+          Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet
+        </div>
       </div>
 
       <div class="job-item">
         <div class="job-title">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</div>
         <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
+        <div class="job-highlights">
+          Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control
+        </div>
       </div>
 
     </div>
 
     <!-- KOLOM KANAN (AI CHATBOT) -->
-    <div class="right-column" style="flex: 1; min-width: 300px;">
+    <div class="right-column">
       <div class="ai-widget">
         <div class="ai-header">
           <h3>Ngobrol Bareng AI<br>Tentang Saya..</h3>
-          <i class="fa-solid fa-robot"></i>
+          <i class="fa-solid fa-robot ai-icon"></i>
         </div>
         <textarea class="ai-input" placeholder="Silahkan Tanyakan Siapa Subchan dan Bagaimana Anda dapat Menilainya ?"></textarea>
         <div class="ai-chat-area">
