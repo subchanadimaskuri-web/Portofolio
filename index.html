@@ -4,23 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Memanggil ikon (FontAwesome) untuk Email, LinkedIn, dll -->
+  <link rel="stylesheet" href="style.css?v=2">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="container">
   
-  <!-- HERO BANNER & FOTO PROFIL -->
+  <!-- HERO BANNER -->
   <div class="hero-section">
-    <!-- Mengambil gambar banner yang tadi Anda unggah -->
-    <img src="Header Cover.png" alt="Header Cover" class="hero-cover" onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1000';">
-    
-    <div class="profile-wrapper">
-      <!-- Jika profile.jpg belum ada, akan pakai foto sampel ini dulu -->
-      <img src="profile.jpg" alt="Subchan Profile" class="profile-pic" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200';">
-    </div>
+    <img src="Header Cover.png" alt="Header Cover" class="hero-cover">
   </div>
 
   <!-- NAVIGASI & KONTAK -->
@@ -45,9 +38,7 @@
   <div class="gallery-audio-section">
     <div class="slider-wrapper">
       <i class="fa-solid fa-angles-left"></i>
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200" alt="Slide 1" class="slide-img">
-      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=200" alt="Slide 2" class="slide-img">
-      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=200" alt="Slide 3" class="slide-img">
+      <!-- Area ini akan diisi otomatis oleh script.js -->
       <i class="fa-solid fa-angles-right"></i>
     </div>
     
@@ -56,6 +47,8 @@
       <i class="fa-solid fa-volume-high"></i>
       <div class="audio-bar"><div class="audio-dot"></div></div>
       <div class="audio-time">12:45</div>
+      <!-- File Audio dari dalam folder galeri -->
+      <audio id="perkenalanAudio" src="galeri/Perkenalan.mp3"></audio>
     </div>
   </div>
 
@@ -67,13 +60,15 @@
   <!-- LAYOUT BAWAH (2 KOLOM) -->
   <div class="main-layout">
     
-    <!-- KOLOM KIRI (BIOGRAFI & KERJA) -->
+    <!-- KOLOM KIRI -->
     <div class="left-column">
       
-      <!-- Card Biografi -->
-      <div class="bio-card">
-        <div class="bio-cover">COVER<br>Cerita Saya</div>
-        <div class="bio-info">
+      <!-- Section Cerita Saya & Biografi -->
+      <div class="bio-section-group">
+        <a href="cerita.html" class="cover-card-link">
+          <div class="cover-card-content">COVER<br>Cerita Saya</div>
+        </a>
+        <div class="bio-info-box">
           <h3>Biografi</h3>
           <p>NAMA : Subchan Adi Maskuri</p>
           <p>TTL : Jember, 01 Oktober 1999</p>
@@ -81,10 +76,12 @@
         </div>
       </div>
 
-      <!-- Card Pendidikan -->
-      <div class="bio-card">
-        <div class="bio-cover">COVER<br>Pengalaman &<br>Mata Kuliah</div>
-        <div class="bio-info">
+      <!-- Section Pengalaman & Pendidikan -->
+      <div class="bio-section-group">
+        <a href="portofolio.html" class="cover-card-link">
+          <div class="cover-card-content">COVER<br>Pengalaman &<br>Mata Kuliah</div>
+        </a>
+        <div class="bio-info-box">
           <h3>Pendidikan & Sertifikasi</h3>
           <p>SMKN 1 Sigi | Teknik Komputer & Jaringan</p>
           <p>UIN Datokarama Palu | Aqidah & Filsafat Islam</p>
