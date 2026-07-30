@@ -24,9 +24,9 @@ if(playBtn && audio) {
 // Identitas Repositori GitHub Anda
 const githubUser = "subchanadimaskuri-web";
 const githubRepo = "Portofolio";
-const folderName = "galeri";
+const folderName = "Galeri";
 
-// Link API GitHub untuk membaca isi folder "galeri"
+// Link API GitHub untuk membaca isi folder "Galeri"
 const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/contents/${folderName}`;
 
 let mediaList = [];
@@ -47,7 +47,7 @@ async function muatGaleriOtomatis() {
         if (mediaList.length > 0) {
             renderSlider(); // Tampilkan ke web jika filenya ada
         } else {
-            console.log("Tidak ada gambar/video di folder galeri.");
+            console.log("Tidak ada gambar/video di folder Galeri.");
         }
     } catch (error) {
         console.error("Gagal mengambil data dari GitHub:", error);
@@ -67,7 +67,7 @@ function renderSlider() {
 
     for(let i = 0; i < jumlahTampil; i++) {
         let mediaIndex = (currentIndex + i) % mediaList.length;
-        // Arahkan jalurnya ke folder galeri
+        // Arahkan jalurnya ke folder Galeri
         let filename = folderName + "/" + mediaList[mediaIndex]; 
         let element;
         
