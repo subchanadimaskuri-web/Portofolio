@@ -68,22 +68,32 @@ function renderSlider() {
         let mediaIndex = (currentIndex + i) % mediaList.length;
         let fileName = mediaList[mediaIndex];
         
-        // Membentuk jalur gambar yang aman dari spasi
         let srcPath = `Tentang%20Saya/Galeri/${encodeURIComponent(fileName)}`;
 
-        let element;
+        // Jika file adalah Video (Tampilkan player biasa, ada tombol fullscreen bawaan)
         if (fileName.toLowerCase().endsWith('.mp4')) {
-            element = document.createElement('video');
+            let element = document.createElement('video');
             element.src = srcPath;
             element.controls = true;
-        } else {
-            element = document.createElement('img');
+            element.className = 'slide-item';
+            sliderWrapper.appendChild(element);
+        } 
+        // Jika file adalah Gambar (Bungkus dengan Link agar bisa diklik)
+        else {
+            let linkWrapper = document.createElement('a');
+            linkWrapper.href = srcPath;
+            linkWrapper.target = "_blank"; // Buka di tab baru
+            linkWrapper.title = "Klik untuk melihat ukuran penuh";
+            linkWrapper.style.cursor = "zoom-in";
+
+            let element = document.createElement('img');
             element.src = srcPath;
             element.alt = "Galeri";
-        }
+            element.className = 'slide-item';
 
-        element.className = 'slide-item';
-        sliderWrapper.appendChild(element);
+            linkWrapper.appendChild(element);
+            sliderWrapper.appendChild(linkWrapper);
+        }
     }
 }
 
