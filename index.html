@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -83,32 +83,24 @@
       </div>
     </div>
 
-    <!-- KOLOM KANAN (Robot & AI Chatbot) -->
+    <!-- KOLOM KANAN (AI Chatbot) -->
     <div class="right-column">
-      <div class="ai-chat-container">
+      <div class="ai-widget" id="aiWidget">
+        <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
         
-        <!-- ROBOT BERDIRI DI LUAR KOTAK -->
-        <img src="Robot_AI.png" alt="Maskot Robot AI" class="ai-mascot-standing">
-        
-        <!-- KOTAK CHAT -->
-        <div class="ai-widget" id="aiWidget">
-          <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
-          
-          <div class="ai-header">
-            <div class="ai-header-title">
-              <!-- Avatar kecil ini disembunyikan. Hanya muncul saat layar membesar -->
-              <img src="Robot_AI.png" alt="Maskot" class="ai-mascot-fullscreen">
-              <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
-            </div>
-          </div>
-          
-          <textarea class="ai-input" id="aiInput" placeholder="Ketik gibahan atau pertanyaan Anda di sini... (Layar otomatis membesar)"></textarea>
-          
-          <div class="ai-chat-area" id="aiChatArea">
-            <!-- Area chat tersembunyi saat kecil -->
+        <div class="ai-header">
+          <div class="ai-header-title">
+            <img src="Robot_AI.png" alt="Maskot Robot" class="ai-mascot">
+            <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
           </div>
         </div>
-
+        
+        <!-- Input pemicu layar membesar -->
+        <textarea class="ai-input" id="aiInput" placeholder="Ketik gibahan atau pertanyaan Anda di sini... (Layar otomatis membesar)"></textarea>
+        
+        <div class="ai-chat-area" id="aiChatArea">
+          (Area obrolan AI akan muncul di sini)
+        </div>
       </div>
     </div>
   </div>
