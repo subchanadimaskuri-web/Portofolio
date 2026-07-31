@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -37,9 +37,7 @@
   <div class="gallery-audio-section">
     <div class="slider-container">
       <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
-      <div class="slider-wrapper" id="sliderWrapper">
-        <!-- Media dimuat otomatis -->
-      </div>
+      <div class="slider-wrapper" id="sliderWrapper"></div>
       <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
     </div>
     
@@ -57,10 +55,12 @@
     "Perkenalkan saya Subchan Adi Maskuri, saya alumni Filsafat Islam UIN Datokarama Palu, sejak awal saya sangat bermimpi berkarir di dunia HR dan Organisational Devlopment, saya paham bahwa perjalanan pada akhirnya membawa saya ke takdir lain yang tampak tidak linier, namun saya mempunyai cerita bagaimana inlinieritas itu tetap saya gunakan dalam kerangka mimpi saya, dan kini setelah takdir membawa saya sebagai Supervisor General Affair di Pertambangan Nikel Sulawesi tenggara, saya dengan penuh keyakinan dan keberanian memilih untuk tidak melanjutkan kontrak dan mendedikasikan beberapa waktu untuk hibernasi mewujudkan impian lama di dunia HC/OD. Di Portofolio ini saya telah menguraikan secara detail cerita pendek perjalanan saya melalui konten video dan sebuah cerpen.. jika anda tertarik untuk berbagi pengalaman silahkan kunjungi "Cerita Saya" dibawah ini."
   </div>
 
-  <!-- LAYOUT BAWAH (2 KOLOM) -->
+  <!-- ============================================== -->
+  <!-- LAYOUT ATAS (2 KOLOM: Biografi vs AI) -->
+  <!-- ============================================== -->
   <div class="main-layout">
     
-    <!-- KOLOM KIRI (Biografi & Pengalaman) -->
+    <!-- KOLOM KIRI (Biografi & Pendidikan) -->
     <div class="left-column">
       <div class="bio-section-group">
         <a href="cerita.html" class="cover-card-link"><img src="Tentang%20Saya/Cover%20Cerita%20Saya.jpg" alt="COVER Cerita Saya" class="cover-img"></a>
@@ -81,46 +81,60 @@
           <p>Human Capital University | BNSP Human Capital Supervisor</p>
         </div>
       </div>
-      
-      <div class="section-title-line">
-        <h3>Riwayat Pekerjaan</h3>
-        <span class="sub-info">(Klik Jabatan Untuk Melihat Selengkapnya)</span>
-      </div>
-
-      <div class="job-item">
-        <a href="#" class="job-title-link">General Affair & Administrator | PT. Mangkuraja Samudra</a>
-        <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
-        <div class="job-highlights"><strong>Highlights & Pencapaian Utama:</strong><br>Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet</div>
-      </div>
-
-      <div class="job-item">
-        <a href="#" class="job-title-link">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</a>
-        <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
-        <div class="job-highlights">Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control</div>
-      </div>
     </div>
 
-    <!-- KOLOM KANAN (AI CHATBOT COMPACT) -->
+    <!-- KOLOM KANAN (Robot & AI Chatbot) -->
     <div class="right-column">
-      <div class="ai-widget" id="aiWidget">
-        <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+      <div class="ai-chat-container">
         
-        <div class="ai-header">
-          <div class="ai-header-title">
-            <img src="Robot_AI.png" alt="Maskot Robot AI" class="ai-mascot">
-            <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
+        <!-- ROBOT BERDIRI DI LUAR KOTAK -->
+        <img src="Robot_AI.png" alt="Maskot Robot AI" class="ai-mascot-standing">
+        
+        <!-- KOTAK CHAT -->
+        <div class="ai-widget" id="aiWidget">
+          <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+          
+          <div class="ai-header">
+            <div class="ai-header-title">
+              <!-- Avatar kecil ini disembunyikan. Hanya muncul saat layar membesar -->
+              <img src="Robot_AI.png" alt="Maskot" class="ai-mascot-fullscreen">
+              <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
+            </div>
+          </div>
+          
+          <textarea class="ai-input" id="aiInput" placeholder="Ketik gibahan atau pertanyaan Anda di sini... (Layar otomatis membesar)"></textarea>
+          
+          <div class="ai-chat-area" id="aiChatArea">
+            <!-- Area chat tersembunyi saat kecil -->
           </div>
         </div>
-        
-        <textarea class="ai-input" id="aiInput" placeholder="Ketik gibahan atau pertanyaan Anda di sini... (Layar otomatis membesar)"></textarea>
-        
-        <div class="ai-chat-area" id="aiChatArea">
-          <!-- Area chat ini tersembunyi saat kecil, muncul saat layar penuh -->
-        </div>
+
       </div>
     </div>
-
   </div>
+
+  <!-- ============================================== -->
+  <!-- LAYOUT BAWAH (Riwayat Kerja - MEMANJANG FULL) -->
+  <!-- ============================================== -->
+  <div class="riwayat-pekerjaan-section">
+    <div class="section-title-line">
+      <h3>Riwayat Pekerjaan</h3>
+      <span class="sub-info">(Klik Jabatan Untuk Melihat Selengkapnya)</span>
+    </div>
+
+    <div class="job-item">
+      <a href="#" class="job-title-link">General Affair & Administrator | PT. Mangkuraja Samudra</a>
+      <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
+      <div class="job-highlights"><strong>Highlights & Pencapaian Utama:</strong><br>Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet</div>
+    </div>
+
+    <div class="job-item">
+      <a href="#" class="job-title-link">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</a>
+      <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
+      <div class="job-highlights">Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- FITUR LAYAR GELAP -->
