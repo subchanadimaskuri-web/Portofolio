@@ -41,7 +41,7 @@ if (audio && playBtn && seekSlider) {
 }
 
 // ==========================================
-// 2. SLIDER & LIGHTBOX (POPUP MELAYANG)
+// 2. SLIDER, LIGHTBOX, & PICTURE-IN-PICTURE
 // ==========================================
 const githubUser = "subchanadimaskuri-web";
 const githubRepo = "Portofolio";
@@ -51,7 +51,6 @@ const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/content
 let mediaList = [];
 let currentIndex = 0;
 
-// Elemen Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxContent = document.getElementById('lightboxContent');
 const closeLightbox = document.querySelector('.close-lightbox');
@@ -81,64 +80,63 @@ function renderSlider() {
         let fileName = mediaList[mediaIndex];
         let srcPath = `Tentang%20Saya/Galeri/${encodeURIComponent(fileName)}`;
 
-        // Buat bungkus item galeri
         let itemWrapper = document.createElement('div');
-        itemWrapper.title = "Klik untuk tampilan penuh";
         itemWrapper.style.cursor = "pointer";
 
-        let element;
-        // Bikin Thumbnail di Slider
         if (fileName.toLowerCase().endsWith('.mp4')) {
-            element = document.createElement('video');
+            // JIKA VIDEO: Gunakan API Picture-in-Picture
+            let element = document.createElement('video');
             element.src = srcPath;
             element.className = 'slide-item';
-            element.muted = true; // Supaya pas di slider gak bersuara
+            element.controls = true; // Tetap munculkan tombol bawaan
+            element.title = "Klik area video untuk Picture-in-Picture";
+            
+            // Perintah khusus untuk memicu PiP saat video diklik
+            element.addEventListener('click', async (e) => {
+                try {
+                    if (document.pictureInPictureElement) {
+                        await document.exitPictureInPicture();
+                    } else {
+                        await element.requestPictureInPicture();
+                        element.play();
+                    }
+                } catch (error) {
+                    console.log("Sistem PiP gagal dimuat atau belum didukung browser ini.");
+                }
+            });
+            
+            itemWrapper.appendChild(element);
+            sliderWrapper.appendChild(itemWrapper);
+            
         } else {
-            element = document.createElement('img');
+            // JIKA GAMBAR: Gunakan Lightbox (Pop-up Layar Gelap)
+            let element = document.createElement('img');
             element.src = srcPath;
             element.className = 'slide-item';
+            element.title = "Klik untuk perbesar gambar";
+            
+            itemWrapper.appendChild(element);
+            sliderWrapper.appendChild(itemWrapper);
+
+            itemWrapper.addEventListener('click', () => {
+                if(lightbox && lightboxContent) {
+                    lightboxContent.innerHTML = '';
+                    let mediaUtuh = document.createElement('img');
+                    mediaUtuh.src = srcPath;
+                    mediaUtuh.className = 'lightbox-media';
+                    lightboxContent.appendChild(mediaUtuh);
+                    lightbox.classList.add('active');
+                }
+            });
         }
-
-        itemWrapper.appendChild(element);
-        sliderWrapper.appendChild(itemWrapper);
-
-        // Saat Thumbnail Diklik -> Buka Lightbox
-        itemWrapper.addEventListener('click', () => {
-            lightboxContent.innerHTML = ''; // Bersihkan isi lama
-            
-            let mediaUtuh;
-            if (fileName.toLowerCase().endsWith('.mp4')) {
-                mediaUtuh = document.createElement('video');
-                mediaUtuh.src = srcPath;
-                mediaUtuh.controls = true;
-                mediaUtuh.autoplay = true; // Otomatis jalan saat dibuka
-            } else {
-                mediaUtuh = document.createElement('img');
-                mediaUtuh.src = srcPath;
-            }
-            
-            mediaUtuh.className = 'lightbox-media';
-            lightboxContent.appendChild(mediaUtuh);
-            lightbox.classList.add('active'); // Munculkan layar gelap
-        });
     }
 }
 
-// Tutup Lightbox jika tanda X atau area gelap diklik
 if(closeLightbox && lightbox) {
-    closeLightbox.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-        lightboxContent.innerHTML = ''; // Stop video yang sedang jalan
-    });
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            lightboxContent.innerHTML = '';
-        }
-    });
+    closeLightbox.addEventListener('click', () => { lightbox.classList.remove('active'); lightboxContent.innerHTML = ''; });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) { lightbox.classList.remove('active'); lightboxContent.innerHTML = ''; }});
 }
 
-// Tombol Kiri Kanan
 const rightArrow = document.querySelector('.right-arrow');
 const leftArrow = document.querySelector('.left-arrow');
 if (rightArrow) rightArrow.addEventListener('click', () => { if (mediaList.length > 0) { currentIndex = (currentIndex + 1) % mediaList.length; renderSlider(); }});
