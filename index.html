@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="container">
-  
   <!-- HERO BANNER -->
   <div class="hero-section">
     <img src="Header%20Cover.png" alt="Header Cover" class="hero-cover">
@@ -39,7 +38,7 @@
     <div class="slider-container">
       <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
       <div class="slider-wrapper" id="sliderWrapper">
-        <!-- Foto & Video Galeri dimuat otomatis oleh script.js -->
+        <!-- Foto & Video Galeri dimuat otomatis -->
       </div>
       <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
     </div>
@@ -47,7 +46,6 @@
     <div class="audio-player">
       <i id="playBtn" class="fa-regular fa-circle-play"></i>
       <i class="fa-solid fa-volume-high"></i>
-      <!-- Input Range untuk SeekBar Audio -->
       <input type="range" id="seekSlider" value="0" min="0" step="1">
       <div class="audio-time"><span id="currentTime">00:00</span> / <span id="durationTime">--:--</span></div>
       <audio id="perkenalanAudio" src="Tentang%20Saya/Perkenalan.mp3"></audio>
@@ -61,11 +59,7 @@
 
   <!-- LAYOUT BAWAH (2 KOLOM) -->
   <div class="main-layout">
-    
-    <!-- KOLOM KIRI -->
     <div class="left-column">
-      
-      <!-- Section Cerita Saya & Biografi -->
       <div class="bio-section-group">
         <a href="cerita.html" class="cover-card-link">
           <img src="Tentang%20Saya/Cover%20Cerita%20Saya.jpg" alt="COVER Cerita Saya" class="cover-img">
@@ -77,8 +71,6 @@
           <p><strong>Alamat :</strong> Palu, Sulawesi Tengah</p>
         </div>
       </div>
-
-      <!-- Section Pengalaman & Pendidikan -->
       <div class="bio-section-group">
         <a href="portofolio.html" class="cover-card-link">
           <img src="Tentang%20Saya/Cover%20Pengalaman%20%26%20Mata%20Kuliah.jpg" alt="COVER Pengalaman & Mata Kuliah" class="cover-img">
@@ -90,33 +82,21 @@
           <p>Human Capital University | BNSP Human Capital Supervisor</p>
         </div>
       </div>
-
-      <!-- Riwayat Pekerjaan -->
       <div class="section-title-line">
         <h3>Riwayat Pekerjaan</h3>
         <a href="#" class="sub-link">Klik Jabatan Untuk Melihat Selengkapnya</a>
       </div>
-
       <div class="job-item">
         <div class="job-title">General Affair & Administrator | PT. Mangkuraja Samudra</div>
         <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
-        <div class="job-highlights">
-          <strong>Highlights & Pencapaian Utama:</strong><br>
-          Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet
-        </div>
+        <div class="job-highlights"><strong>Highlights & Pencapaian Utama:</strong><br>Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet</div>
       </div>
-
       <div class="job-item">
         <div class="job-title">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</div>
         <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
-        <div class="job-highlights">
-          Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control
-        </div>
+        <div class="job-highlights">Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control</div>
       </div>
-
     </div>
-
-    <!-- KOLOM KANAN (AI CHATBOT) -->
     <div class="right-column">
       <div class="ai-widget">
         <div class="ai-header">
@@ -124,12 +104,19 @@
           <i class="fa-solid fa-robot ai-icon"></i>
         </div>
         <textarea class="ai-input" placeholder="Silahkan Tanyakan Siapa Subchan dan Bagaimana Anda dapat Menilainya ?"></textarea>
-        <div class="ai-chat-area">
-          (Area ini nantinya akan terhubung dengan Google Gemini AI untuk membalas pesan secara otomatis)
-        </div>
+        <div class="ai-chat-area">(Area ini nantinya akan terhubung dengan Google Gemini AI untuk membalas pesan secara otomatis)</div>
       </div>
     </div>
+  </div>
+</div>
 
+<!-- ===================================== -->
+<!-- FITUR LIGHTBOX (POPUP MELAYANG) -->
+<!-- ===================================== -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <div class="lightbox-content" id="lightboxContent">
+    <!-- Gambar atau Video utuh akan dimasukkan ke sini oleh JavaScript -->
   </div>
 </div>
 
