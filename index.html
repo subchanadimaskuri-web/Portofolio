@@ -1,118 +1,137 @@
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
-.container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Saya - Subchan's Hub</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-/* HERO BANNER & NAVIGASI */
-.hero-section { position: relative; margin-bottom: 40px; }
-.hero-cover { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; }
-.nav-social-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
-.nav-menu a { text-decoration: none; color: #555; font-weight: 600; margin-right: 20px; font-size: 15px; }
-.nav-menu a.active { color: #000; text-decoration: underline; }
-.social-icons-wrapper { text-align: right; }
-.social-icons a { font-size: 24px; margin-left: 12px; transition: transform 0.2s; display: inline-block; }
-.social-icons a:hover { transform: scale(1.15); }
-.fa-envelope { color: #EA4335; } .fa-linkedin { color: #0A66C2; } .fa-whatsapp { color: #25D366; }
-.fa-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.social-note { font-size: 10px; color: #888; margin-top: 3px; }
+<div class="container">
+  <!-- HERO BANNER -->
+  <div class="hero-section">
+    <img src="Header%20Cover.png" alt="Header Cover" class="hero-cover">
+  </div>
 
-/* GALERI & AUDIO */
-.gallery-audio-section { margin-bottom: 25px; }
-.slider-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; }
-.nav-arrow { font-size: 24px; cursor: pointer; color: #333; }
-.slider-wrapper { display: flex; gap: 15px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; }
-.slide-item { width: 220px; height: 140px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); cursor: pointer; transition: 0.2s; }
-.slide-item:hover { transform: scale(1.02); }
-.audio-player { display: flex; align-items: center; gap: 15px; background: #f1f3f5; padding: 10px 25px; border-radius: 30px; max-width: 600px; margin: 0 auto; }
-.audio-player i { font-size: 22px; cursor: pointer; color: #333; }
-.audio-time { font-size: 13px; color: #555; font-weight: bold; min-width: 85px; text-align: right; }
-#seekSlider { flex: 1; cursor: pointer; }
+  <!-- NAVIGASI & SOSMED -->
+  <div class="nav-social-bar">
+    <div class="nav-menu">
+      <a href="index.html" class="active">Tentang Saya</a>
+      <a href="portofolio.html">Portofolio</a>
+      <a href="epustaka.html">Epustaka & Podcast</a>
+    </div>
+    <div class="social-icons-wrapper">
+      <div class="social-icons">
+        <a href="mailto:emailanda@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <div class="social-note">Klik Icon Untuk Berinteraksi</div>
+    </div>
+  </div>
 
-/* KOLOM UTAMA (Layout 60:40) */
-.narasi-text { font-size: 13px; line-height: 1.6; color: #444; margin-bottom: 30px; text-align: justify; }
-.main-layout { display: flex; gap: 30px; flex-wrap: nowrap; /* Mencegah kolom jatuh ke bawah di PC */ }
-.left-column { flex: 6; min-width: 0; } /* 60% Lebar untuk Biografi */
-.right-column { flex: 4; min-width: 0; } /* 40% Lebar untuk AI Chatbot */
+  <!-- GALERI SLIDER & AUDIO PLAYER -->
+  <div class="gallery-audio-section">
+    <div class="slider-container">
+      <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
+      <div class="slider-wrapper" id="sliderWrapper">
+        <!-- Media dimuat otomatis -->
+      </div>
+      <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
+    </div>
+    
+    <div class="audio-player">
+      <i id="playBtn" class="fa-regular fa-circle-play"></i>
+      <i class="fa-solid fa-volume-high"></i>
+      <input type="range" id="seekSlider" value="0" min="0" step="1">
+      <div class="audio-time"><span id="currentTime">00:00</span> / <span id="durationTime">--:--</span></div>
+      <audio id="perkenalanAudio" src="Tentang%20Saya/Perkenalan.mp3"></audio>
+    </div>
+  </div>
 
-/* BIOGRAFI & PEKERJAAN */
-.bio-section-group { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
-.cover-card-link { width: 110px; height: 110px; flex-shrink: 0; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
-.cover-img { width: 100%; height: 100%; object-fit: cover; }
-.bio-info-box h3 { font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-.bio-info-box p { font-size: 12px; margin-bottom: 4px; color: #555; }
-.section-title-line { border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
-.sub-info { font-size: 11px; color: #888; font-style: italic; }
-.job-item { margin-bottom: 20px; }
-.job-title-link { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #0A66C2; text-decoration: none; transition: 0.2s; }
-.job-title-link:hover { text-decoration: underline; color: #004182; }
-.job-desc { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 6px; }
-.job-highlights { font-size: 11px; color: #666; background: #f8f9fa; padding: 8px; border-left: 3px solid #007bff; }
+  <!-- NARASI PERKENALAN -->
+  <div class="narasi-text">
+    "Perkenalkan saya Subchan Adi Maskuri, saya alumni Filsafat Islam UIN Datokarama Palu, sejak awal saya sangat bermimpi berkarir di dunia HR dan Organisational Devlopment, saya paham bahwa perjalanan pada akhirnya membawa saya ke takdir lain yang tampak tidak linier, namun saya mempunyai cerita bagaimana inlinieritas itu tetap saya gunakan dalam kerangka mimpi saya, dan kini setelah takdir membawa saya sebagai Supervisor General Affair di Pertambangan Nikel Sulawesi tenggara, saya dengan penuh keyakinan dan keberanian memilih untuk tidak melanjutkan kontrak dan mendedikasikan beberapa waktu untuk hibernasi mewujudkan impian lama di dunia HC/OD. Di Portofolio ini saya telah menguraikan secara detail cerita pendek perjalanan saya melalui konten video dan sebuah cerpen.. jika anda tertarik untuk berbagi pengalaman silahkan kunjungi "Cerita Saya" dibawah ini."
+  </div>
 
-/* ==========================================
-   AI WIDGET & MASKOT ROBOT (UKURAN DIKUNCI)
-   ========================================== */
-.ai-widget { 
-  border: 1px solid #333; border-radius: 8px; padding: 15px; background: #fff; 
-  position: relative; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 2;
-}
+  <!-- LAYOUT BAWAH (2 KOLOM) -->
+  <div class="main-layout">
+    
+    <!-- KOLOM KIRI (Biografi & Pengalaman) -->
+    <div class="left-column">
+      <div class="bio-section-group">
+        <a href="cerita.html" class="cover-card-link"><img src="Tentang%20Saya/Cover%20Cerita%20Saya.jpg" alt="COVER Cerita Saya" class="cover-img"></a>
+        <div class="bio-info-box">
+          <h3>BIOGRAFI</h3>
+          <p><strong>NAMA :</strong> Subchan Adi Maskuri</p>
+          <p><strong>TTL :</strong> Jember, 01 Oktober 1999</p>
+          <p><strong>Alamat :</strong> Palu, Sulawesi Tengah</p>
+        </div>
+      </div>
+      
+      <div class="bio-section-group">
+        <a href="portofolio.html" class="cover-card-link"><img src="Tentang%20Saya/Cover%20Pengalaman%20%26%20Mata%20Kuliah.jpg" alt="COVER Pengalaman & Mata Kuliah" class="cover-img"></a>
+        <div class="bio-info-box">
+          <h3>PENDIDIKAN & SERTIFIKASI</h3>
+          <p>SMKN 1 Sigi | Teknik Komputer & Jaringan</p>
+          <p>UIN Datokarama Palu | Aqidah & Filsafat Islam</p>
+          <p>Human Capital University | BNSP Human Capital Supervisor</p>
+        </div>
+      </div>
+      
+      <div class="section-title-line">
+        <h3>Riwayat Pekerjaan</h3>
+        <span class="sub-info">(Klik Jabatan Untuk Melihat Selengkapnya)</span>
+      </div>
 
-/* Pengatur Ukuran Robot & Teks */
-.ai-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.ai-header-title { display: flex; align-items: center; gap: 12px; }
-.ai-header-title h3 { font-size: 14px; line-height: 1.3; margin: 0; }
+      <div class="job-item">
+        <a href="#" class="job-title-link">General Affair & Administrator | PT. Mangkuraja Samudra</a>
+        <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
+        <div class="job-highlights"><strong>Highlights & Pencapaian Utama:</strong><br>Visualisasi Data with Loker Studio | Integration Data With Google Workspace | Advance Excel With Spreadsheet</div>
+      </div>
 
-/* Mengunci Ukuran Robot Kecil Sejajar Teks */
-.ai-mascot { 
-  width: 50px; 
-  height: 50px; 
-  object-fit: cover; 
-  border-radius: 50%; 
-  border: 2px solid #0A66C2; 
-  background: #f8f9fa; 
-  flex-shrink: 0; /* Mencegah gambar gepeng di HP */
-}
+      <div class="job-item">
+        <a href="#" class="job-title-link">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</a>
+        <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
+        <div class="job-highlights">Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control</div>
+      </div>
+    </div>
 
-.expand-icon { font-size: 20px; color: #333; cursor: pointer; transition: 0.2s; }
-.expand-icon:hover { color: #007bff; transform: scale(1.1); }
-.ai-input { width: 100%; height: 60px; padding: 10px; font-size: 12px; border: 1px solid #ccc; border-radius: 4px; resize: none; margin-bottom: 15px; transition: 0.3s; cursor: text; }
-.ai-chat-area { border: 1px dashed #aaa; border-radius: 4px; padding: 15px; min-height: 180px; font-size: 11px; color: #888; text-align: center; }
-.close-ai-btn { display: none; }
+    <!-- KOLOM KANAN (AI CHATBOT COMPACT) -->
+    <div class="right-column">
+      <div class="ai-widget" id="aiWidget">
+        <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+        
+        <div class="ai-header">
+          <div class="ai-header-title">
+            <!-- Gambar robot sekarang dikunci ukurannya oleh CSS -->
+            <img src="Robot_AI.png" alt="Maskot Robot AI" class="ai-mascot">
+            <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
+          </div>
+        </div>
+        
+        <textarea class="ai-input" id="aiInput" placeholder="Ketik gibahan atau pertanyaan Anda di sini... (Layar akan membesar otomatis)"></textarea>
+        
+        <!-- Area obrolan ini disembunyikan saat mode kecil, baru muncul saat membesar -->
+        <div class="ai-chat-area" id="aiChatArea">
+          <!-- Chat history akan muncul di sini nanti -->
+        </div>
+      </div>
+    </div>
 
-/* SAAT KOTAK AI MEMBESAR (LAYAR PENUH) */
-.ai-widget.fullscreen-mode {
-  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 90vw; max-width: 800px; height: 85vh;
-  z-index: 10000; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-  display: flex; flex-direction: column;
-}
-.ai-widget.fullscreen-mode .close-ai-btn { 
-  display: block; position: absolute; top: 10px; right: 20px; 
-  font-size: 35px; color: #555; background: none; border: none; cursor: pointer; 
-}
-.ai-widget.fullscreen-mode .close-ai-btn:hover { color: #f00; }
-.ai-widget.fullscreen-mode .expand-icon { display: none; } 
-.ai-widget.fullscreen-mode h3 { font-size: 18px; }
-.ai-widget.fullscreen-mode .ai-mascot { width: 65px; height: 65px; } /* Sedikit membesar saat layar penuh */
-.ai-widget.fullscreen-mode .ai-input { height: 80px; font-size: 14px; }
-.ai-widget.fullscreen-mode .ai-chat-area { flex: 1; font-size: 14px; overflow-y: auto; text-align: left; }
+  </div>
+</div>
 
-/* LAYAR GELAP UNTUK AI & LIGHTBOX */
-.ai-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; }
-.ai-backdrop.active { display: block; }
-.lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
-.lightbox-media { max-width: 100%; max-height: 85vh; border-radius: 8px; object-fit: contain; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+<!-- FITUR LAYAR GELAP -->
+<div id="aiBackdrop" class="ai-backdrop"></div>
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
 
-/* ==========================================
-   RESPONSIVE HP (Tata Letak Khusus Layar Sempit)
-   ========================================== */
-@media (max-width: 768px) {
-  .main-layout { flex-direction: column; } /* AI otomatis turun ke bawah biografi agar lega di HP */
-  .hero-cover { height: 120px; }
-  .nav-social-bar { flex-direction: column; }
-  .slider-wrapper { overflow-x: auto; flex-wrap: nowrap; justify-content: flex-start; }
-  .slide-item { width: 260px; height: 160px; flex-shrink: 0; }
-  .nav-arrow { display: none; }
-  .bio-section-group { flex-direction: column; align-items: center; text-align: center; }
-}
+<script src="script.js"></script>
+</body>
+</html>
