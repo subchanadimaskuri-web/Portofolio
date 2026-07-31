@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=10">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -59,6 +59,8 @@
 
   <!-- LAYOUT BAWAH (2 KOLOM) -->
   <div class="main-layout">
+    
+    <!-- KOLOM KIRI -->
     <div class="left-column">
       <div class="bio-section-group">
         <a href="cerita.html" class="cover-card-link">
@@ -82,15 +84,14 @@
           <p>Human Capital University | BNSP Human Capital Supervisor</p>
         </div>
       </div>
+      
       <!-- Riwayat Pekerjaan -->
       <div class="section-title-line">
         <h3>Riwayat Pekerjaan</h3>
-        <!-- Teks ini sekarang hanya span biasa (tidak bisa diklik) -->
         <span class="sub-info">(Klik Jabatan Untuk Melihat Selengkapnya)</span>
       </div>
 
       <div class="job-item">
-        <!-- Jabatan 1 sekarang dibungkus tag <a> sehingga bisa diklik -->
         <a href="#" class="job-title-link">General Affair & Administrator | PT. Mangkuraja Samudra</a>
         <div class="job-desc">Bertindak sebagai penanggung jawab tunggal dalam manajemen data operasional dan tata kelola logistik harian di unit pelabuhan jetty. Fokus pada rekayasa sistem administrasi yang objektif untuk menekan inefisiensi biaya internal perusahaan.</div>
         <div class="job-highlights">
@@ -100,29 +101,46 @@
       </div>
 
       <div class="job-item">
-        <!-- Jabatan 2 sekarang dibungkus tag <a> sehingga bisa diklik -->
         <a href="#" class="job-title-link">Supervisor General Affairs | PT. Mangkuraja Karya Gemilang</a>
         <div class="job-desc">Mengoordinasikan ekosistem operasional tambang nikel (supply chain internal, fasilitas mes, aset, fuel control, pengamanan site, armada driver, dan pengadaan lintas departemen) untuk menunjang kelancaran target produksi secara aman, efisien, dan terukur.</div>
         <div class="job-highlights">
           Supply Chain Management | Cross-fungsional Team Leadership | Asset & Facility Management | Vendor & Stakeholder Relations | Fleet Utilization & Mobility Control
         </div>
       </div>
-      <div class="right-column">
-      <div class="ai-widget">
+    </div> <!-- PENUTUP KOLOM KIRI -->
+
+    <!-- KOLOM KANAN (AI CHATBOT BISA MEMBESAR) -->
+    <div class="right-column">
+      <div class="ai-widget" id="aiWidget">
+        <!-- Tombol silang untuk menutup layar penuh -->
+        <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+        
         <div class="ai-header">
-          <h3>Ngobrol Bareng AI<br>Tentang Saya..</h3>
-          <i class="fa-solid fa-robot ai-icon"></i>
+          <div class="ai-header-title">
+            <!-- Panggilan ke gambar Maskot Robot AI -->
+            <img src="Robot_AI.png" alt="Maskot Robot AI" class="ai-mascot">
+            <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
+          </div>
+          <i class="fa-solid fa-expand expand-icon" id="expandAiBtn" title="Perbesar Layar"></i>
         </div>
-        <textarea class="ai-input" placeholder="Silahkan Tanyakan Siapa Subchan dan Bagaimana Anda dapat Menilainya ?"></textarea>
-        <div class="ai-chat-area">(Area ini nantinya akan terhubung dengan Google Gemini AI untuk membalas pesan secara otomatis)</div>
+        
+        <!-- Input ini kalau diklik akan memicu layar penuh -->
+        <textarea class="ai-input" id="aiInput" placeholder="Ketik bahan gibahan atau pertanyaan Anda di sini... (Layar akan membesar otomatis saat mengetik)"></textarea>
+        
+        <div class="ai-chat-area">
+          (Area ini nantinya akan terhubung dengan Google Gemini AI untuk membalas pesan secara otomatis)
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
 <!-- ===================================== -->
-<!-- FITUR LIGHTBOX (POPUP MELAYANG) -->
+<!-- FITUR LAYAR GELAP UNTUK AI & LIGHTBOX -->
 <!-- ===================================== -->
+<div id="aiBackdrop" class="ai-backdrop"></div>
+
 <div id="lightbox" class="lightbox">
   <span class="close-lightbox">&times;</span>
   <div class="lightbox-content" id="lightboxContent">
