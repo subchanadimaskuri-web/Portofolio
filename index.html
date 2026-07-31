@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Saya - Subchan's Hub</title>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <div class="container">
   
-  <!-- HERO BANNER (Tanpa Foto Profil) -->
+  <!-- HERO BANNER -->
   <div class="hero-section">
     <img src="Header%20Cover.png" alt="Header Cover" class="hero-cover">
   </div>
@@ -47,8 +47,9 @@
     <div class="audio-player">
       <i id="playBtn" class="fa-regular fa-circle-play"></i>
       <i class="fa-solid fa-volume-high"></i>
-      <div class="audio-bar"><div class="audio-dot"></div></div>
-      <div class="audio-time">12:45</div>
+      <!-- Input Range untuk SeekBar Audio -->
+      <input type="range" id="seekSlider" value="0" min="0" step="1">
+      <div class="audio-time"><span id="currentTime">00:00</span> / <span id="durationTime">--:--</span></div>
       <audio id="perkenalanAudio" src="Tentang%20Saya/Perkenalan.mp3"></audio>
     </div>
   </div>
