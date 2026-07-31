@@ -27,18 +27,18 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .audio-time { font-size: 13px; color: #555; font-weight: bold; min-width: 85px; text-align: right; }
 #seekSlider { flex: 1; cursor: pointer; }
 
-/* KOLOM UTAMA */
+/* Keterangan Teks Panjang */
 .narasi-text { font-size: 13px; line-height: 1.6; color: #444; margin-bottom: 30px; text-align: justify; }
-.main-layout { display: flex; gap: 30px; flex-wrap: nowrap; }
-.left-column { flex: 6; min-width: 0; }
-.right-column { flex: 4; min-width: 0; }
 
-/* BIOGRAFI & PEKERJAAN */
-.bio-section-group { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
-.cover-card-link { width: 110px; height: 110px; flex-shrink: 0; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
-.cover-img { width: 100%; height: 100%; object-fit: cover; }
-.bio-info-box h3 { font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
-.bio-info-box p { font-size: 12px; margin-bottom: 4px; color: #555; }
+/* ==========================================
+   LAYOUT UTAMA (KOLOM & FULL WIDTH)
+   ========================================== */
+.main-layout { display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+.left-column { flex: 1.1; min-width: 300px; }
+.right-column { flex: 1; min-width: 300px; }
+
+/* RIWAYAT PEKERJAAN (FULL WIDTH DI BAWAH) */
+.riwayat-pekerjaan-section { width: 100%; border-top: 1px solid transparent; }
 .section-title-line { border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
 .sub-info { font-size: 11px; color: #888; font-style: italic; }
 .job-item { margin-bottom: 20px; }
@@ -47,32 +47,48 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .job-desc { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 6px; }
 .job-highlights { font-size: 11px; color: #666; background: #f8f9fa; padding: 8px; border-left: 3px solid #007bff; }
 
+/* BIOGRAFI KARTU */
+.bio-section-group { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+.cover-card-link { width: 110px; height: 110px; flex-shrink: 0; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; }
+.cover-img { width: 100%; height: 100%; object-fit: cover; }
+.bio-info-box h3 { font-size: 14px; margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+.bio-info-box p { font-size: 12px; margin-bottom: 4px; color: #555; }
+
 /* ==========================================
-   AI WIDGET (COMPACT & FULLSCREEN)
+   ROBOT BERDIRI & KOTAK AI
    ========================================== */
-.ai-widget { 
-  border: 1px solid #333; border-radius: 8px; padding: 15px; background: #fff; 
-  position: relative; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 2;
-  position: sticky; top: 20px;
+.ai-chat-container { 
+  display: flex; 
+  align-items: flex-end; /* Memastikan robot berdiri di dasar rata dengan chatbox */
+  gap: 15px; 
+  position: sticky; top: 20px; 
 }
+
+/* ROBOT 3D EFFECT */
+.ai-mascot-standing { 
+  width: 140px; 
+  height: auto; 
+  object-fit: contain; 
+  flex-shrink: 0; 
+  filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.25)); /* Efek bayangan nyata */
+  z-index: 3;
+}
+
+.ai-widget { 
+  flex: 1; 
+  border: 1px solid #ddd; border-radius: 12px; padding: 15px; background: #fff; 
+  position: relative; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 2;
+}
+
 .ai-header-title { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .ai-header-title h3 { font-size: 14px; line-height: 1.3; }
+.ai-input { width: 100%; height: 60px; padding: 10px; font-size: 12px; border: 1px solid #ccc; border-radius: 6px; resize: none; transition: 0.3s; cursor: text; }
 
-/* MENGUNCI UKURAN MASKOT ROBOT */
-.ai-mascot { 
-  width: 50px; 
-  height: 50px; 
-  object-fit: contain; 
-  border-radius: 50%; 
-  border: 2px solid #ccc; 
-  background: #f8f9fa; 
-  flex-shrink: 0;
-}
-
-.ai-input { width: 100%; height: 60px; padding: 10px; font-size: 12px; border: 1px solid #ccc; border-radius: 4px; resize: none; transition: 0.3s; cursor: text; }
+/* Menyembunyikan elemen saat mode kecil */
 .ai-chat-area { display: none; }
 .close-ai-btn { display: none; }
+.ai-mascot-fullscreen { display: none; } /* Avatar bulat hilang di luar */
 
 /* SAAT KOTAK AI MEMBESAR (LAYAR PENUH) */
 .ai-widget.fullscreen-mode {
@@ -87,12 +103,14 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 }
 .ai-widget.fullscreen-mode .close-ai-btn:hover { color: #f00; }
 .ai-widget.fullscreen-mode h3 { font-size: 18px; }
-.ai-widget.fullscreen-mode .ai-mascot { width: 60px; height: 60px; }
 .ai-widget.fullscreen-mode .ai-input { height: 80px; font-size: 14px; margin-bottom: 15px; }
+
+/* Munculkan kembali elemen saat layar penuh */
+.ai-widget.fullscreen-mode .ai-mascot-fullscreen { 
+  display: block; width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc; background: #f8f9fa; 
+}
 .ai-widget.fullscreen-mode .ai-chat-area { 
-  display: block; 
-  border: 1px dashed #aaa; border-radius: 4px; padding: 15px; 
-  flex: 1; font-size: 14px; color: #888; overflow-y: auto; text-align: left; 
+  display: block; border: 1px dashed #aaa; border-radius: 4px; padding: 15px; flex: 1; font-size: 14px; color: #888; overflow-y: auto; text-align: left; 
 }
 
 /* LAYAR GELAP UNTUK AI & LIGHTBOX */
@@ -112,4 +130,5 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
   .slide-item { width: 260px; height: 160px; flex-shrink: 0; }
   .nav-arrow { display: none; }
   .bio-section-group { flex-direction: column; align-items: center; text-align: center; }
+  .ai-mascot-standing { width: 90px; } /* Robot lebih kecil di HP */
 }
