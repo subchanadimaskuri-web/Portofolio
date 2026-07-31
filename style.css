@@ -2,7 +2,7 @@
 body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
 
-/* HERO BANNER & NAVIGASI */
+/* HERO & NAVIGASI */
 .hero-section { position: relative; margin-bottom: 40px; }
 .hero-cover { width: 100%; height: 220px; object-fit: cover; border-radius: 6px; }
 .nav-social-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
@@ -26,8 +26,6 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .audio-player i { font-size: 22px; cursor: pointer; color: #333; }
 .audio-time { font-size: 13px; color: #555; font-weight: bold; min-width: 85px; text-align: right; }
 #seekSlider { flex: 1; cursor: pointer; }
-
-/* Keterangan Teks Panjang */
 .narasi-text { font-size: 13px; line-height: 1.6; color: #444; margin-bottom: 30px; text-align: justify; }
 
 /* ==========================================
@@ -37,7 +35,7 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .left-column { flex: 1.1; min-width: 300px; }
 .right-column { flex: 1; min-width: 300px; }
 
-/* RIWAYAT PEKERJAAN (FULL WIDTH DI BAWAH) */
+/* RIWAYAT PEKERJAAN (FULL WIDTH) */
 .riwayat-pekerjaan-section { width: 100%; border-top: 1px solid transparent; }
 .section-title-line { border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
 .sub-info { font-size: 11px; color: #888; font-style: italic; }
@@ -55,40 +53,26 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .bio-info-box p { font-size: 12px; margin-bottom: 4px; color: #555; }
 
 /* ==========================================
-   ROBOT BERDIRI & KOTAK AI
+   AI WIDGET
    ========================================== */
-.ai-chat-container { 
-  display: flex; 
-  align-items: flex-end; /* Memastikan robot berdiri di dasar rata dengan chatbox */
-  gap: 15px; 
-  position: sticky; top: 20px; 
-}
-
-/* ROBOT 3D EFFECT */
-.ai-mascot-standing { 
-  width: 140px; 
-  height: auto; 
-  object-fit: contain; 
-  flex-shrink: 0; 
-  filter: drop-shadow(3px 5px 6px rgba(0,0,0,0.25)); /* Efek bayangan nyata */
-  z-index: 3;
-}
-
 .ai-widget { 
-  flex: 1; 
-  border: 1px solid #ddd; border-radius: 12px; padding: 15px; background: #fff; 
-  position: relative; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%; border: 1px solid #ddd; border-radius: 12px; padding: 15px; background: #fff; 
+  position: sticky; top: 20px; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 2;
 }
 
 .ai-header-title { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .ai-header-title h3 { font-size: 14px; line-height: 1.3; }
-.ai-input { width: 100%; height: 60px; padding: 10px; font-size: 12px; border: 1px solid #ccc; border-radius: 6px; resize: none; transition: 0.3s; cursor: text; }
 
-/* Menyembunyikan elemen saat mode kecil */
+/* KEMBALI KE BENTUK LINGKARAN */
+.ai-mascot { 
+  width: 50px; height: 50px; object-fit: cover; border-radius: 50%; 
+  border: 2px solid #ccc; background: #f8f9fa; flex-shrink: 0;
+}
+
+.ai-input { width: 100%; height: 60px; padding: 10px; font-size: 12px; border: 1px solid #ccc; border-radius: 6px; resize: none; transition: 0.3s; cursor: text; }
 .ai-chat-area { display: none; }
 .close-ai-btn { display: none; }
-.ai-mascot-fullscreen { display: none; } /* Avatar bulat hilang di luar */
 
 /* SAAT KOTAK AI MEMBESAR (LAYAR PENUH) */
 .ai-widget.fullscreen-mode {
@@ -98,22 +82,17 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
   display: flex; flex-direction: column;
 }
 .ai-widget.fullscreen-mode .close-ai-btn { 
-  display: block; position: absolute; top: 10px; right: 20px; 
-  font-size: 35px; color: #555; background: none; border: none; cursor: pointer; 
+  display: block; position: absolute; top: 10px; right: 20px; font-size: 35px; color: #555; background: none; border: none; cursor: pointer; 
 }
 .ai-widget.fullscreen-mode .close-ai-btn:hover { color: #f00; }
 .ai-widget.fullscreen-mode h3 { font-size: 18px; }
+.ai-widget.fullscreen-mode .ai-mascot { width: 65px; height: 65px; } /* Membesar sedikit saat layar penuh */
 .ai-widget.fullscreen-mode .ai-input { height: 80px; font-size: 14px; margin-bottom: 15px; }
-
-/* Munculkan kembali elemen saat layar penuh */
-.ai-widget.fullscreen-mode .ai-mascot-fullscreen { 
-  display: block; width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 2px solid #ccc; background: #f8f9fa; 
-}
 .ai-widget.fullscreen-mode .ai-chat-area { 
   display: block; border: 1px dashed #aaa; border-radius: 4px; padding: 15px; flex: 1; font-size: 14px; color: #888; overflow-y: auto; text-align: left; 
 }
 
-/* LAYAR GELAP UNTUK AI & LIGHTBOX */
+/* LAYAR GELAP */
 .ai-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; }
 .ai-backdrop.active { display: block; }
 .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; flex-direction: column; }
@@ -121,7 +100,6 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
 .lightbox-media { max-width: 100%; max-height: 85vh; border-radius: 8px; object-fit: contain; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
 
-/* RESPONSIVE HP */
 @media (max-width: 768px) {
   .main-layout { flex-direction: column; } 
   .hero-cover { height: 120px; }
@@ -130,5 +108,4 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
   .slide-item { width: 260px; height: 160px; flex-shrink: 0; }
   .nav-arrow { display: none; }
   .bio-section-group { flex-direction: column; align-items: center; text-align: center; }
-  .ai-mascot-standing { width: 90px; } /* Robot lebih kecil di HP */
 }
