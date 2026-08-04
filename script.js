@@ -79,7 +79,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (SISTEM ANTI-GAGAL)
+// 3. FITUR AI CHATBOT (SUPER AMAN & DETEKSI ERROR)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -88,18 +88,18 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-const API_KEY = 'AQ.Ab8RN6IueVWjlqW2MzMePQmSqpMmn2kIehJ6xMbSUU4UozXS0A'; 
+// Kunci terbaru Anda sudah saya paskan (ditambah .trim() agar bebas spasi gaib)
+const API_KEY = 'AQ.Ab8RN6Jb6QEJQb3mh7nfYhi5YH-TouB7i-O7yCOyW_II232Vgw'.trim(); 
 
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
-Gaya bicaramu santai, asyik, sedikit humoris.
+Gaya bicaramu santai, asyik, dan profesional.
 Fakta tentang Subchan:
 1. Alumni Filsafat Islam UIN Datokarama Palu, lahir di Jember 01 Okt 1999, tinggal di Palu.
 2. Punya sertifikasi BNSP Human Capital Supervisor.
 3. Passion utamanya di dunia HR & Organizational Development (HC/OD).
 4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra.
-5. Pernah jadi Supervisor General Affairs di tambang nikel PT Mangkuraja Karya Gemilang.
-6. Dia sekarang sedang 'hibernasi' (jeda) untuk mengejar mimpinya di dunia HC/OD.
-Tugasmu: Jawab pertanyaan pengunjung tentang Subchan berdasarkan fakta di atas. Jawablah dengan format paragraf yang rapi.`;
+5. Pernah jadi Supervisor General Affairs di PT Mangkuraja Karya Gemilang.
+Tugasmu: Jawab singkat pertanyaan tentang Subchan berdasarkan fakta di atas.`;
 
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
@@ -120,13 +120,12 @@ async function sendMessage() {
     appendMessage('User', userText, 'user-msg');
     aiInput.value = ''; 
     
-    const loadingId = appendMessage('Subchan AI', 'Sedang memikirkan balasan...', 'ai-msg chat-loading');
+    const loadingId = appendMessage('Subchan AI', 'Sebentar ya, lagi mikir nih...', 'ai-msg chat-loading');
 
     try {
-        // Metode Injeksi Langsung yang dijamin 100% jalan
         const finalPrompt = SYSTEM_PROMPT + "\n\n--- \nPertanyaan pengunjung: " + userText;
-        
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -142,13 +141,16 @@ async function sendMessage() {
             let aiReply = data.candidates[0].content.parts[0].text;
             aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             appendMessage('Subchan AI', aiReply, 'ai-msg');
+        } else if (data.error) {
+            // JIKA ERROR DARI GOOGLE, TAMPILKAN ALASANNYA DI LAYAR!
+            appendMessage('Subchan AI', `Waduh, kata Google error begini: <i>"${data.error.message}"</i>`, 'ai-msg');
+            console.error("API Error Details:", data.error);
         } else {
-            appendMessage('Subchan AI', 'Aduh, koneksiku lagi gangguan nih. Coba tanya lagi ya!', 'ai-msg');
-            console.error("API Response Error:", data);
+            appendMessage('Subchan AI', 'Aduh, ada yang error di koneksi nih.', 'ai-msg');
         }
     } catch (error) {
         document.getElementById(loadingId).remove();
-        appendMessage('Subchan AI', 'Wah, ada error sistem nih. Tolong cek koneksi internetmu ya.', 'ai-msg');
+        appendMessage('Subchan AI', 'Wah, internetnya putus atau server nge-lag nih.', 'ai-msg');
         console.error(error);
     }
 }
@@ -191,9 +193,7 @@ jobLinks.forEach(link => {
         e.preventDefault();
         const pdfFile = link.getAttribute('data-pdf');
         if (lightbox && lightboxContent && pdfFile) {
-            lightboxContent.innerHTML = `
-                <iframe src="${encodeURI(pdfFile)}#toolbar=0" class="pdf-viewer"></iframe>
-            `;
+            lightboxContent.innerHTML = `<iframe src="${encodeURI(pdfFile)}#toolbar=0" class="pdf-viewer"></iframe>`;
             lightbox.classList.add('active'); 
         }
     });
