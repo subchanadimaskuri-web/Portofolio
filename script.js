@@ -79,7 +79,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (SUPER AMAN & DETEKSI ERROR)
+// 3. FITUR AI CHATBOT (HEADER AUTHENTICATION)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -88,8 +88,8 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// Kunci terbaru Anda sudah saya paskan (ditambah .trim() agar bebas spasi gaib)
-const API_KEY = 'AQ.Ab8RN6Jb6QEJQb3mh7nfYhi5YH-TouB7i-O7yCOyW_II232Vgw'.trim(); 
+// KUNCI AQ TERBARU ANDA SUDAH DIPASANG DI SINI
+const API_KEY = 'AQ.Ab8RN6KkxLE1YDg1_bEnylfNxTwq-e4wsWcDG3N1rhCe4LGo5g'; 
 
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
 Gaya bicaramu santai, asyik, dan profesional.
@@ -124,11 +124,16 @@ async function sendMessage() {
 
     try {
         const finalPrompt = SYSTEM_PROMPT + "\n\n--- \nPertanyaan pengunjung: " + userText;
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        
+        // URL diubah tanpa parameter ?key=
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`;
         
         const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'x-goog-api-key': API_KEY // Kunci disembunyikan di dalam Header agar tidak disangka OAuth
+            },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: finalPrompt }] }]
             })
@@ -142,7 +147,6 @@ async function sendMessage() {
             aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             appendMessage('Subchan AI', aiReply, 'ai-msg');
         } else if (data.error) {
-            // JIKA ERROR DARI GOOGLE, TAMPILKAN ALASANNYA DI LAYAR!
             appendMessage('Subchan AI', `Waduh, kata Google error begini: <i>"${data.error.message}"</i>`, 'ai-msg');
             console.error("API Error Details:", data.error);
         } else {
