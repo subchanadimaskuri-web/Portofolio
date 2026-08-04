@@ -79,31 +79,46 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI LAYAR PENUH (YANG MEMBUATNYA BEKERJA)
+// 3. FITUR AI LAYAR PENUH
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
 const aiBackdrop = document.getElementById('aiBackdrop');
 const closeAiBtn = document.getElementById('closeAiBtn');
 
-// Fungsi untuk membuat layar penuh
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.add('active');
 }
-
-// Fungsi untuk mengecilkan kembali
 function tutupAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.remove('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.remove('active');
 }
-
-// INI PEMICUNYA: Saat Anda nge-klik (focus) area teks, langsung membesar!
 if (aiInput) {
     aiInput.addEventListener('focus', bukaAiLayarPenuh);
     aiInput.addEventListener('click', bukaAiLayarPenuh);
 }
-
-// Saat tombol X atau latar gelap diklik, kecilkan lagi
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
+
+
+// ==========================================
+// 4. FITUR POPUP PDF RIWAYAT PEKERJAAN
+// ==========================================
+const jobLinks = document.querySelectorAll('.job-title-link');
+
+jobLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); // Mencegah layar scroll mendadak ke atas
+        
+        // Mengambil nama file PDF dari atribut data-pdf di HTML
+        const pdfFile = link.getAttribute('data-pdf');
+
+        if (lightbox && lightboxContent && pdfFile) {
+            lightboxContent.innerHTML = `
+                <iframe src="${encodeURI(pdfFile)}" class="pdf-viewer"></iframe>
+            `;
+            lightbox.classList.add('active'); // Tampilkan Layar Gelap
+        }
+    });
+});
