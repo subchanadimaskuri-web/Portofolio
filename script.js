@@ -115,8 +115,9 @@ jobLinks.forEach(link => {
         const pdfFile = link.getAttribute('data-pdf');
 
         if (lightbox && lightboxContent && pdfFile) {
+            // RAHASIA ANTI-DOWNLOAD: Kita tambahkan #toolbar=0 di belakang tautan
             lightboxContent.innerHTML = `
-                <iframe src="${encodeURI(pdfFile)}" class="pdf-viewer"></iframe>
+                <iframe src="${encodeURI(pdfFile)}#toolbar=0" class="pdf-viewer"></iframe>
             `;
             lightbox.classList.add('active'); // Tampilkan Layar Gelap
         }
