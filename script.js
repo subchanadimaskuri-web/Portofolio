@@ -79,7 +79,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (HEADER AUTHENTICATION)
+// 3. FITUR AI CHATBOT (VERSI HEADER AUTHENTICATION)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -88,8 +88,8 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// KUNCI AQ TERBARU ANDA SUDAH DIPASANG DI SINI
-const API_KEY = 'AQ.Ab8RN6KkxLE1YDg1_bEnylfNxTwq-e4wsWcDG3N1rhCe4LGo5g'; 
+// 🚨 PASTE KUNCI "AQ." ANDA DI BAWAH INI (di antara tanda kutip):
+const API_KEY = 'PASTE_KUNCI_ANDA_DISINI'.trim(); 
 
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
 Gaya bicaramu santai, asyik, dan profesional.
@@ -125,14 +125,14 @@ async function sendMessage() {
     try {
         const finalPrompt = SYSTEM_PROMPT + "\n\n--- \nPertanyaan pengunjung: " + userText;
         
-        // URL diubah tanpa parameter ?key=
+        // URL bersih tanpa parameter ?key=
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`;
         
         const response = await fetch(url, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
-                'x-goog-api-key': API_KEY // Kunci disembunyikan di dalam Header agar tidak disangka OAuth
+                'x-goog-api-key': API_KEY // <--- INI DIA RAHASIA AGAR KUNCI AQ DITERIMA GOOGLE
             },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: finalPrompt }] }]
