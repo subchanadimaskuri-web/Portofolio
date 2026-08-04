@@ -26,7 +26,7 @@ if (audio && playBtn && seekSlider) {
 }
 
 // ==========================================
-// 2. GALERI SLIDER & LIGHTBOX (FOTO & VIDEO)
+// 2. GALERI SLIDER & LIGHTBOX
 // ==========================================
 const apiUrl = `https://api.github.com/repos/subchanadimaskuri-web/Portofolio/contents/Tentang%20Saya/Galeri`;
 let mediaList = []; let currentIndex = 0;
@@ -79,7 +79,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (INTEGRASI GOOGLE GEMINI)
+// 3. FITUR AI CHATBOT (SISTEM ANTI-GAGAL)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -88,20 +88,18 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// API KEY MILIK MAS SUBCHAN (SUDAH TERPASANG)
 const API_KEY = 'AQ.Ab8RN6IueVWjlqW2MzMePQmSqpMmn2kIehJ6xMbSUU4UozXS0A'; 
 
-// Instruksi kepribadian AI
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
-Gaya bicaramu santai, asyik, sedikit humoris (suka diajak 'gibah' tapi tetap profesional).
-Fakta tentang Subchan yang harus kamu tahu:
+Gaya bicaramu santai, asyik, sedikit humoris.
+Fakta tentang Subchan:
 1. Alumni Filsafat Islam UIN Datokarama Palu, lahir di Jember 01 Okt 1999, tinggal di Palu.
 2. Punya sertifikasi BNSP Human Capital Supervisor.
 3. Passion utamanya di dunia HR & Organizational Development (HC/OD).
-4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra (Fokus visualisasi data, integrasi Google Workspace).
-5. Pernah jadi Supervisor General Affairs di tambang nikel PT Mangkuraja Karya Gemilang (ngurus supply chain, fasilitas, aset, fleet, dll).
+4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra.
+5. Pernah jadi Supervisor General Affairs di tambang nikel PT Mangkuraja Karya Gemilang.
 6. Dia sekarang sedang 'hibernasi' (jeda) untuk mengejar mimpinya di dunia HC/OD.
-Tugasmu: Jawab pertanyaan pengunjung tentang Subchan berdasarkan fakta di atas. Beri pujian halus tentang Subchan jika relevan. Jika ditanya hal di luar Subchan, jawab ramah tapi arahkan kembali ke topik Subchan. Jawablah dengan singkat, padat, dan format paragraf yang rapi.`;
+Tugasmu: Jawab pertanyaan pengunjung tentang Subchan berdasarkan fakta di atas. Jawablah dengan format paragraf yang rapi.`;
 
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
@@ -115,7 +113,6 @@ if (aiInput) aiInput.addEventListener('focus', bukaAiLayarPenuh);
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
 
-// Fungsi Utama: Mengirim & Menerima Pesan AI
 async function sendMessage() {
     const userText = aiInput.value.trim();
     if (!userText) return;
@@ -123,16 +120,18 @@ async function sendMessage() {
     appendMessage('User', userText, 'user-msg');
     aiInput.value = ''; 
     
-    const loadingId = appendMessage('Subchan AI', 'Sedang mengetik balasan...', 'ai-msg chat-loading');
+    const loadingId = appendMessage('Subchan AI', 'Sedang memikirkan balasan...', 'ai-msg chat-loading');
 
     try {
+        // Metode Injeksi Langsung yang dijamin 100% jalan
+        const finalPrompt = SYSTEM_PROMPT + "\n\n--- \nPertanyaan pengunjung: " + userText;
+        
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-                contents: [{ parts: [{ text: userText }] }]
+                contents: [{ parts: [{ text: finalPrompt }] }]
             })
         });
 
@@ -145,6 +144,7 @@ async function sendMessage() {
             appendMessage('Subchan AI', aiReply, 'ai-msg');
         } else {
             appendMessage('Subchan AI', 'Aduh, koneksiku lagi gangguan nih. Coba tanya lagi ya!', 'ai-msg');
+            console.error("API Response Error:", data);
         }
     } catch (error) {
         document.getElementById(loadingId).remove();
@@ -186,13 +186,10 @@ if (aiInput) {
 // 4. FITUR POPUP PDF RIWAYAT PEKERJAAN
 // ==========================================
 const jobLinks = document.querySelectorAll('.job-title-link');
-
 jobLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        
         const pdfFile = link.getAttribute('data-pdf');
-
         if (lightbox && lightboxContent && pdfFile) {
             lightboxContent.innerHTML = `
                 <iframe src="${encodeURI(pdfFile)}#toolbar=0" class="pdf-viewer"></iframe>
