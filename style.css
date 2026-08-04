@@ -40,7 +40,7 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .section-title-line { border-bottom: 2px solid #333; padding-bottom: 4px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
 .sub-info { font-size: 11px; color: #888; font-style: italic; }
 .job-item { margin-bottom: 20px; }
-.job-title-link { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #0A66C2; text-decoration: none; transition: 0.2s; }
+.job-title-link { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: #0A66C2; text-decoration: none; transition: 0.2s; cursor: pointer; }
 .job-title-link:hover { text-decoration: underline; color: #004182; }
 .job-desc { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 6px; }
 .job-highlights { font-size: 11px; color: #666; background: #f8f9fa; padding: 8px; border-left: 3px solid #007bff; }
@@ -86,7 +86,7 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 }
 .ai-widget.fullscreen-mode .close-ai-btn:hover { color: #f00; }
 .ai-widget.fullscreen-mode h3 { font-size: 18px; }
-.ai-widget.fullscreen-mode .ai-mascot { width: 65px; height: 65px; } /* Membesar sedikit saat layar penuh */
+.ai-widget.fullscreen-mode .ai-mascot { width: 65px; height: 65px; } 
 .ai-widget.fullscreen-mode .ai-input { height: 80px; font-size: 14px; margin-bottom: 15px; }
 .ai-widget.fullscreen-mode .ai-chat-area { 
   display: block; border: 1px dashed #aaa; border-radius: 4px; padding: 15px; flex: 1; font-size: 14px; color: #888; overflow-y: auto; text-align: left; 
@@ -97,9 +97,31 @@ body { background-color: #f8f9fa; color: #333; padding: 20px 10px; }
 .ai-backdrop.active { display: block; }
 .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; flex-direction: column; }
 .lightbox.active { display: flex; }
-.close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+
+/* Z-INDEX DITINGGIKAN AGAR TOMBOL X TIDAK TERTUTUP PDF */
+.close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001; }
 .lightbox-media { max-width: 100%; max-height: 85vh; border-radius: 8px; object-fit: contain; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
 
+/* ==========================================
+   DESAIN PDF VIEWER DI TENGAH LAYAR
+   ========================================== */
+.pdf-viewer {
+  width: 90vw;
+  max-width: 900px;
+  height: 85vh;
+  border-radius: 8px;
+  background-color: #fff; /* Latar putih saat loading PDF */
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  border: none;
+  animation: popIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* RESPONSIVE HP */
 @media (max-width: 768px) {
   .main-layout { flex-direction: column; } 
   .hero-cover { height: 120px; }
