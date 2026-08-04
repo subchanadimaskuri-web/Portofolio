@@ -79,12 +79,29 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI LAYAR PENUH
+// 3. FITUR AI CHATBOT (INTEGRASI GOOGLE GEMINI)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
 const aiBackdrop = document.getElementById('aiBackdrop');
 const closeAiBtn = document.getElementById('closeAiBtn');
+const aiChatArea = document.getElementById('aiChatArea');
+const sendAiBtn = document.getElementById('sendAiBtn');
+
+// API KEY MILIK MAS SUBCHAN (SUDAH TERPASANG)
+const API_KEY = 'AQ.Ab8RN6IueVWjlqW2MzMePQmSqpMmn2kIehJ6xMbSUU4UozXS0A'; 
+
+// Instruksi kepribadian AI
+const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
+Gaya bicaramu santai, asyik, sedikit humoris (suka diajak 'gibah' tapi tetap profesional).
+Fakta tentang Subchan yang harus kamu tahu:
+1. Alumni Filsafat Islam UIN Datokarama Palu, lahir di Jember 01 Okt 1999, tinggal di Palu.
+2. Punya sertifikasi BNSP Human Capital Supervisor.
+3. Passion utamanya di dunia HR & Organizational Development (HC/OD).
+4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra (Fokus visualisasi data, integrasi Google Workspace).
+5. Pernah jadi Supervisor General Affairs di tambang nikel PT Mangkuraja Karya Gemilang (ngurus supply chain, fasilitas, aset, fleet, dll).
+6. Dia sekarang sedang 'hibernasi' (jeda) untuk mengejar mimpinya di dunia HC/OD.
+Tugasmu: Jawab pertanyaan pengunjung tentang Subchan berdasarkan fakta di atas. Beri pujian halus tentang Subchan jika relevan. Jika ditanya hal di luar Subchan, jawab ramah tapi arahkan kembali ke topik Subchan. Jawablah dengan singkat, padat, dan format paragraf yang rapi.`;
 
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
@@ -94,13 +111,76 @@ function tutupAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.remove('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.remove('active');
 }
-if (aiInput) {
-    aiInput.addEventListener('focus', bukaAiLayarPenuh);
-    aiInput.addEventListener('click', bukaAiLayarPenuh);
-}
+if (aiInput) aiInput.addEventListener('focus', bukaAiLayarPenuh);
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
 
+// Fungsi Utama: Mengirim & Menerima Pesan AI
+async function sendMessage() {
+    const userText = aiInput.value.trim();
+    if (!userText) return;
+
+    appendMessage('User', userText, 'user-msg');
+    aiInput.value = ''; 
+    
+    const loadingId = appendMessage('Subchan AI', 'Sedang mengetik balasan...', 'ai-msg chat-loading');
+
+    try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+                contents: [{ parts: [{ text: userText }] }]
+            })
+        });
+
+        const data = await response.json();
+        document.getElementById(loadingId).remove();
+
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            let aiReply = data.candidates[0].content.parts[0].text;
+            aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            appendMessage('Subchan AI', aiReply, 'ai-msg');
+        } else {
+            appendMessage('Subchan AI', 'Aduh, koneksiku lagi gangguan nih. Coba tanya lagi ya!', 'ai-msg');
+        }
+    } catch (error) {
+        document.getElementById(loadingId).remove();
+        appendMessage('Subchan AI', 'Wah, ada error sistem nih. Tolong cek koneksi internetmu ya.', 'ai-msg');
+        console.error(error);
+    }
+}
+
+function appendMessage(sender, text, className) {
+    const msgDiv = document.createElement('div');
+    const msgId = 'msg-' + Date.now();
+    msgDiv.id = msgId;
+    msgDiv.className = `chat-message ${className}`;
+    
+    if(sender === 'User') {
+        msgDiv.innerHTML = `${text}`;
+    } else {
+        msgDiv.innerHTML = `<strong>${sender}:</strong><br>${text}`;
+    }
+    
+    if (aiChatArea) {
+        aiChatArea.appendChild(msgDiv);
+        setTimeout(() => { aiChatArea.scrollTop = aiChatArea.scrollHeight; }, 100);
+    }
+    return msgId;
+}
+
+if (sendAiBtn) sendAiBtn.addEventListener('click', sendMessage);
+if (aiInput) {
+    aiInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); 
+            sendMessage();
+        }
+    });
+}
 
 // ==========================================
 // 4. FITUR POPUP PDF RIWAYAT PEKERJAAN
@@ -109,17 +189,15 @@ const jobLinks = document.querySelectorAll('.job-title-link');
 
 jobLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault(); // Mencegah layar scroll mendadak ke atas
+        e.preventDefault();
         
-        // Mengambil nama file PDF dari atribut data-pdf di HTML
         const pdfFile = link.getAttribute('data-pdf');
 
         if (lightbox && lightboxContent && pdfFile) {
-            // RAHASIA ANTI-DOWNLOAD: Kita tambahkan #toolbar=0 di belakang tautan
             lightboxContent.innerHTML = `
                 <iframe src="${encodeURI(pdfFile)}#toolbar=0" class="pdf-viewer"></iframe>
             `;
-            lightbox.classList.add('active'); // Tampilkan Layar Gelap
+            lightbox.classList.add('active'); 
         }
     });
 });
