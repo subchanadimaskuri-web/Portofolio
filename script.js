@@ -89,7 +89,7 @@ const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
 // 🚨 PASTE KUNCI "AQ." ANDA DI BAWAH INI (di antara tanda kutip):
-const API_KEY = 'AQ.Ab8RN6KkxLE1YDg1_bEnylfNxTwq-e4wsWcDG3N1rhCe4LGo5g'.trim(); 
+const API_KEY = 'AIzaSyCo4k9r2WEUzdrzcX120vov1Oc62mOOjLo'.trim(); 
 
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
 Gaya bicaramu santai, asyik, dan profesional.
