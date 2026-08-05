@@ -79,7 +79,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => { if (med
 document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (VERSI HEADER AUTHENTICATION)
+// 3. FITUR AI CHATBOT (JALUR OPENROUTER - ANTI BLOKIR)
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -88,8 +88,8 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// 🚨 PASTE KUNCI "AQ." ANDA DI BAWAH INI (di antara tanda kutip):
-const API_KEY = 'AIzaSyCo4k9r2WEUzdrzcX120vov1Oc62mOOjLo'.trim(); 
+// ✅ Kunci OpenRouter Anda sudah dimasukkan di sini:
+const API_KEY = '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'; 
 
 const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
 Gaya bicaramu santai, asyik, dan profesional.
@@ -119,35 +119,38 @@ async function sendMessage() {
 
     appendMessage('User', userText, 'user-msg');
     aiInput.value = ''; 
-    
     const loadingId = appendMessage('Subchan AI', 'Sebentar ya, lagi mikir nih...', 'ai-msg chat-loading');
 
     try {
-        const finalPrompt = SYSTEM_PROMPT + "\n\n--- \nPertanyaan pengunjung: " + userText;
-        
-        // URL bersih tanpa parameter ?key=
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent`;
-        
-        const response = await fetch(url, {
+        // Memanggil AI Gemini Flash (Gratis) melalui jalur OpenRouter
+        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'x-goog-api-key': API_KEY // <--- INI DIA RAHASIA AGAR KUNCI AQ DITERIMA GOOGLE
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', // Syarat dari OpenRouter
+                'X-Title': 'Portofolio Subchan', // Syarat dari OpenRouter
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: finalPrompt }] }]
+                model: 'google/gemini-1.5-flash:free', // Memakai Gemini gratis!
+                messages: [
+                    { role: 'system', content: SYSTEM_PROMPT },
+                    { role: 'user', content: userText }
+                ]
             })
         });
 
         const data = await response.json();
         document.getElementById(loadingId).remove();
 
-        if (data.candidates && data.candidates[0].content.parts[0].text) {
-            let aiReply = data.candidates[0].content.parts[0].text;
+        // Mengolah jawaban dari OpenRouter
+        if (data.choices && data.choices.length > 0) {
+            let aiReply = data.choices[0].message.content;
+            // Merapikan teks tebal dan baris baru
             aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             appendMessage('Subchan AI', aiReply, 'ai-msg');
         } else if (data.error) {
-            appendMessage('Subchan AI', `Waduh, kata Google error begini: <i>"${data.error.message}"</i>`, 'ai-msg');
+            appendMessage('Subchan AI', `Waduh, ada error nih: <i>"${data.error.message}"</i>`, 'ai-msg');
             console.error("API Error Details:", data.error);
         } else {
             appendMessage('Subchan AI', 'Aduh, ada yang error di koneksi nih.', 'ai-msg');
@@ -155,7 +158,7 @@ async function sendMessage() {
     } catch (error) {
         document.getElementById(loadingId).remove();
         appendMessage('Subchan AI', 'Wah, internetnya putus atau server nge-lag nih.', 'ai-msg');
-        console.error(error);
+        console.error("Network/Fetch Error:", error);
     }
 }
 
@@ -173,6 +176,7 @@ function appendMessage(sender, text, className) {
     
     if (aiChatArea) {
         aiChatArea.appendChild(msgDiv);
+        // Scroll otomatis ke bawah
         setTimeout(() => { aiChatArea.scrollTop = aiChatArea.scrollHeight; }, 100);
     }
     return msgId;
