@@ -1,0 +1,20 @@
+# 🤖 Dokumentasi Integrasi AI Chatbot Portofolio
+
+Catatan ini berisi panduan teknis dan rekam jejak (*troubleshooting*) mengenai fitur "Subchan AI" yang ada di website portofolio ini.
+
+## 1. Arsitektur AI yang Digunakan
+*   **Penyedia API:** [OpenRouter](https://openrouter.ai/)
+*   **Alasan Penggunaan:** Website ini di-hosting menggunakan GitHub Pages (bersifat *frontend* / statis). Menggunakan kunci API Google Gemini secara langsung akan diblokir oleh sistem keamanan Google (OAuth 2.0 / Service Account restriction). OpenRouter digunakan sebagai "jalur bypass" agar API bisa dipanggil langsung dari JavaScript (`script.js`) tanpa kendala CORS atau pemblokiran server.
+
+## 2. Jika AI Tiba-tiba Error / Tidak Merespons
+Kelemahan menggunakan API versi gratis adalah penyedia sering merotasi atau mengganti daftar model gratis mereka. Jika AI memunculkan error seperti *"404 Not Found"*, *"No endpoints found"*, atau *"This model is unavailable for free"*, ikuti langkah ini:
+
+**Langkah Ganti Model AI Gratis:**
+1. Buka halaman daftar model gratis OpenRouter: 👉 [OpenRouter Free Models](https://openrouter.ai/models?max_price=0)
+2. Pastikan tab filter berada di **Text** (Ikon huruf 'T').
+3. Pilih salah satu model yang tersedia (Cari yang harganya `$0/M input tokens | $0/M output tokens`).
+4. Klik model tersebut, lalu salin (copy) **Model ID**-nya (misalnya: `google/gemma-2-9b-it:free` atau `inclusionai/ling-3.0-flash:free`).
+5. Buka file `script.js` di repositori ini.
+6. Cari kode bagian pemanggilan model:
+   ```javascript
+   model: 'PASTE_NAMA_MODEL_BARU_DI_SINI',
