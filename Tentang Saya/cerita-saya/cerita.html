@@ -3,62 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cerita Perjalanan Subchan</title>
+  <title>Daftar Isi Cerita - Subchan</title>
   
-  <!-- JURUS ../../ KARENA SEKARANG POSISINYA 2 FOLDER KE DALAM -->
+  <!-- JURUS ../../ KARENA POSISINYA 2 FOLDER KE DALAM -->
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* CSS Khusus Halaman Artikel Agar Rapi */
-    .article-container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 30px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      line-height: 1.8;
-      font-family: Arial, sans-serif;
+    /* DESAIN ALA WATTPAD */
+    body {
+      background-color: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    .wattpad-container {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
     .back-btn {
-      display: inline-block;
+      display: inline-block; margin-bottom: 20px; color: #555; text-decoration: none; font-weight: bold; font-size: 0.9rem;
+    }
+    .back-btn:hover { color: #ff5000; }
+
+    /* BAGIAN PROFIL BUKU */
+    .book-profile {
+      background: #ffffff;
+      border: 1px solid #eaeaea;
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      gap: 30px;
       margin-bottom: 20px;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
     }
-    .back-btn:hover {
-      text-decoration: underline;
+    .book-cover {
+      width: 160px;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .article-title {
-      font-size: 2rem;
-      color: #333;
+    .book-info { flex: 1; }
+    .book-title { font-size: 1.8rem; color: #222; margin: 0 0 5px 0; }
+    .book-author { color: #555; font-size: 1rem; margin: 0 0 15px 0; }
+    .badge { background: #222; color: #fff; font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+    
+    .synopsis { font-size: 0.95rem; color: #444; margin: 20px 0; line-height: 1.6; }
+    .synopsis strong { color: #222; font-size: 1rem; display: block; margin-bottom: 5px; }
+    
+    .stats-box {
+      display: flex;
+      gap: 40px;
+      border: 1px solid #eaeaea;
+      border-radius: 10px;
+      padding: 15px 20px;
       margin-bottom: 20px;
-      text-align: center;
+      width: fit-content;
     }
-    .article-content p {
+    .stat-item { text-align: center; font-size: 0.85rem; color: #777; }
+    .stat-item strong { display: block; color: #222; font-size: 1.1rem; margin-bottom: 3px; }
+    
+    .tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: #f0f0f0; color: #555; font-size: 0.8rem; padding: 6px 12px; border-radius: 20px; }
+
+    /* KONTROL URUTAN */
+    .sort-control {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #666;
       margin-bottom: 15px;
-      color: #444;
-      text-align: justify;
+      padding-right: 10px;
+    }
+
+    /* BAGIAN DAFTAR BAB (CHAPTER LIST) */
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .chapter-card {
+      background: #ffffff;
+      border: 1px solid #eaeaea;
+      border-radius: 10px;
+      padding: 25px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .chapter-card:hover {
+      border-color: #ff5000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .chapter-title { font-size: 1.2rem; font-weight: bold; color: #222; margin: 0 0 5px 0; }
+    .chapter-date { font-size: 0.8rem; color: #888; display: block; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    .chapter-excerpt { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 15px; }
+    .read-action { text-align: right; font-size: 0.85rem; color: #007bff; font-weight: bold; }
+
+    /* Responsif untuk HP */
+    @media (max-width: 600px) {
+      .book-profile { flex-direction: column; align-items: center; text-align: center; }
+      .stats-box { margin: 20px auto; }
+      .tags-container { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- JURUS ../../ UNTUK KEMBALI KE HALAMAN UTAMA -->
-  <div style="text-align: center; margin-top: 20px;">
+  <div class="wattpad-container">
     <a href="../../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
-  </div>
 
-  <!-- KOTAK ARTIKEL -->
-  <div class="article-container">
-    <h1 class="article-title">Hibernasi dan Menjemput Takdir HR/OD</h1>
-    
-    <div class="article-content">
-      <p>Halo! Ini adalah ruang di mana saya bercerita lebih dalam tentang perjalanan karir saya...</p>
+    <!-- HEADER PROFIL BUKU -->
+    <div class="book-profile">
+      <!-- Memanggil cover yang ada di luar folder -->
+      <img src="../cover-cerita.png" alt="Cover Cerita" class="book-cover">
       
-      <p>(Lanjutkan tulisan Mas Subchan di sini... Nanti jika ingin menyisipkan gambar, Anda tinggal upload gambarnya ke dalam folder 'cerita-saya' ini, lalu panggil dengan kodingan &lt;img src="nama-gambar.png"&gt;)</p>
+      <div class="book-info">
+        <h1 class="book-title">Hibernasi & Menjemput Takdir HR/OD</h1>
+        <p class="book-author">by <strong>Subchan Adi Maskuri</strong></p>
+        <span class="badge">Bahasa Indonesia</span>
+        
+        <div class="synopsis">
+          <strong>Sinopsis</strong>
+          Sebuah catatan perjalanan karir tentang inlinieritas, keputusan besar di pertambangan nikel, dan keberanian untuk "hibernasi" demi merakit kembali kepingan impian lama di dunia Human Resources & Organisational Development.
+        </div>
+        
+        <div class="stats-box">
+          <div class="stat-item">
+            <strong>100%</strong>
+            Komitmen
+          </div>
+          <div class="stat-item">
+            <strong><i class="fa-solid fa-star" style="color: #f39c12;"></i> 5.0</strong>
+            Kualifikasi
+          </div>
+        </div>
+        
+        <div class="tags-container">
+          <span class="tag">Human Capital</span>
+          <span class="tag">General Affair</span>
+          <span class="tag">Perjalanan Karir</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAFTAR BAB -->
+    <div class="sort-control">
+      <i class="fa-solid fa-arrow-up-short-wide"></i> Urutan Paling Lama
+    </div>
+
+    <div class="chapter-list">
+      
+      <!-- FASE 1 (SUDAH DIARAHKAN KE baca.html) -->
+      <a href="baca.html" class="chapter-card">
+        <h2 class="chapter-title">Fase 001: LANGKAH AWAL YANG TIDAK LINIER</h2>
+        <span class="chapter-date">Diperbarui: Baru saja</span>
+        <p class="chapter-excerpt">
+          Perkenalkan, saya Subchan Adi Maskuri. Saya adalah alumni jurusan Filsafat Islam dari UIN Datokarama Palu. Sejak awal, di dalam diri saya sudah tertanam sebuah mimpi yang kuat...
+        </p>
+        <div class="read-action">Buka untuk membaca</div>
+      </a>
+
     </div>
   </div>
 
