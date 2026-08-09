@@ -132,7 +132,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'inclusionai/ling-3.0-flash:free', // Memakai Gemini gratis!
+                model: 'inclusionai/ling-3.0-flash', // Memakai Gemini gratis!
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
