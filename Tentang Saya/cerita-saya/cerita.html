@@ -105,6 +105,27 @@
       .stats-box { margin: 20px auto; }
       .tags-container { justify-content: center; }
     }
+/* Responsif untuk HP */
+    @media (max-width: 600px) {
+      .book-profile { flex-direction: column; align-items: center; text-align: center; }
+      .stats-box { margin: 20px auto; }
+      .tags-container { justify-content: center; }
+    }
+
+    /* ==== PASTE KODE CSS-NYA DI SINI ==== */
+    /* LABEL KUNING UNTUK FASE BELUM RILIS */
+    .status-badge {
+      background-color: #f1c40f; 
+      color: #111;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 5px 12px;
+      border-radius: 6px;
+      float: right; 
+      margin-top: 2px;
+    }
+    /* ==================================== */
+
   </style>
 </head>
 <body>
@@ -174,9 +195,21 @@
         </p>
         <div class="read-action">Buka untuk membaca</div>
       </a>
-
+<!-- FASE 3 (BELUM RILIS) -->
+      <!-- Catatan: Saya pakai <div> bukan <a> agar kotaknya tidak bisa diklik HRD -->
+      <div class="chapter-card" style="opacity: 0.75; cursor: default;">
+        
+        <!-- INI DIA LABEL KUNINGNYA -->
+        <span class="status-badge">Dalam Proses (Submitted)</span>
+        
+        <h2 class="chapter-title">Fase 003: [Judul Fase 3 Nanti]</h2>
+        <span class="chapter-date">Diperbarui: Segera Hadir</span>
+        <p class="chapter-excerpt">
+          (Cuplikan cerita untuk Fase 3 sedang dalam proses penyusunan. Nantikan kisah selanjutnya...)
+        </p>
+        <div class="read-action" style="color: #999;">Terkunci <i class="fa-solid fa-lock"></i></div>
+      </div>
     </div>
-
     </div>
   </div>
 
