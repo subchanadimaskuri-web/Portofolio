@@ -17,16 +17,48 @@
     <style>
         body { background-color: #f8fafc; }
         
-        /* Tombol Filter Kategori */
-        .filter-container { text-align: center; margin-bottom: 40px; }
-        .filter-btn {
-            background-color: #e2e8f0; color: #334155; border: none;
-            padding: 8px 20px; border-radius: 20px; margin: 5px;
-            font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+        /* Desain Pembatas & Header Rak */
+        .shelf-section {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 4px solid #cbd5e1;
         }
-        .filter-btn.active, .filter-btn:hover {
-            background-color: #0096ff; color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 150, 255, 0.3);
+        .shelf-section:last-child { border-bottom: none; } 
+        
+        .shelf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        
+        .shelf-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #01153e;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .shelf-title i { color: #0096ff; }
+
+        /* Tombol Lihat Semua */
+        .see-more-btn {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0096ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .see-more-btn:hover {
+            background: #01153e;
+            color: #fff;
+            text-decoration: none;
         }
 
         /* Sistem Rak Buku (Grid System) */
@@ -70,9 +102,9 @@
         .btn-podcast { background-color: #f1f5f9; color: #01153e; border: 1px solid #cbd5e1; }
         .btn-podcast:hover { background-color: #e2e8f0; }
 
-        /* Daftar Audio Podcast (Disembunyikan di awal) */
+        /* Daftar Audio Podcast */
         .podcast-list {
-            display: none; /* Disembunyikan secara default */
+            display: none; 
             margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;
         }
         .podcast-item { margin-bottom: 12px; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0;}
@@ -91,55 +123,68 @@
     </div>
 </div>
 
-<!-- KONTEN UTAMA: RAK BUKU & FILTER -->
+<!-- KONTEN UTAMA: RAK BUKU BERSUSUN -->
 <div class="container py-5">
     
-    <!-- Tombol Filter -->
-    <div class="filter-container animate-box" data-animate-effect="fadeInUp">
-        <button class="filter-btn active" data-filter="all">Semua Koleksi</button>
-        <button class="filter-btn" data-filter="hc">Human Capital & OD</button>
-        <button class="filter-btn" data-filter="psikologi">Psikologi & Filsafat</button>
-    </div>
-
-    <!-- AREA RAK BUKU MENGGUNAKAN GRID -->
-    <div class="bookshelf-grid">
+    <!-- ==============================================
+         RAK 1: HUMAN CAPITAL & OD
+         ============================================== -->
+    <div class="shelf-section animate-box" data-animate-effect="fadeInUp">
+        <div class="shelf-header">
+            <h3 class="shelf-title"><i class="fa fa-folder-open"></i> Rak: Human Capital & OD</h3>
+            <a href="#" class="see-more-btn">Lihat Semua <i class="fa fa-angle-right"></i></a>
+        </div>
         
-        <!-- BUKU 1: Human Capital -->
-        <div class="item-card hc animate-box" data-animate-effect="fadeInUp">
+        <div class="bookshelf-grid">
+            <!-- BUKU 1 -->
             <div class="epustaka-card">
                 <div class="card-img-wrapper">
-                    <!-- Placeholder cover (akan diganti link G-Drive) -->
                     <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400" alt="Cover Buku">
-                    <span class="category-badge">Human Capital</span>
+                    <span class="category-badge">HC & OD</span>
                 </div>
                 <div class="card-content">
                     <h5 class="book-title">Seni Memahami Manusia di Tempat Kerja</h5>
-                    
-                    <!-- Dua Tombol Berdampingan -->
                     <div class="action-buttons">
                         <a href="#" target="_blank" class="btn-action btn-read"><i class="fa fa-book"></i> Baca PDF</a>
                         <button class="btn-action btn-podcast toggle-podcast"><i class="fa fa-headphones"></i> Podcast</button>
                     </div>
-                    
-                    <!-- Area Dropdown Podcast (Tersembunyi) -->
                     <div class="podcast-list">
-                        <!-- Episode 1 -->
                         <div class="podcast-item">
                             <span class="podcast-ep">Bab 1: Mengapa Employee Turnover Tinggi?</span>
                             <audio controls controlsList="nodownload"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
                         </div>
-                        <!-- Episode 2 -->
-                        <div class="podcast-item">
-                            <span class="podcast-ep">Bab 2: Root Cause Analysis dalam HR</span>
-                            <audio controls controlsList="nodownload"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg"></audio>
-                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUKU 2 -->
+            <div class="epustaka-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400" alt="Cover Buku">
+                    <span class="category-badge">HC & OD</span>
+                </div>
+                <div class="card-content">
+                    <h5 class="book-title">Panduan Evaluasi Kinerja Karyawan Q1-Q4</h5>
+                    <div class="action-buttons">
+                        <a href="#" target="_blank" class="btn-action btn-read"><i class="fa fa-book"></i> Baca PDF</a>
+                        <button class="btn-action btn-podcast" style="opacity: 0.5; cursor: not-allowed;" title="Podcast Belum Tersedia"><i class="fa fa-microphone-slash"></i> Kosong</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- BUKU 2: Filsafat -->
-        <div class="item-card psikologi animate-box" data-animate-effect="fadeInUp">
+    <!-- ==============================================
+         RAK 2: PSIKOLOGI & FILSAFAT
+         ============================================== -->
+    <div class="shelf-section animate-box" data-animate-effect="fadeInUp">
+        <div class="shelf-header">
+            <h3 class="shelf-title"><i class="fa fa-lightbulb-o"></i> Rak: Psikologi & Filsafat</h3>
+            <a href="#" class="see-more-btn">Lihat Semua <i class="fa fa-angle-right"></i></a>
+        </div>
+        
+        <div class="bookshelf-grid">
+            <!-- BUKU 1 -->
             <div class="epustaka-card">
                 <div class="card-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400" alt="Cover Buku">
@@ -147,12 +192,10 @@
                 </div>
                 <div class="card-content">
                     <h5 class="book-title">Meditationes: Filosofi Stoik (Edisi Dwi-Bahasa)</h5>
-                    
                     <div class="action-buttons">
                         <a href="#" target="_blank" class="btn-action btn-read"><i class="fa fa-book"></i> Baca PDF</a>
                         <button class="btn-action btn-podcast toggle-podcast"><i class="fa fa-headphones"></i> Podcast</button>
                     </div>
-                    
                     <div class="podcast-list">
                         <div class="podcast-item">
                             <span class="podcast-ep">Bab 1: Menemukan Ketenangan Batin</span>
@@ -162,55 +205,19 @@
                 </div>
             </div>
         </div>
-
-        <!-- BUKU 3: Cuma ada PDF (Tanpa Podcast) -->
-        <div class="item-card hc animate-box" data-animate-effect="fadeInUp">
-            <div class="epustaka-card">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400" alt="Cover Buku">
-                    <span class="category-badge">HC & OD</span>
-                </div>
-                <div class="card-content">
-                    <h5 class="book-title">Panduan Evaluasi Kinerja Karyawan Q1-Q4</h5>
-                    
-                    <div class="action-buttons">
-                        <a href="#" target="_blank" class="btn-action btn-read"><i class="fa fa-book"></i> Baca PDF</a>
-                        <!-- Jika tidak ada podcast, kita bisa mengunci atau menyembunyikan tombolnya -->
-                        <button class="btn-action btn-podcast" style="opacity: 0.5; cursor: not-allowed;" title="Podcast Belum Tersedia"><i class="fa fa-microphone-slash"></i> Kosong</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Script Logika Filter & Toggle Podcast -->
+<!-- Script Logika Toggle Podcast -->
 <script>
     $(document).ready(function(){
-        
-        // 1. Logika Filter Kategori
-        $('.filter-btn').click(function(){
-            $('.filter-btn').removeClass('active');
-            $(this).addClass('active');
-            var filter = $(this).attr('data-filter');
-            
-            if(filter == 'all'){
-                $('.item-card').fadeIn(400);
-            } else {
-                $('.item-card').hide();
-                $('.item-card.' + filter).fadeIn(400);
-            }
-        });
-
-        // 2. Logika Toggle (Buka-Tutup) Daftar Podcast
+        // Logika Toggle (Buka-Tutup) Daftar Podcast
         $('.toggle-podcast').click(function(){
-            // Mencari elemen .podcast-list yang ada di dalam kartu yang sama, lalu memunculkannya dengan animasi slide
             $(this).closest('.card-content').find('.podcast-list').slideToggle(300);
             
-            // Opsional: Ubah warna tombol saat aktif
             $(this).toggleClass('active-podcast');
             if($(this).hasClass('active-podcast')){
                 $(this).css({'background-color': '#e2e8f0', 'border-color': '#01153e'});
@@ -218,7 +225,6 @@
                 $(this).css({'background-color': '#f1f5f9', 'border-color': '#cbd5e1'});
             }
         });
-
     });
 </script>
 
