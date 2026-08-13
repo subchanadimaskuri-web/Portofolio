@@ -1,0 +1,35 @@
+# 📝 README: Project Epustaka & Podcast - SAM.Hub
+
+## 📌 Status Terakhir Project (Agustus 2026)
+Project sedang berada di tahap penyelesaian arsitektur front-end untuk halaman **Epustaka & Podcast**. Halaman CV Utama dan Portofolio sudah saling terhubung dengan baik.
+
+## 🎨 Desain & UI/UX
+- **Tema Warna:** Navy (`#01153e`) & Bright Blue (`#0096ff`). Konsisten dengan halaman Portofolio.
+- **Tata Letak (Layout):** Menggunakan sistem "Rak Buku" bersusun ke bawah per kategori (HC & OD, Filsafat, Sosial Politik).
+- **Fitur Interaktif:** 
+  1. Tombol "Lihat Semua" di sudut kanan atas setiap rak untuk memunculkan (expand) buku-buku yang disembunyikan tanpa pindah halaman.
+  2. Tombol "Podcast" di setiap buku yang jika diklik akan memunculkan (slide down) daftar pemutar audio MP3.
+
+## ⚙️ Arsitektur Sistem (Keputusan Penting!)
+Untuk menghindari kodingan HTML yang terlalu panjang dan mencegah risiko error server jika menggunakan Google Apps Script, sistem Epustaka ini akan menggunakan metode **Static CSV Database (Client-Side Parsing)**.
+
+- **Database:** Data buku tidak diketik manual di HTML, melainkan menggunakan file Excel yang di-save dalam format `.csv` (`data_buku.csv`).
+- **Mesin Pembaca:** Kodingan `index.html` akan disuntikkan script *PapaParse* untuk membaca baris di file Excel tersebut dan otomatis mencetaknya menjadi rak buku HTML saat halaman di-load.
+- **Hosting File:** Gambar Cover, File PDF, dan Audio MP3 akan disimpan di **Google Drive**, lalu URL-nya diubah menjadi *Direct Link* dan ditempelkan ke dalam kolom file Excel.
+
+## 📁 Struktur Folder Rencana (di GitHub Pages)
+/ (Root)
+├── index.html (CV Utama - SELESAI)
+├── portofolio/
+│   └── index.html (SELESAI)
+└── epustaka/
+    ├── index.html (Menunggu disuntikkan sistem CSV)
+    ├── data_buku.csv (Database Excel - BELUM DIBUAT)
+    ├── css/ (SELESAI di-copy)
+    ├── js/ (SELESAI di-copy)
+    └── images/ (SELESAI di-copy)
+
+## 🚀 Langkah Selanjutnya (Saat Project Dilanjutkan)
+1. **Gemini:** Buatkan versi terbaru dari kodingan `index.html` Epustaka yang sudah dilengkapi script pembaca Excel (Client-Side CSV Parser).
+2. **Gemini:** Berikan format standar kolom Excel (CSV) agar Mas Subchan bisa mulai mengisi data buku dan link Google Drive-nya.
+3. **Mas Subchan:** Upload folder `epustaka` (yang berisi HTML baru dan file `.csv`) ke GitHub untuk testing live.
