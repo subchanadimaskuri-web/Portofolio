@@ -26,21 +26,28 @@ if (audio && playBtn && seekSlider) {
 }
 
 // ==========================================
-// 2. GALERI SLIDER & LIGHTBOX
+// 2. GALERI SLIDER & LIGHTBOX (VERSI AMAN & ANTI-LIMIT)
 // ==========================================
-const apiUrl = `https://api.github.com/repos/subchanadimaskuri-web/Portofolio/contents/Tentang%20Saya/Galeri`;
-let mediaList = []; let currentIndex = 0;
-const lightbox = document.getElementById('lightbox'), lightboxContent = document.getElementById('lightboxContent'), closeLightbox = document.querySelector('.close-lightbox');
+// Daftar nama file persis sesuai yang ada di folder GitHub Anda
+const mediaList = [
+  "Slide 1.mp4",
+  "Slide 2.mp4",
+  "Slide 3.mp4",
+  "Slide 4.mp4",
+  "Slide 5.mp4",
+  "Slide 5.jpeg",
+  "Slide 5a.mp4",
+  "Slide 5b.mp4",
+  "Slide 6.jpg",
+  "Slide 7.jpg",
+  "Slide 8.jpg",
+  "Slide 9.jpg"
+];
 
-async function muatGaleriOtomatis() {
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) return;
-        const data = await response.json();
-        mediaList = data.filter(i => i.type === "file").map(i => i.name).filter(n => n.match(/\.(jpg|jpeg|png|mp4)$/i));
-        if (mediaList.length > 0) renderSlider();
-    } catch (e) { console.error(e); }
-}
+let currentIndex = 0;
+const lightbox = document.getElementById('lightbox'), 
+      lightboxContent = document.getElementById('lightboxContent'), 
+      closeLightbox = document.querySelector('.close-lightbox');
 
 function renderSlider() {
     const sliderWrapper = document.getElementById('sliderWrapper');
@@ -51,32 +58,68 @@ function renderSlider() {
     for (let i = 0; i < jumlahTampil; i++) {
         let mediaIndex = (currentIndex + i) % mediaList.length;
         let fileName = mediaList[mediaIndex];
-        let srcPath = `Tentang%20Saya/Galeri/${encodeURIComponent(fileName)}`;
+        // Mengarahkan langsung ke folder tanpa API GitHub
+        let srcPath = `Tentang Saya/Galeri/${encodeURIComponent(fileName)}`;
 
         let itemWrapper = document.createElement('div');
         itemWrapper.style.cursor = "pointer";
-        let element = document.createElement(fileName.toLowerCase().endsWith('.mp4') ? 'video' : 'img');
-        element.src = srcPath; element.className = 'slide-item';
-        if(element.tagName === 'VIDEO') element.muted = true;
-        itemWrapper.appendChild(element); sliderWrapper.appendChild(itemWrapper);
+        
+        let isVideo = fileName.toLowerCase().endsWith('.mp4');
+        let element = document.createElement(isVideo ? 'video' : 'img');
+        element.src = srcPath; 
+        element.className = 'slide-item';
+        
+        // Konfigurasi Video di Slider (Berjalan otomatis, tanpa suara, diulang terus)
+        if(isVideo) {
+            element.muted = true;
+            element.autoplay = true;
+            element.loop = true;
+            element.playsInline = true; // Penting untuk HP agar tidak otomatis full screen
+        }
+        
+        itemWrapper.appendChild(element); 
+        sliderWrapper.appendChild(itemWrapper);
 
+        // Konfigurasi saat Foto/Video diklik (Layar Penuh / Lightbox)
         itemWrapper.addEventListener('click', () => {
             lightboxContent.innerHTML = '';
-            let mediaUtuh = document.createElement(fileName.toLowerCase().endsWith('.mp4') ? 'video' : 'img');
-            mediaUtuh.src = srcPath; mediaUtuh.className = 'lightbox-media';
-            if(mediaUtuh.tagName === 'VIDEO') { mediaUtuh.controls = true; mediaUtuh.autoplay = true; }
-            lightboxContent.appendChild(mediaUtuh); lightbox.classList.add('active');
+            let mediaUtuh = document.createElement(isVideo ? 'video' : 'img');
+            mediaUtuh.src = srcPath; 
+            mediaUtuh.className = 'lightbox-media';
+            
+            if(isVideo) { 
+                mediaUtuh.controls = true; // Munculkan tombol play/pause & volume
+                mediaUtuh.autoplay = true; 
+            }
+            lightboxContent.appendChild(mediaUtuh); 
+            lightbox.classList.add('active');
         });
     }
 }
 
 if(closeLightbox && lightbox) {
-    closeLightbox.addEventListener('click', () => { lightbox.classList.remove('active'); lightboxContent.innerHTML = ''; });
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) { lightbox.classList.remove('active'); lightboxContent.innerHTML = ''; }});
+    closeLightbox.addEventListener('click', () => { 
+        lightbox.classList.remove('active'); 
+        // Hapus isi lightbox saat ditutup agar video berhenti bersuara
+        lightboxContent.innerHTML = ''; 
+    });
+    lightbox.addEventListener('click', (e) => { 
+        if (e.target === lightbox) { 
+            lightbox.classList.remove('active'); 
+            lightboxContent.innerHTML = ''; 
+        }
+    });
 }
-document.querySelector('.right-arrow')?.addEventListener('click', () => { if (mediaList.length > 0) { currentIndex = (currentIndex + 1) % mediaList.length; renderSlider(); }});
-document.querySelector('.left-arrow')?.addEventListener('click', () => { if (mediaList.length > 0) { currentIndex = (currentIndex - 1 + mediaList.length) % mediaList.length; renderSlider(); }});
-document.addEventListener('DOMContentLoaded', () => { muatGaleriOtomatis(); });
+
+document.querySelector('.right-arrow')?.addEventListener('click', () => { 
+    if (mediaList.length > 0) { currentIndex = (currentIndex + 1) % mediaList.length; renderSlider(); }
+});
+document.querySelector('.left-arrow')?.addEventListener('click', () => { 
+    if (mediaList.length > 0) { currentIndex = (currentIndex - 1 + mediaList.length) % mediaList.length; renderSlider(); }
+});
+
+// Langsung jalankan fungsi render saat halaman siap
+document.addEventListener('DOMContentLoaded', () => { renderSlider(); });
 
 // ==========================================
 // 3. FITUR AI CHATBOT (JALUR OPENROUTER - ANTI BLOKIR)
