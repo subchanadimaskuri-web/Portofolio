@@ -39,15 +39,15 @@ const mediaList = [
   "Slide 5a.mp4",
   "Slide 5b.mp4",
   "Slide 6a.jpeg",
-"Slide 6b.jpg",
+  "Slide 6b.jpg",
   "Slide 7.jpg",
   "Slide 8.jpg",
-  "Slide 9.mp4"
-    "Slide 10.jpeg",
-    "Slide 11.jpg",
-    "Slide 12.jpg",
-    "Slide 13.jpeg",
-    "Slide 14.jpeg",
+  "Slide 9.mp4",     // <--- Koma yang hilang sudah saya tambahkan!
+  "Slide 10.jpeg",
+  "Slide 11.jpg",
+  "Slide 12.jpg",
+  "Slide 13.jpeg",
+  "Slide 14.jpeg"
 ];
 
 let currentIndex = 0;
@@ -64,8 +64,9 @@ function renderSlider() {
     for (let i = 0; i < jumlahTampil; i++) {
         let mediaIndex = (currentIndex + i) % mediaList.length;
         let fileName = mediaList[mediaIndex];
-        // Mengarahkan langsung ke folder tanpa API GitHub
-        let srcPath = `Tentang Saya/Galeri/${encodeURIComponent(fileName)}`;
+        
+        // Menggunakan %20 untuk spasi agar aman di semua browser
+        let srcPath = `Tentang%20Saya/Galeri/${encodeURIComponent(fileName)}`;
 
         let itemWrapper = document.createElement('div');
         itemWrapper.style.cursor = "pointer";
