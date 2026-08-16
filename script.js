@@ -38,10 +38,16 @@ const mediaList = [
   "Slide 5.jpeg",
   "Slide 5a.mp4",
   "Slide 5b.mp4",
-  "Slide 6.jpg",
+  "Slide 6a.jpeg",
+"Slide 6b.jpg",
   "Slide 7.jpg",
   "Slide 8.jpg",
-  "Slide 9.jpg"
+  "Slide 9.mp4"
+    "Slide 10.jpeg",
+    "Slide 11.jpg",
+    "Slide 12.jpg",
+    "Slide 13.jpeg",
+    "Slide 14.jpeg",
 ];
 
 let currentIndex = 0;
