@@ -149,7 +149,7 @@ Fakta tentang Subchan:
 3. Passion utamanya di dunia HR & Organizational Development (HC/OD).
 4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra.
 5. Pernah jadi Supervisor General Affairs di PT Mangkuraja Karya Gemilang.
-Tugasmu: Jawab singkat pertanyaan tentang Subchan berdasarkan fakta di atas.`;
+Tugasmu: Jawab singkat pertanyaan tentang Subchan berdasarkan fakta di atas dan sampaikan saat ini masih dalam perkembangan lebih lanjut.`;
 
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
@@ -182,7 +182,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'poolside/laguna-s-2.1:free', // Memakai Gemini gratis!
+                model: 'dots-studio/dots-3-note-preview:free', // Memakai Gemini gratis!
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
