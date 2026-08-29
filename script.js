@@ -129,7 +129,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => { renderSlider(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT (JALUR OPENROUTER - ANTI BLOKIR)
+// 3. FITUR AI CHATBOT DENGAN PENJAHIT CERITA MODULAR
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -138,10 +138,10 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// ✅ Kunci OpenRouter Anda sudah dimasukkan di sini:
 const API_KEY = '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'; 
 
-const SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
+// 3A. Prompt Dasar (Diubah jadi 'let' agar bisa ditambahkan cerita)
+let SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
 Gaya bicaramu santai, asyik, dan profesional.
 Fakta tentang Subchan:
 1. Alumni Filsafat Islam UIN Datokarama Palu, lahir di Jember 01 Okt 1999, tinggal di Palu.
@@ -150,6 +150,43 @@ Fakta tentang Subchan:
 4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra.
 5. Pernah jadi Supervisor General Affairs di PT Mangkuraja Karya Gemilang.
 Tugasmu: Jawab singkat pertanyaan tentang Subchan berdasarkan fakta di atas dan sampaikan saat ini masih dalam perkembangan lebih lanjut.`;
+
+// 3B. Daftar Lokasi File Cerita
+const daftarFaseCerita = [
+"Portofolio/Tentang Saya/cerita-saya/fase1.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase2.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase3.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase4.txt"
+"Portofolio/Tentang Saya/cerita-saya/fase5.txt"
+"Portofolio/Tentang Saya/cerita-saya/fase6.txt"
+"Portofolio/Tentang Saya/cerita-saya/fase7.txt"
+"Portofolio/Tentang Saya/cerita-saya/fase8.txt"
+];
+
+// 3C. Mesin Penjahit Ingatan AI (Otomatis sedot dari file txt)
+async function bangunIngatanAI() {
+    let ceritaLengkap = "";
+    for (let path of daftarFaseCerita) {
+        try {
+            const response = await fetch(encodeURI(path)); 
+            if (response.ok) {
+                const teks = await response.text();
+                ceritaLengkap += `\n\n--- Bagian Cerita ---\n${teks}`;
+            }
+        } catch (error) {
+            console.error("Gagal membaca file cerita:", path);
+        }
+    }
+    // Jika ada file cerita yang berhasil dibaca, tambahkan ke dalam otak AI
+    if(ceritaLengkap !== "") {
+        SYSTEM_PROMPT += `\n\nRiwayat Cerita Tambahan Subchan:\n${ceritaLengkap}`;
+    }
+}
+
+// Jalankan mesin penjahit saat web dibuka
+document.addEventListener('DOMContentLoaded', () => { 
+    bangunIngatanAI(); 
+});
 
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
@@ -172,17 +209,16 @@ async function sendMessage() {
     const loadingId = appendMessage('Subchan AI', 'Sebentar ya, lagi mikir nih...', 'ai-msg chat-loading');
 
     try {
-        // Memanggil AI Gemini Flash (Gratis) melalui jalur OpenRouter
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${API_KEY}`,
-                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', // Syarat dari OpenRouter
-                'X-Title': 'Portofolio Subchan', // Syarat dari OpenRouter
+                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
+                'X-Title': 'Portofolio Subchan', 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'dots-studio/dots-3-note-preview:free', // Memakai Gemini gratis!
+                model: 'dots-studio/dots-3-note-preview:free', 
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
@@ -193,10 +229,8 @@ async function sendMessage() {
         const data = await response.json();
         document.getElementById(loadingId).remove();
 
-        // Mengolah jawaban dari OpenRouter
         if (data.choices && data.choices.length > 0) {
             let aiReply = data.choices[0].message.content;
-            // Merapikan teks tebal dan baris baru
             aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             appendMessage('Subchan AI', aiReply, 'ai-msg');
         } else if (data.error) {
@@ -226,7 +260,6 @@ function appendMessage(sender, text, className) {
     
     if (aiChatArea) {
         aiChatArea.appendChild(msgDiv);
-        // Scroll otomatis ke bawah
         setTimeout(() => { aiChatArea.scrollTop = aiChatArea.scrollHeight; }, 100);
     }
     return msgId;
