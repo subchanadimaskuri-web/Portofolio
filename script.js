@@ -218,7 +218,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'google/gemini-2.0-flash-exp:free', 
+                model: 'deepseek/deepseek-v4-flash-vision-exp', 
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
