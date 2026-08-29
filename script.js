@@ -156,11 +156,11 @@ const daftarFaseCerita = [
 "Portofolio/Tentang Saya/cerita-saya/fase1.txt",
 "Portofolio/Tentang Saya/cerita-saya/fase2.txt",
 "Portofolio/Tentang Saya/cerita-saya/fase3.txt",
-"Portofolio/Tentang Saya/cerita-saya/fase4.txt"
-"Portofolio/Tentang Saya/cerita-saya/fase5.txt"
-"Portofolio/Tentang Saya/cerita-saya/fase6.txt"
-"Portofolio/Tentang Saya/cerita-saya/fase7.txt"
-"Portofolio/Tentang Saya/cerita-saya/fase8.txt"
+"Portofolio/Tentang Saya/cerita-saya/fase4.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase5.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase6.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase7.txt",
+"Portofolio/Tentang Saya/cerita-saya/fase8.txt",
 ];
 
 // 3C. Mesin Penjahit Ingatan AI (Otomatis sedot dari file txt)
