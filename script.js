@@ -140,16 +140,16 @@ const sendAiBtn = document.getElementById('sendAiBtn');
 
 const API_KEY = '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'; 
 
-// 3A. Prompt Dasar (Diubah jadi 'let' agar bisa ditambahkan cerita)
+// 3A. Prompt Dasar (Diperbarui agar menjawab panjang & detail)
 let SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', asisten virtual di portofolio Subchan Adi Maskuri. 
-Gaya bicaramu santai, asyik, dan profesional.
-Fakta tentang Subchan:
-1. Alumni Filsafat Islam UIN Datokarama Palu, lahir di Jember 01 Okt 1999, tinggal di Palu.
-2. Punya sertifikasi BNSP Human Capital Supervisor.
-3. Passion utamanya di dunia HR & Organizational Development (HC/OD).
-4. Pernah kerja jadi General Affair & Administrator di PT Mangkuraja Samudra.
-5. Pernah jadi Supervisor General Affairs di PT Mangkuraja Karya Gemilang.
-Tugasmu: Jawab singkat pertanyaan tentang Subchan berdasarkan fakta di atas dan sampaikan saat ini masih dalam perkembangan lebih lanjut.`;
+Gaya bicaramu santai, asyik, profesional, dan sangat informatif (suka bercerita).
+
+TUGAS UTAMA:
+1. Jawablah pertanyaan secara PANJANG, DETAIL, dan MENYELURUH. Jangan pelit informasi!
+2. BACA dan JADIKAN "Riwayat Cerita Tambahan Subchan" di bagian bawah prompt ini sebagai SUMBER UTAMA jawabanmu.
+3. Jika ditanya tentang "organisasi", carilah pengalaman organisasi semasa kuliah, JANGAN mencampurnya dengan pengalaman kerja perusahaan.
+
+`;
 
 // 3B. Daftar Lokasi File Cerita
 const daftarFaseCerita = [
@@ -218,7 +218,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'dots-studio/dots-3-note-preview:free', 
+                model: 'google/gemini-2.0-flash-lite-preview-02-05:free', 
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
