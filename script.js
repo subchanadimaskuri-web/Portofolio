@@ -218,7 +218,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'dots-studio/dots-3-note-preview:free', 
+                model: 'google/gemma-4-26b-a4b-it:free', 
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
