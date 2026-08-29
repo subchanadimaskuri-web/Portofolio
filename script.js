@@ -218,7 +218,7 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'deepseek/deepseek-v4-flash-vision-exp', 
+                model: 'dots-studio/dots-3-note-preview:free', 
                 messages: [
                     { role: 'system', content: SYSTEM_PROMPT },
                     { role: 'user', content: userText }
