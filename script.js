@@ -232,7 +232,7 @@ async function sendMessage() {
             },
             body: JSON.stringify({
                 // Menggunakan model valid dari OpenRouter dengan kapasitas 1 Juta Token
-                model: 'nvidia/nemotron-3-super:free', 
+                model: 'nvidia/nemotron-3-ultra-550b-a55b:free', 
                 messages: conversationHistory 
             })
         });
