@@ -171,9 +171,10 @@ const daftarFaseCerita = [
   "Portofolio/Tentang Saya/cerita-saya/fase8.txt"
 ];
 
-// 2. Memuat seluruh isi file dan menjadikannya SATU BUKU UTUH
+// 2. Memuat seluruh isi file dan menjadikannya SATU BUKU UTUH (Dengan Alarm Detektif)
 async function bangunIngatanAI() {
     let isiBukuPanduan = "";
+    let jumlahBerhasil = 0; // Alat penghitung file yang sukses
     
     for (let path of daftarFaseCerita) {
         try {
@@ -185,8 +186,9 @@ async function bangunIngatanAI() {
                 
                 // Menggabungkan setiap teks dengan judul Bab-nya
                 isiBukuPanduan += `\n\n--- BAB: ${namaFase} ---\n${teks.trim()}`;
+                jumlahBerhasil++; // Tambah hitungan jika sukses
             } else {
-                console.warn("Gagal fetch file:", path);
+                console.error("Gagal menemukan file (Cek nama folder/huruf besar-kecil):", path);
             }
         } catch (error) {
             console.error("Network error:", path, error);
@@ -196,9 +198,16 @@ async function bangunIngatanAI() {
     // Menyuntikkan seluruh buku ke dalam sistem otak AI
     SYSTEM_PROMPT += isiBukuPanduan;
     conversationHistory = [{ role: 'system', content: SYSTEM_PROMPT }];
-    console.log("[Sistem AI] Buku Panduan berhasil dimuat penuh ke dalam memori.");
+    
+    // ALARM DETEKTIF: Akan muncul pop-up di layar jika gagal total
+    if (jumlahBerhasil === 0) {
+        alert("🚨 GAWAT: AI tidak bisa menemukan file teks cerita (fase1-8)! Pastikan nama folder, file, dan huruf besar/kecil di 'daftarFaseCerita' sudah sama persis dengan yang ada di GitHub.");
+    } else {
+        console.log(`[Sistem AI] Sukses! Berhasil memuat ${jumlahBerhasil} file cerita ke dalam memori.`);
+    }
 }
 
+// BAGIAN LINGKARAN MERAH ANDA (Tombol Starter)
 document.addEventListener('DOMContentLoaded', () => { 
     bangunIngatanAI(); 
 });
