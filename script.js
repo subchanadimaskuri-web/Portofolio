@@ -129,7 +129,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => { renderSlider(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT - FULL CONTEXT MEMORY (FINAL)
+// 3. FITUR AI CHATBOT - METODE FULL-CONTEXT & AUTO-FALLBACK
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -139,23 +139,26 @@ const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
 const API_KEY = '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'; 
+
 let conversationHistory = [];
 
-// Prompt Karakter dari Prompt Engineer
-let SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', agen digital dan asisten representatif di web portofolio Subchan Adi Maskuri. 
+// 1. Konsep "Buku Panduan" dari Prompt Engineer
+let SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', agen asisten di portofolio Subchan Adi Maskuri.
 
-FILOSOFI PORTFOLIO:
-Web ini adalah bentuk perlawanan terhadap reduksi kapasitas manusia di selembar CV. Tugasmu mendemonstrasikan kompleksitas, multidimensi keahlian, dan kedalaman analitis Subchan kepada para rekruter. 
+PERANMU SEBAGAI PUSTAKAWAN & HR:
+Di bawah instruksi ini, terdapat "Buku Panduan Rekam Jejak Subchan". Setiap kali rekruter bertanya, tugasmu adalah MENCARI, MEMBACA, dan MENYINTESIS informasi HANYA dari Buku Panduan tersebut.
 
-SUDUT PANDANG & KARAKTER (MINDSET HR PROFESIONAL):
-1. Posisikan dirimu sebagai pihak ketiga (agen).
-2. Miliki insting analitis HR Profesional. Jelaskan perjalanan Subchan sebagai garis lurus menuju minat utamanya: Human Capital dan Organizational Development (Pengembangan Organisasi). 
-3. Tonjolkan "Transferable Skills" (kemampuan analisis sistem, tata kelola data, dan pemahaman tata laku manusia).
-4. Jawab dengan terstruktur, komprehensif, tidak bertele-tele (gunakan poin-poin).
-5. [SANGAT PENTING - RUJUKAN SUMBER]: Di akhir jawaban, WAJIB sebutkan dari fase mana informasi itu diambil (berdasarkan tag [Fase X] pada teks memori di bawah).
-6. Jika pertanyaan di luar konteks memori di bawah, jawab jujur lalu arahkan rekruter menghubungi Subchan langsung melalui ikon di halaman utama.
+ATURAN MENJAWAB:
+1. Pahami makna tersirat dari pertanyaan rekruter dan hubungkan dengan cerita di Buku Panduan.
+2. Jelaskan benang merah perjalanan Subchan menuju minat utamanya: Human Capital & Organizational Development.
+3. Jawab HANYA berdasarkan Buku Panduan. Jika tidak ada di buku, katakan dengan sopan: "Maaf, catatan mengenai hal tersebut tidak ada di memori saya. Silakan hubungi Mas Subchan langsung via ikon kontak."
+4. Jawab dengan asyik, terstruktur (gunakan poin-poin), dan tidak bertele-tele.
+5. [WAJIB] Di akhir jawaban, sebutkan dari Bab/Fase mana kamu membaca informasi tersebut.
 
-MEMORI REKAM JEJAK SUBCHAN (Baca semua ini dan jadikan referensi mutlak):\n`;
+==================================================
+📖 BUKU PANDUAN REKAM JEJAK SUBCHAN:
+==================================================
+`;
 
 const daftarFaseCerita = [
   "Portofolio/Tentang Saya/cerita-saya/fase1.txt",
@@ -168,35 +171,39 @@ const daftarFaseCerita = [
   "Portofolio/Tentang Saya/cerita-saya/fase8.txt"
 ];
 
-// 3A. MEMUAT SELURUH CERITA KE DALAM OTAK AI
+// 2. Memuat seluruh isi file dan menjadikannya SATU BUKU UTUH
 async function bangunIngatanAI() {
+    let isiBukuPanduan = "";
+    
     for (let path of daftarFaseCerita) {
         try {
             const response = await fetch(encodeURI(path)); 
             if (response.ok) {
                 const teks = await response.text();
-                // Ambil nomor fase untuk rujukan
-                const namaFaseMatch = path.match(/fase\d+/i);
-                const namaFase = namaFaseMatch ? namaFaseMatch[0].toUpperCase() : "CERITA UMUM";
+                let namaFile = path.split('/').pop(); 
+                let namaFase = namaFile.replace('.txt', '').replace(/fase/i, 'Fase ');
                 
-                // Masukkan seluruh teks utuh ke dalam System Prompt
-                SYSTEM_PROMPT += `\n\n--- [Sumber: ${namaFase}] ---\n${teks}\n`;
+                // Menggabungkan setiap teks dengan judul Bab-nya
+                isiBukuPanduan += `\n\n--- BAB: ${namaFase} ---\n${teks.trim()}`;
             } else {
-                console.warn("Gagal membaca file (cek nama file/folder):", path);
+                console.warn("Gagal fetch file:", path);
             }
         } catch (error) {
-            console.error("Gagal koneksi saat membaca file:", path);
+            console.error("Network error:", path, error);
         }
     }
     
-    // Inisiasi memori chat dengan prompt raksasa ini
+    // Menyuntikkan seluruh buku ke dalam sistem otak AI
+    SYSTEM_PROMPT += isiBukuPanduan;
     conversationHistory = [{ role: 'system', content: SYSTEM_PROMPT }];
-    console.log("Sistem Full Context Memory Berhasil Dimuat!");
+    console.log("[Sistem AI] Buku Panduan berhasil dimuat penuh ke dalam memori.");
 }
 
-document.addEventListener('DOMContentLoaded', () => { bangunIngatanAI(); });
+document.addEventListener('DOMContentLoaded', () => { 
+    bangunIngatanAI(); 
+});
 
-// 3B. UI CONTROLS & API CALL
+// UI Controls
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.add('active');
@@ -209,6 +216,7 @@ if (aiInput) aiInput.addEventListener('focus', bukaAiLayarPenuh);
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
 
+// 3. Logika API Call dengan Auto-Fallback Loop
 async function sendMessage() {
     const userText = aiInput.value.trim();
     if (!userText) return;
@@ -218,51 +226,70 @@ async function sendMessage() {
 
     const loadingId = appendMessage('Subchan AI', 'Sebentar, menganalisis rekam jejak secara menyeluruh...', 'ai-msg chat-loading');
 
-    // Langsung masukkan pertanyaan ke riwayat
+    // Menambahkan pertanyaan user ke riwayat obrolan
     conversationHistory.push({ role: 'user', content: userText });
 
-    try {
-        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${API_KEY}`,
-                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
-                'X-Title': 'Portofolio Subchan', 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                // Menggunakan model valid dari OpenRouter dengan kapasitas 1 Juta Token
-                model: 'nvidia/nemotron-3-ultra-550b-a55b:free', 
-                messages: conversationHistory 
-            })
-        });
+    // Daftar Prioritas Model AI (Gratis, Memori Besar, & Stabil)
+    const daftarModelPrioritas = [
+        'nvidia/nemotron-3-ultra-550b-a55b:free', // Prioritas 1: Memori super besar (1M), sangat cerdas
+        'liquid/lfm-2.5-2.6b:free',                      // Prioritas 2: Cepat dan stabil
+        'openrouter/free'             // Prioritas 3: Cadangan paling tangguh
+    ];
 
-        const data = await response.json();
-        document.getElementById(loadingId).remove();
+    let success = false;
+    let aiReply = "";
 
-        if (data.choices && data.choices.length > 0) {
-            let aiReply = data.choices[0].message.content;
-            aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-            appendMessage('Subchan AI', aiReply, 'ai-msg');
+    // Loop Auto-Fallback (Mencari server yang tidak sibuk)
+    for (let modelName of daftarModelPrioritas) {
+        try {
+            console.log(`[AI Agent] Mengirim request ke server: ${modelName}...`);
             
-            // Simpan jawaban AI agar tidak amnesia
-            conversationHistory.push({ role: 'assistant', content: data.choices[0].message.content });
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
+                    'X-Title': 'Portofolio Subchan', 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: modelName, 
+                    messages: conversationHistory 
+                })
+            });
 
-            // Tweak Web Dev: Cegah payload membengkak. Sisakan Prompt Utama + 10 Chat Terakhir
-            if (conversationHistory.length > 11) {
-                // Menghapus elemen di index 1 dan 2 (Pertanyaan & Jawaban terlama), index 0 tetap aman
-                conversationHistory.splice(1, 2); 
+            const data = await response.json();
+
+            // Jika ada respons dan tidak error (server merespons dengan baik)
+            if (data.choices && data.choices.length > 0) {
+                aiReply = data.choices[0].message.content;
+                success = true;
+                console.log(`[AI Agent] Berhasil mendapatkan respons dari: ${modelName}`);
+                break; // Hentikan loop pencarian model, kita sudah dapat jawaban!
+            } else {
+                throw new Error("Server mengembalikan error atau sibuk.");
             }
-        } else {
-            // Rollback riwayat jika terjadi error agar tidak merusak logika memori
-            conversationHistory.pop(); 
-            appendMessage('Subchan AI', `Error API: ${data.error ? data.error.message : 'Unknown Error'}`, 'ai-msg');
+        } catch (error) {
+            console.warn(`[AI Agent] Server ${modelName} sibuk/gagal. Otomatis beralih ke model cadangan...`);
         }
-    } catch (error) {
-        // Rollback riwayat
-        conversationHistory.pop();
-        document.getElementById(loadingId).remove();
-        appendMessage('Subchan AI', 'Koneksi terputus atau server sedang penuh.', 'ai-msg');
+    }
+
+    // Menghapus animasi "Sebentar, menganalisis..."
+    document.getElementById(loadingId).remove();
+
+    if (success) {
+        // Tampilkan jawaban
+        aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        appendMessage('Subchan AI', aiReply, 'ai-msg');
+        
+        // Simpan jawaban ke riwayat agar AI tidak amnesia untuk pertanyaan berikutnya
+        conversationHistory.push({ role: 'assistant', content: aiReply });
+    } else {
+        // Jika SEMUA (ketiga) model server sedang down/sibuk
+        appendMessage('Subchan AI', 'Maaf, server AI di seluruh jaringan sedang mengalami kepadatan tinggi. Mohon coba beberapa saat lagi, atau klik ikon kontak untuk berbincang langsung dengan Mas Subchan ya.', 'ai-msg');
+        
+        // Hapus pesan user dari riwayat agar tidak bertumpuk error
+        conversationHistory.pop(); 
     }
 }
 
@@ -271,7 +298,12 @@ function appendMessage(sender, text, className) {
     const msgId = 'msg-' + Date.now();
     msgDiv.id = msgId;
     msgDiv.className = `chat-message ${className}`;
-    msgDiv.innerHTML = sender === 'User' ? text : `<strong>${sender}:</strong><br>${text}`;
+    
+    if(sender === 'User') {
+        msgDiv.innerHTML = `${text}`;
+    } else {
+        msgDiv.innerHTML = `<strong>${sender}:</strong><br>${text}`;
+    }
     
     if (aiChatArea) {
         aiChatArea.appendChild(msgDiv);
