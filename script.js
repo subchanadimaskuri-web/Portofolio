@@ -277,7 +277,7 @@ async function sendMessage() {
             body: JSON.stringify({
                 // Model default disetel ke Gemma 9B agar dijamin stabil dan gratis.
                 // Jika ingin mencoba gemma-4-31b atau model lain, cukup ganti ID di bawah ini:
-                model: 'google/gemma-4-31b-it:free', 
+                model: 'minimax/minimax-m2.7:free', 
                 messages: pesanUntukDikirim 
             })
         });
