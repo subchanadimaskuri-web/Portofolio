@@ -277,7 +277,7 @@ async function sendMessage() {
             body: JSON.stringify({
                 // Model default disetel ke Gemma 9B agar dijamin stabil dan gratis.
                 // Jika ingin mencoba gemma-4-31b atau model lain, cukup ganti ID di bawah ini:
-                model: 'minimax/minimax-m2.7:free', 
+                model: 'nvidia/nemotron-3-ultra-550b-a55b:free', 
                 messages: pesanUntukDikirim 
             })
         });
