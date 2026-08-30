@@ -160,15 +160,16 @@ ATURAN MENJAWAB:
 ==================================================
 `;
 
+// Ganti array daftarFaseCerita Anda dengan yang ini:
 const daftarFaseCerita = [
-  "Portofolio/Tentang Saya/cerita-saya/fase1.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase2.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase3.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase4.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase5.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase6.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase7.txt",
-  "Portofolio/Tentang Saya/cerita-saya/fase8.txt"
+  "Tentang Saya/cerita-saya/fase1.txt",
+  "Tentang Saya/cerita-saya/fase2.txt",
+  "Tentang Saya/cerita-saya/fase3.txt",
+  "Tentang Saya/cerita-saya/fase4.txt",
+  "Tentang Saya/cerita-saya/fase5.txt",
+  "Tentang Saya/cerita-saya/fase6.txt",
+  "Tentang Saya/cerita-saya/fase7.txt",
+  "Tentang Saya/cerita-saya/fase8.txt"
 ];
 
 // 2. Memuat seluruh isi file dan menjadikannya SATU BUKU UTUH (Dengan Alarm Detektif)
