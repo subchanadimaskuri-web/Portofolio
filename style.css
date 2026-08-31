@@ -34,19 +34,21 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.15); border-color: #00E5FF; color: #00E5FF; transform: translateY(-3px); }
 
 /* ==========================================
-   TAHAP 2: NAVIGASI & SOCIAL BAR (PILL & MONOKROM)
+   TAHAP 2: NAVIGASI & SOCIAL BAR (FLOATING TOP BAR)
    ========================================== */
-.nav-social-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; margin-bottom: 40px; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; gap: 20px; }
-.nav-menu { display: flex; background: #ffffff; padding: 6px; border-radius: 50px; border: 1px solid #e2e8f0; gap: 5px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+.nav-social-bar { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px; z-index: 10; }
+.nav-menu { display: flex; background: #ffffff; padding: 6px; border-radius: 50px; border: none; gap: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
 .nav-menu a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.9rem; padding: 10px 24px; border-radius: 40px; transition: all 0.3s ease; }
-.nav-menu a:hover { color: #0f172a; background: #f1f5f9; }
-.nav-menu a.active { color: #ffffff; background: #0f172a; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2); }
+.nav-menu a:hover { color: #000080; background: #f1f5f9; }
+.nav-menu a.active { color: #ffffff; background: #000080; box-shadow: 0 4px 10px rgba(0, 0, 128, 0.2); }
 
 .social-icons-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .social-icons { display: flex; gap: 12px; }
-.social-icons a { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 50%; color: #94a3b8; font-size: 1.15rem; transition: all 0.3s ease; text-decoration: none; }
-.social-icons a:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.08); background: #0f172a; color: #00E5FF; }
-.social-note { font-size: 0.75rem; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
+/* WARNA IKON DIUBAH JADI NAVY (#000080) SEJAK AWAL */
+.social-icons a { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #ffffff; border: none; border-radius: 50%; color: #000080; font-size: 1.15rem; transition: all 0.3s ease; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+.social-icons a:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); background: #000080; color: #ffffff; }
+
+.social-note { font-size: 0.75rem; color: #ffffff; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-top: 4px; }
 
 /* ==========================================
    GALERI & AUDIO
@@ -123,12 +125,12 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .edu-timeline { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 12px; }
 .edu-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: #e2e8f0; border-radius: 2px; }
 .timeline-item { position: relative; padding-left: 20px; }
-/* Titik timeline berubah jadi #000080 */
 .timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #000080; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
 .timeline-content { display: flex; flex-direction: column; gap: 4px; }
-/* Teks Institusi & Jurusan berubah jadi #000080 */
+/* Institusi tetap Navy tebal */
 .timeline-content strong { font-size: 0.95rem; color: #000080; font-weight: 700; }
-.timeline-content span { font-size: 0.85rem; color: #000080; font-weight: 700; }
+/* JURUSAN DIUBAH JADI ABU-ABU KALEM (#94a3b8) */
+.timeline-content span { font-size: 0.85rem; color: #94a3b8; font-weight: 600; }
 
 /* KARTU 3: Tombol Cerita Editorial */
 .story-cta-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; text-decoration: none; justify-content: space-between; overflow: hidden; border: none; }
