@@ -9,8 +9,6 @@
 </head>
 <body>
 
-<div class="container">
-  
   <!-- ==========================================
        MODERN HERO BANNER (TAHAP 1)
        ========================================== -->
@@ -23,7 +21,6 @@
           Mendedikasikan tata kelola sistem, integrasi data operasional lapangan, dan pengembangan potensi manusia menuju efektivitas organisasi yang terukur.
         </p>
         <div class="hero-actions">
-          <!-- Link sudah disambungkan ke halaman cerita dan WhatsApp -->
           <a href="Tentang%20Saya/cerita-saya/cerita.html" class="btn-primary">Kumpulan Cerita</a>
           <a href="https://wa.me/+6285143709909" target="_blank" class="btn-ghost">Hubungi Saya</a>
         </div>
@@ -32,6 +29,8 @@
   </header>
   <!-- ========================================== -->
 
+<div class="container">
+  
   <div class="nav-social-bar">
     <div class="nav-menu">
       <a href="index.html" class="active">Tentang Saya</a>
@@ -69,74 +68,95 @@
     "Perkenalkan saya Subchan Adi Maskuri, saya alumni Filsafat Islam UIN Datokarama Palu, sejak awal saya sangat bermimpi berkarir di dunia HR dan Organisational Devlopment, saya paham bahwa perjalanan pada akhirnya membawa saya ke takdir lain yang tampak tidak linier, namun saya mempunyai cerita bagaimana inlinieritas itu tetap saya gunakan dalam kerangka mimpi saya, dan kini setelah takdir membawa saya sebagai Supervisor General Affair di Pertambangan Nikel Sulawesi tenggara, saya dengan penuh keyakinan dan keberanian memilih untuk tidak melanjutkan kontrak dan mendedikasikan beberapa waktu untuk hibernasi mewujudkan impian lama di dunia HC/OD. Di Portofolio ini saya telah menguraikan secara detail cerita pendek perjalanan saya melalui konten video dan sebuah cerpen.. jika anda tertarik untuk berbagi pengalaman silahkan kunjungi "Cerita Saya" dibawah ini."
   </div>
 
- <div class="main-layout">
+  <!-- ==========================================
+       TAHAP 3: BENTO GRID LAYOUT (Modern Cards)
+       ========================================== -->
+  <div class="bento-grid-layout">
     
-    <!-- KOLOM KIRI (HANYA INFORMASI STATIS) -->
-    <div class="left-column">
-      
-      <!-- INFO BIOGRAFI -->
-      <div class="bio-info-box" style="margin-bottom: 30px;">
-        <h3 style="font-size: 15px; margin-bottom: 12px; border-bottom: 2px solid #ddd; padding-bottom: 6px; color: #2c3e50;">BIOGRAFI</h3>
-        <p style="margin-bottom: 8px; font-size: 13px;"><strong>NAMA :</strong> Subchan Adi Maskuri</p>
-        <p style="margin-bottom: 8px; font-size: 13px;"><strong>TTL :</strong> Jember, 01 Oktober 1999</p>
-        <p style="margin-bottom: 8px; font-size: 13px;"><strong>Alamat :</strong> Palu, Sulawesi Tengah</p>
+    <!-- KARTU 1: BIOGRAFI -->
+    <div class="bento-card bio-card">
+      <h3 class="bento-title"><i class="fa-regular fa-id-badge"></i> Identitas Diri</h3>
+      <ul class="bento-list">
+        <li><span class="bento-label">Nama</span><span class="bento-value">Subchan Adi Maskuri</span></li>
+        <li><span class="bento-label">TTL</span><span class="bento-value">Jember, 01 Oktober 1999</span></li>
+        <li><span class="bento-label">Alamat</span><span class="bento-value">Palu, Sulawesi Tengah</span></li>
+      </ul>
+    </div>
+    
+    <!-- KARTU 2: PENDIDIKAN (Timeline) -->
+    <div class="bento-card edu-card">
+      <h3 class="bento-title"><i class="fa-solid fa-user-graduate"></i> Pendidikan & Sertifikasi</h3>
+      <div class="edu-timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>SMKN 1 Sigi</strong>
+            <span>Teknik Komputer & Jaringan</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>UIN Datokarama Palu</strong>
+            <span>Aqidah & Filsafat Islam</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>Human Capital University</strong>
+            <span>BNSP Human Capital Supervisor</span>
+          </div>
+        </div>
       </div>
-      
-      <!-- INFO PENDIDIKAN -->
-      <div class="bio-info-box">
-        <h3 style="font-size: 15px; margin-bottom: 12px; border-bottom: 2px solid #ddd; padding-bottom: 6px; color: #2c3e50;">PENDIDIKAN & SERTIFIKASI</h3>
-        <p style="margin-bottom: 8px; font-size: 13px;">SMKN 1 Sigi | Teknik Komputer & Jaringan</p>
-        <p style="margin-bottom: 8px; font-size: 13px;">UIN Datokarama Palu | Aqidah & Filsafat Islam</p>
-        <p style="margin-bottom: 8px; font-size: 13px;">Human Capital University | BNSP Human Capital Supervisor</p>
-      </div>
-
     </div>
 
-    <!-- KOLOM KANAN (AREA INTERAKTIF: TOMBOL CERITA & AI) -->
-    <div class="right-column">
-      
-      <!-- TOMBOL CTA "BACA CERITA" (SEKARANG DI ATAS AI, LEBAR 100%) -->
-      <a href="Tentang%20Saya/cerita-saya/cerita.html" class="story-cta-box" style="width: 100%; height: auto; flex-direction: row; text-align: left; justify-content: flex-start; gap: 20px; padding: 18px 20px; margin-bottom: 20px; box-sizing: border-box;">
-        <div class="cta-icon" style="margin-bottom: 0; font-size: 2.5rem;">
+    <!-- KARTU 3: CTA CERITA -->
+    <a href="Tentang%20Saya/cerita-saya/cerita.html" class="bento-card story-cta-card">
+      <div class="story-content-wrapper">
+        <div class="story-icon-bg">
           <i class="fa-solid fa-book-open-reader"></i>
         </div>
-        <div class="cta-text" style="flex: 1;">
-          <strong style="font-size: 1.15rem; margin-bottom: 5px;">Baca Kumpulan Cerita Saya</strong>
-          <span style="font-size: 0.8rem; opacity: 0.95;">Catatan Karir HC/OD, Rekayasa Sistem, & Pengalaman Organisasi</span>
+        <div class="story-text">
+          <strong>Baca Kumpulan Cerita Saya</strong>
+          <span>Catatan Karir HC/OD, Rekayasa Sistem, & Pengalaman Organisasi</span>
         </div>
-        <div class="cta-arrow" style="flex-shrink: 0;">
-          Buka <i class="fa-solid fa-arrow-right"></i>
-        </div>
-      </a>
+      </div>
+      <div class="story-action">
+        Buka <i class="fa-solid fa-arrow-right"></i>
+      </div>
+    </a>
 
-      <!-- AI WIDGET (TETAP DI BAWAH TOMBOL CERITA) -->
-      <div class="ai-widget" id="aiWidget">
-        <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
-        
-        <div class="ai-header">
-          <div class="ai-header-title">
-            <img src="Robot_AI.png" alt="Maskot" class="ai-mascot">
-            <h3>Ngegibahin Mas Subchan<br>Bareng AI 🤖</h3>
+    <!-- KARTU 4: AI WIDGET -->
+    <div class="bento-card ai-card" id="aiWidget">
+      <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+      
+      <div class="ai-header">
+        <div class="ai-header-title">
+          <img src="Robot_AI.png" alt="Maskot" class="ai-mascot">
+          <div class="ai-title-text">
+            <strong>Ngegibahin Mas Subchan</strong>
+            <span>Bareng AI Interactive 🤖</span>
           </div>
         </div>
-        
-        <!-- AREA CHAT -->
-        <div class="ai-chat-area" id="aiChatArea">
-          <div class="chat-message ai-msg">
-            <strong>Subchan AI:</strong> Halo! Aku kloningan AI-nya Mas Subchan. Ada yang mau digibahin atau ditanyain soal kualifikasi Mas Subchan? Ketik aja di bawah! 👇
-          </div>
+      </div>
+      
+      <!-- AREA CHAT -->
+      <div class="ai-chat-area" id="aiChatArea">
+        <div class="chat-message ai-msg">
+          <strong>Subchan AI:</strong> Halo! Aku kloningan AI-nya Mas Subchan. Ada yang mau digibahin atau ditanyain soal kualifikasi Mas Subchan? Ketik aja di bawah! 👇
         </div>
-
-        <!-- INPUT DAN TOMBOL KIRIM -->
-        <div class="ai-input-wrapper" id="aiInputWrapper">
-          <textarea class="ai-input" id="aiInput" placeholder="Ketik pertanyaan di sini..."></textarea>
-          <button id="sendAiBtn" class="send-ai-btn" title="Kirim Pesan"><i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-        
       </div>
 
+      <!-- INPUT DAN TOMBOL KIRIM -->
+      <div class="ai-input-wrapper" id="aiInputWrapper">
+        <textarea class="ai-input" id="aiInput" placeholder="Ketik pertanyaan di sini..."></textarea>
+        <button id="sendAiBtn" class="send-ai-btn" title="Kirim Pesan"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
     </div>
+
   </div>
+  <!-- ========================================== -->
   
   <div class="riwayat-pekerjaan-section">
     <div class="section-title-line">
