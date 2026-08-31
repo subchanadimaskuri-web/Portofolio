@@ -167,9 +167,33 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
    RIWAYAT PEKERJAAN (MODERN CARDS)
    ========================================== */
 .riwayat-pekerjaan-section { width: 100%; margin-bottom: 50px; }
-.section-title-line { border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: baseline; }
-.section-title-line h3 { font-size: 1.4rem; color: #0f172a; }
-.sub-info { font-size: 0.8rem; color: #94a3b8; font-style: italic; }
+
+/* Wrapper Judul & Keterangan */
+.section-title-line { 
+  padding-bottom: 12px; 
+  margin-bottom: 24px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: baseline; 
+  position: relative; /* Menjadi jangkar untuk garis gradasi di bawahnya */
+  border-bottom: none; /* Menghapus garis kaku bawaan sebelumnya */
+}
+
+/* Garis Pemisah Gradasi Melalui Pseudo-element (Sangat Elegan) */
+.section-title-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px; /* Tipis namun tegas */
+  background: linear-gradient(to right, #0F172A 0%, rgba(15, 23, 42, 0.05) 100%);
+}
+
+.section-title-line h3 { font-size: 1.4rem; color: #0f172a; margin: 0; }
+
+/* Keterangan Teks Kanan (Abu-abu Netral) */
+.sub-info { font-size: 0.85rem; color: #64748B; font-style: italic; font-weight: 500; }
 .job-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s, box-shadow 0.3s; }
 .job-item:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
 .job-title-link { display: inline-block; font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: #0f172a; text-decoration: none; transition: color 0.2s; }
