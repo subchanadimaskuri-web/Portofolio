@@ -49,45 +49,44 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .social-note { font-size: 0.75rem; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
 
 /* ==========================================
-   GALERI & AUDIO (DARK NAVY CONTAINER)
+   GALERI & AUDIO
    ========================================== */
 .gallery-audio-section { margin-bottom: 40px; }
 
-/* Mengganti bingkai berlubang menjadi kotak solid Biru Navy elegan */
+/* Pembungkus luar dibuat transparan agar panah bebas di luar kotak */
 .slider-container { 
   display: flex; align-items: center; justify-content: center; gap: 15px; 
   margin-bottom: 20px; 
-  background-color: #0B132B; /* Warna Biru Navy Gelap sesuai request */
-  padding: 24px 20px; 
-  border-radius: 12px; /* Dibuat melengkung halus */
   position: relative;
-  box-shadow: 0 10px 30px rgba(11, 19, 43, 0.15);
 }
 
-/* Memastikan tidak ada efek lubang-lubang putih */
-.slider-container::before,
-.slider-container::after {
-  display: none; 
+/* Tombol panah kembali berwarna gelap karena posisinya di luar kotak biru */
+.nav-arrow { font-size: 24px; cursor: pointer; color: #64748b; transition: color 0.2s; z-index: 2; }
+.nav-arrow:hover { color: #000080; }
+
+/* Kotak Biru Navy Murni (#000080) dipindahkan HANYA untuk membungkus gambar */
+.slider-wrapper { 
+  display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2;
+  background-color: #000080; /* Warna Biru Navy Murni */
+  padding: 20px; 
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 128, 0.15);
 }
-
-.nav-arrow { font-size: 24px; cursor: pointer; color: #ffffff; transition: color 0.2s; z-index: 2; }
-.nav-arrow:hover { color: #94a3b8; }
-
-.slider-wrapper { display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2; }
 
 /* Foto di dalam container */
 .slide-item { 
   width: 240px; height: 140px; object-fit: cover; 
   border-radius: 6px; 
-  border: 1px solid #333; 
+  border: 1px solid rgba(255,255,255,0.2); 
   cursor: pointer; transition: 0.3s; 
 }
 .slide-item:hover { transform: scale(1.05); border-color: #ffffff; z-index: 3; }
 
 .audio-player { display: flex; align-items: center; gap: 15px; background: #ffffff; padding: 12px 25px; border-radius: 50px; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-.audio-player i { font-size: 22px; cursor: pointer; color: #0B132B; }
+/* Warna Ikon & Slider Audio diubah ke #000080 */
+.audio-player i { font-size: 22px; cursor: pointer; color: #000080; }
 .audio-time { font-size: 13px; color: #64748b; font-weight: 600; min-width: 85px; text-align: right; }
-#seekSlider { flex: 1; cursor: pointer; accent-color: #0B132B; }
+#seekSlider { flex: 1; cursor: pointer; accent-color: #000080; }
 .narasi-text { font-size: 1rem; line-height: 1.8; color: #475569; margin-bottom: 40px; text-align: justify; padding: 0 10px; }
 
 /* ==========================================
@@ -110,35 +109,38 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
   flex-direction: column; 
 }
 .bento-title { font-size: 1.1rem; color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; font-weight: 700; }
-.bento-title i { color: #0B132B; font-size: 1.25rem; } /* Warna ikon Biru Navy */
+/* Ikon Kartu berubah jadi #000080 */
+.bento-title i { color: #000080; font-size: 1.25rem; } 
 
 /* KARTU 1: Biodata */
 .bento-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
 .bento-list li { display: flex; flex-direction: column; gap: 4px; }
 .bento-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 700; }
-/* Teks Nama, TTL, Alamat dibuat tebal (700) dan berwarna Biru Navy gelap */
-.bento-value { font-size: 0.95rem; color: #0B132B; font-weight: 700; } 
+/* Teks Nilai (Nama, TTL) berubah jadi #000080 */
+.bento-value { font-size: 0.95rem; color: #000080; font-weight: 700; } 
 
 /* KARTU 2: Vertical Timeline Pendidikan */
 .edu-timeline { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 12px; }
 .edu-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: #e2e8f0; border-radius: 2px; }
 .timeline-item { position: relative; padding-left: 20px; }
-/* Titik timeline diubah menjadi Biru Navy */
-.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #0B132B; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
+/* Titik timeline berubah jadi #000080 */
+.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #000080; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
 .timeline-content { display: flex; flex-direction: column; gap: 4px; }
-/* Teks Institusi dan Jurusan dibuat sama tebalnya (700) dan berwarna Biru Navy */
-.timeline-content strong { font-size: 0.95rem; color: #0B132B; font-weight: 700; }
-.timeline-content span { font-size: 0.85rem; color: #0B132B; font-weight: 700; }
+/* Teks Institusi & Jurusan berubah jadi #000080 */
+.timeline-content strong { font-size: 0.95rem; color: #000080; font-weight: 700; }
+.timeline-content span { font-size: 0.85rem; color: #000080; font-weight: 700; }
 
 /* KARTU 3: Tombol Cerita Editorial */
 .story-cta-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; text-decoration: none; justify-content: space-between; overflow: hidden; border: none; }
 .story-cta-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25); }
 .story-content-wrapper { display: flex; gap: 20px; align-items: flex-start; z-index: 2; }
-.story-icon-bg { font-size: 2rem; color: #00E5FF; background: rgba(0, 229, 255, 0.1); padding: 14px; border-radius: 12px; }
+/* Ikon diubah ke Navy (#000080) dengan background putih agar menonjol di kartu gelap */
+.story-icon-bg { font-size: 2rem; color: #000080; background: #ffffff; padding: 14px; border-radius: 12px; }
 .story-text strong { display: block; font-size: 1.15rem; margin-bottom: 6px; font-weight: 700; }
 .story-text span { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; display: block; }
-.story-action { margin-top: 24px; align-self: flex-end; background: rgba(255,255,255,0.1); color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s; z-index: 2; }
-.story-cta-card:hover .story-action { background: #00E5FF; color: #0f172a; }
+/* Tombol "Buka" diubah ke warna putih & Navy */
+.story-action { margin-top: 24px; align-self: flex-end; background: #ffffff; color: #000080; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.3s; z-index: 2; }
+.story-cta-card:hover .story-action { background: #000080; color: #ffffff; border: 1px solid #ffffff; }
 
 /* KARTU 4: AI Widget Modern */
 .bento-card.ai-card { padding: 0; justify-content: space-between; }
@@ -146,13 +148,16 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .ai-header-title { display: flex; align-items: center; gap: 14px; }
 .ai-mascot { width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #e2e8f0; }
 .ai-title-text strong { display: block; font-size: 0.95rem; color: #0f172a; font-weight: 700; }
-.ai-title-text span { font-size: 0.7rem; color: #00E5FF; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+/* Subteks Bareng AI diubah ke Navy */
+.ai-title-text span { font-size: 0.7rem; color: #000080; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 .ai-chat-area { padding: 20px 24px; display: none; }
 .ai-input-wrapper { padding: 16px 24px; border-top: 1px solid #e2e8f0; background: #ffffff; display: flex; gap: 10px; }
+/* Border input saat diklik diubah ke Navy */
 .ai-input { width: 100%; height: 45px; padding: 12px 16px; font-size: 0.9rem; border: 1px solid #cbd5e1; border-radius: 8px; resize: none; background: #f8fafc; transition: all 0.3s; }
-.ai-input:focus { border-color: #00E5FF; outline: none; background: #ffffff; box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1); }
-.send-ai-btn { background: #0f172a; color: #00E5FF; border: none; border-radius: 8px; width: 45px; cursor: pointer; font-size: 16px; transition: 0.2s; display: none; justify-content: center; align-items: center; }
-.send-ai-btn:hover { background: #00E5FF; color: #0f172a; transform: translateY(-2px); }
+.ai-input:focus { border-color: #000080; outline: none; background: #ffffff; box-shadow: 0 0 0 3px rgba(0, 0, 128, 0.1); }
+/* Tombol kirim pesawat kertas diubah ke Navy */
+.send-ai-btn { background: #f1f5f9; color: #000080; border: none; border-radius: 8px; width: 45px; cursor: pointer; font-size: 16px; transition: 0.2s; display: none; justify-content: center; align-items: center; }
+.send-ai-btn:hover { background: #000080; color: #ffffff; transform: translateY(-2px); }
 
 /* ==========================================
    RIWAYAT PEKERJAAN (MODERN CARDS)
@@ -164,9 +169,11 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .job-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s, box-shadow 0.3s; }
 .job-item:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
 .job-title-link { display: inline-block; font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: #0f172a; text-decoration: none; transition: color 0.2s; }
-.job-title-link:hover { color: #00E5FF; }
+/* Warna teks jabatan saat disentuh mouse (hover) diubah ke Navy */
+.job-title-link:hover { color: #000080; }
 .job-desc { font-size: 0.95rem; color: #475569; line-height: 1.6; margin-bottom: 16px; text-align: justify; }
-.job-highlights { font-size: 0.8rem; color: #334155; background: #f8fafc; padding: 10px 16px; border-radius: 8px; border-left: 3px solid #00E5FF; font-weight: 600; }
+/* Garis tebal di pinggir kiri diubah ke Navy murni (#000080) */
+.job-highlights { font-size: 0.8rem; color: #334155; background: #f8fafc; padding: 10px 16px; border-radius: 8px; border-left: 3px solid #000080; font-weight: 600; }
 
 /* ==========================================
    AI WIDGET FULLSCREEN & LIGHTBOX (BUG FIXED)
