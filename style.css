@@ -49,51 +49,45 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .social-note { font-size: 0.75rem; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
 
 /* ==========================================
-   GALERI & AUDIO (EFEK KLISE FILM CELLULOID)
+   GALERI & AUDIO (DARK NAVY CONTAINER)
    ========================================== */
 .gallery-audio-section { margin-bottom: 40px; }
 
-/* Bingkai Hitam Roll Film */
+/* Mengganti bingkai berlubang menjadi kotak solid Biru Navy elegan */
 .slider-container { 
   display: flex; align-items: center; justify-content: center; gap: 15px; 
   margin-bottom: 20px; 
-  background-color: #111111; /* Hitam pekat ala klise */
-  padding: 24px 15px; 
-  border-radius: 6px;
+  background-color: #0B132B; /* Warna Biru Navy Gelap sesuai request */
+  padding: 24px 20px; 
+  border-radius: 12px; /* Dibuat melengkung halus */
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(11, 19, 43, 0.15);
 }
 
-/* Membuat ilusi lubang klise (Sprocket holes) di atas dan bawah */
+/* Memastikan tidak ada efek lubang-lubang putih */
 .slider-container::before,
 .slider-container::after {
-  content: ''; position: absolute; left: 0; right: 0; height: 10px;
-  /* Menggunakan warna background web (#f8fafc) agar terlihat berlubang tembus pandang */
-  background-image: linear-gradient(to right, transparent 4px, #f8fafc 4px, #f8fafc 16px, transparent 16px);
-  background-size: 24px 100%;
+  display: none; 
 }
-.slider-container::before { top: 6px; }
-.slider-container::after { bottom: 6px; }
 
 .nav-arrow { font-size: 24px; cursor: pointer; color: #ffffff; transition: color 0.2s; z-index: 2; }
-.nav-arrow:hover { color: #00E5FF; }
+.nav-arrow:hover { color: #94a3b8; }
 
 .slider-wrapper { display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2; }
 
-/* Foto di dalam klise */
+/* Foto di dalam container */
 .slide-item { 
   width: 240px; height: 140px; object-fit: cover; 
-  border-radius: 2px; /* Klise kaku, bukan melengkung */
+  border-radius: 6px; 
   border: 1px solid #333; 
   cursor: pointer; transition: 0.3s; 
-  filter: sepia(0.2) contrast(1.1); /* Sedikit efek vintage */
 }
-.slide-item:hover { transform: scale(1.05); filter: sepia(0) contrast(1); border-color: #00E5FF; z-index: 3; }
+.slide-item:hover { transform: scale(1.05); border-color: #ffffff; z-index: 3; }
 
 .audio-player { display: flex; align-items: center; gap: 15px; background: #ffffff; padding: 12px 25px; border-radius: 50px; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-.audio-player i { font-size: 22px; cursor: pointer; color: #0f172a; }
+.audio-player i { font-size: 22px; cursor: pointer; color: #0B132B; }
 .audio-time { font-size: 13px; color: #64748b; font-weight: 600; min-width: 85px; text-align: right; }
-#seekSlider { flex: 1; cursor: pointer; accent-color: #00E5FF; }
+#seekSlider { flex: 1; cursor: pointer; accent-color: #0B132B; }
 .narasi-text { font-size: 1rem; line-height: 1.8; color: #475569; margin-bottom: 40px; text-align: justify; padding: 0 10px; }
 
 /* ==========================================
@@ -115,24 +109,26 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
   display: flex; 
   flex-direction: column; 
 }
-.bento-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-.bento-title { font-size: 1.1rem; color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
-.bento-title i { color: #00E5FF; font-size: 1.25rem; }
+.bento-title { font-size: 1.1rem; color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; font-weight: 700; }
+.bento-title i { color: #0B132B; font-size: 1.25rem; } /* Warna ikon Biru Navy */
 
 /* KARTU 1: Biodata */
 .bento-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
 .bento-list li { display: flex; flex-direction: column; gap: 4px; }
 .bento-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 700; }
-.bento-value { font-size: 0.95rem; color: #334155; font-weight: 600; }
+/* Teks Nama, TTL, Alamat dibuat tebal (700) dan berwarna Biru Navy gelap */
+.bento-value { font-size: 0.95rem; color: #0B132B; font-weight: 700; } 
 
 /* KARTU 2: Vertical Timeline Pendidikan */
 .edu-timeline { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 12px; }
 .edu-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: #e2e8f0; border-radius: 2px; }
 .timeline-item { position: relative; padding-left: 20px; }
-.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #00E5FF; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
+/* Titik timeline diubah menjadi Biru Navy */
+.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #0B132B; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
 .timeline-content { display: flex; flex-direction: column; gap: 4px; }
-.timeline-content strong { font-size: 0.95rem; color: #0f172a; font-weight: 700; }
-.timeline-content span { font-size: 0.85rem; color: #64748b; }
+/* Teks Institusi dan Jurusan dibuat sama tebalnya (700) dan berwarna Biru Navy */
+.timeline-content strong { font-size: 0.95rem; color: #0B132B; font-weight: 700; }
+.timeline-content span { font-size: 0.85rem; color: #0B132B; font-weight: 700; }
 
 /* KARTU 3: Tombol Cerita Editorial */
 .story-cta-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; text-decoration: none; justify-content: space-between; overflow: hidden; border: none; }
