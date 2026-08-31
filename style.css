@@ -49,15 +49,47 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .social-note { font-size: 0.75rem; color: #94a3b8; font-weight: 500; letter-spacing: 0.5px; }
 
 /* ==========================================
-   GALERI & AUDIO
+   GALERI & AUDIO (EFEK KLISE FILM CELLULOID)
    ========================================== */
 .gallery-audio-section { margin-bottom: 40px; }
-.slider-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; }
-.nav-arrow { font-size: 24px; cursor: pointer; color: #94a3b8; transition: color 0.2s; }
-.nav-arrow:hover { color: #0f172a; }
-.slider-wrapper { display: flex; gap: 16px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; }
-.slide-item { width: 240px; height: 140px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
-.slide-item:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+/* Bingkai Hitam Roll Film */
+.slider-container { 
+  display: flex; align-items: center; justify-content: center; gap: 15px; 
+  margin-bottom: 20px; 
+  background-color: #111111; /* Hitam pekat ala klise */
+  padding: 24px 15px; 
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Membuat ilusi lubang klise (Sprocket holes) di atas dan bawah */
+.slider-container::before,
+.slider-container::after {
+  content: ''; position: absolute; left: 0; right: 0; height: 10px;
+  /* Menggunakan warna background web (#f8fafc) agar terlihat berlubang tembus pandang */
+  background-image: linear-gradient(to right, transparent 4px, #f8fafc 4px, #f8fafc 16px, transparent 16px);
+  background-size: 24px 100%;
+}
+.slider-container::before { top: 6px; }
+.slider-container::after { bottom: 6px; }
+
+.nav-arrow { font-size: 24px; cursor: pointer; color: #ffffff; transition: color 0.2s; z-index: 2; }
+.nav-arrow:hover { color: #00E5FF; }
+
+.slider-wrapper { display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2; }
+
+/* Foto di dalam klise */
+.slide-item { 
+  width: 240px; height: 140px; object-fit: cover; 
+  border-radius: 2px; /* Klise kaku, bukan melengkung */
+  border: 1px solid #333; 
+  cursor: pointer; transition: 0.3s; 
+  filter: sepia(0.2) contrast(1.1); /* Sedikit efek vintage */
+}
+.slide-item:hover { transform: scale(1.05); filter: sepia(0) contrast(1); border-color: #00E5FF; z-index: 3; }
+
 .audio-player { display: flex; align-items: center; gap: 15px; background: #ffffff; padding: 12px 25px; border-radius: 50px; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
 .audio-player i { font-size: 22px; cursor: pointer; color: #0f172a; }
 .audio-time { font-size: 13px; color: #64748b; font-weight: 600; min-width: 85px; text-align: right; }
@@ -141,20 +173,23 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .job-highlights { font-size: 0.8rem; color: #334155; background: #f8fafc; padding: 10px 16px; border-radius: 8px; border-left: 3px solid #00E5FF; font-weight: 600; }
 
 /* ==========================================
-   AI WIDGET FULLSCREEN & LIGHTBOX
+   AI WIDGET FULLSCREEN & LIGHTBOX (BUG FIXED)
    ========================================== */
-.ai-widget.fullscreen-mode { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90vw; max-width: 800px; height: 85vh; z-index: 10000; box-shadow: 0 10px 50px rgba(0,0,0,0.2); display: flex; flex-direction: column; border-radius: 16px; }
-.ai-widget.fullscreen-mode .close-ai-btn { display: block; position: absolute; top: 12px; right: 20px; font-size: 32px; color: #94a3b8; background: none; border: none; cursor: pointer; transition: color 0.2s; }
-.ai-widget.fullscreen-mode .close-ai-btn:hover { color: #ef4444; }
-.ai-widget.fullscreen-mode .ai-chat-area { display: flex; flex-direction: column; gap: 15px; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 24px; flex: 1; font-size: 0.95rem; background: #f8fafc; overflow-y: auto; }
-.ai-widget.fullscreen-mode .send-ai-btn { display: flex; }
-.ai-widget.fullscreen-mode .ai-input { height: 60px; }
+/* Perbaikan: Menggunakan #aiWidget alih-alih .ai-widget agar nyambung dengan Javascript */
+#aiWidget.fullscreen-mode { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90vw; max-width: 800px; height: 85vh; z-index: 10000; box-shadow: 0 10px 50px rgba(0,0,0,0.2); display: flex; flex-direction: column; border-radius: 16px; background: #ffffff; }
+#aiWidget.fullscreen-mode .close-ai-btn { display: block; position: absolute; top: 12px; right: 20px; font-size: 32px; color: #94a3b8; background: none; border: none; cursor: pointer; transition: color 0.2s; }
+#aiWidget.fullscreen-mode .close-ai-btn:hover { color: #ef4444; }
+#aiWidget.fullscreen-mode .ai-chat-area { display: flex; flex-direction: column; gap: 15px; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 24px; flex: 1; font-size: 0.95rem; background: #f8fafc; overflow-y: auto; }
+#aiWidget.fullscreen-mode .send-ai-btn { display: flex; }
+#aiWidget.fullscreen-mode .ai-input { height: 60px; }
+
 .chat-message { max-width: 85%; padding: 14px 18px; border-radius: 12px; line-height: 1.5; font-size: 0.95rem; animation: popIn 0.3s ease; }
 .ai-msg { background: #ffffff; color: #334155; align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
 .user-msg { background: #0f172a; color: #ffffff; align-self: flex-end; border-bottom-right-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 .chat-loading { align-self: flex-start; font-style: italic; color: #94a3b8; font-size: 0.85rem; border: none; background: transparent; box-shadow: none; padding: 0; }
 .ai-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); z-index: 9999; }
 .ai-backdrop.active { display: block; }
+
 .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.9); justify-content: center; align-items: center; flex-direction: column; backdrop-filter: blur(5px); }
 .lightbox.active { display: flex; }
 .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10001; }
