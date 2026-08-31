@@ -34,19 +34,25 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.15); border-color: #00E5FF; color: #00E5FF; transform: translateY(-3px); }
 
 /* ==========================================
-   TAHAP 2: NAVIGASI & SOCIAL BAR (FLOATING TOP BAR)
+   TAHAP 2: NAVIGASI & SOCIAL BAR (TRANSPARENT & WIDER)
    ========================================== */
-.nav-social-bar { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px; z-index: 10; }
-.nav-menu { display: flex; background: #ffffff; padding: 6px; border-radius: 50px; border: none; gap: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-.nav-menu a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.9rem; padding: 10px 24px; border-radius: 40px; transition: all 0.3s ease; }
-.nav-menu a:hover { color: #000080; background: #f1f5f9; }
-.nav-menu a.active { color: #ffffff; background: #000080; box-shadow: 0 4px 10px rgba(0, 0, 128, 0.2); }
+/* max-width diperlebar jadi 1200px agar ikon lebih ke kanan */
+.nav-social-bar { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 30px; z-index: 10; }
+
+/* Menu Tanpa Background Putih (Menyatu dengan banner) */
+.nav-menu { display: flex; background: transparent; padding: 0; border: none; gap: 24px; box-shadow: none; }
+.nav-menu a { text-decoration: none; color: #cbd5e1; font-weight: 600; font-size: 0.95rem; padding: 6px 0; transition: all 0.3s ease; position: relative; }
+.nav-menu a:hover { color: #ffffff; }
+
+/* Visual Aktif: Teks Putih & Garis Bawah Bercahaya */
+.nav-menu a.active { color: #ffffff; }
+.nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #00E5FF; border-radius: 2px; box-shadow: 0 0 8px rgba(0, 229, 255, 0.5); }
 
 .social-icons-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .social-icons { display: flex; gap: 12px; }
-/* WARNA IKON DIUBAH JADI NAVY (#000080) SEJAK AWAL */
-.social-icons a { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #ffffff; border: none; border-radius: 50%; color: #000080; font-size: 1.15rem; transition: all 0.3s ease; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-.social-icons a:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); background: #000080; color: #ffffff; }
+/* Warna ikon medsos diganti jadi warna background Kartu Cerita (#0f172a) */
+.social-icons a { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #ffffff; border: none; border-radius: 50%; color: #0f172a; font-size: 1.15rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.15); text-decoration: none; }
+.social-icons a:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); background: #0f172a; color: #ffffff; }
 
 .social-note { font-size: 0.75rem; color: #ffffff; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-top: 4px; }
 
@@ -54,95 +60,58 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
    GALERI & AUDIO
    ========================================== */
 .gallery-audio-section { margin-bottom: 40px; }
-
-/* Pembungkus luar dibuat transparan agar panah bebas di luar kotak */
-.slider-container { 
-  display: flex; align-items: center; justify-content: center; gap: 15px; 
-  margin-bottom: 20px; 
-  position: relative;
-}
-
-/* Tombol panah kembali berwarna gelap karena posisinya di luar kotak biru */
+.slider-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px; position: relative; }
 .nav-arrow { font-size: 24px; cursor: pointer; color: #64748b; transition: color 0.2s; z-index: 2; }
-.nav-arrow:hover { color: #000080; }
+/* Warna panah saat disentuh (hover) menjadi #0B132B */
+.nav-arrow:hover { color: #0B132B; }
 
-/* Kotak Biru Navy Murni (#000080) dipindahkan HANYA untuk membungkus gambar */
-.slider-wrapper { 
-  display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2;
-  background-color: #000080; /* Warna Biru Navy Murni */
-  padding: 20px; 
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 128, 0.15);
-}
-
-/* Foto di dalam container */
-.slide-item { 
-  width: 240px; height: 140px; object-fit: cover; 
-  border-radius: 6px; 
-  border: 1px solid rgba(255,255,255,0.2); 
-  cursor: pointer; transition: 0.3s; 
-}
+/* Background kotak slider diganti ke warna Dark Navy pekat (#0B132B) */
+.slider-wrapper { display: flex; gap: 12px; overflow: hidden; justify-content: center; align-items: center; min-height: 150px; flex: 1; z-index: 2; background-color: #0B132B; padding: 20px; border-radius: 12px; box-shadow: 0 10px 30px rgba(11, 19, 43, 0.15); }
+.slide-item { width: 240px; height: 140px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s; }
 .slide-item:hover { transform: scale(1.05); border-color: #ffffff; z-index: 3; }
 
 .audio-player { display: flex; align-items: center; gap: 15px; background: #ffffff; padding: 12px 25px; border-radius: 50px; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-/* Warna Ikon & Slider Audio diubah ke #000080 */
-.audio-player i { font-size: 22px; cursor: pointer; color: #000080; }
+/* Ikon Play, Volume, & Slider Audio disamakan ke #0B132B */
+.audio-player i { font-size: 22px; cursor: pointer; color: #0B132B; }
 .audio-time { font-size: 13px; color: #64748b; font-weight: 600; min-width: 85px; text-align: right; }
-#seekSlider { flex: 1; cursor: pointer; accent-color: #000080; }
+#seekSlider { flex: 1; cursor: pointer; accent-color: #0B132B; }
 .narasi-text { font-size: 1rem; line-height: 1.8; color: #475569; margin-bottom: 40px; text-align: justify; padding: 0 10px; }
 
 /* ==========================================
    TAHAP 3: BENTO GRID LAYOUT
    ========================================== */
-.bento-grid-layout { 
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 24px; 
-  margin-bottom: 50px; 
-}
-.bento-card { 
-  background: #ffffff; 
-  border: 1px solid #e2e8f0; 
-  border-radius: 16px; 
-  padding: 24px; 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-  display: flex; 
-  flex-direction: column; 
-}
+.bento-grid-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
+.bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+.bento-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
 .bento-title { font-size: 1.1rem; color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; font-weight: 700; }
-/* Ikon Kartu berubah jadi #000080 */
-.bento-title i { color: #000080; font-size: 1.25rem; } 
+.bento-title i { color: #0f172a; font-size: 1.25rem; } 
 
-/* KARTU 1: Biodata */
 .bento-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
 .bento-list li { display: flex; flex-direction: column; gap: 4px; }
 .bento-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; font-weight: 700; }
-/* Teks Nilai (Nama, TTL) berubah jadi #000080 */
-.bento-value { font-size: 0.95rem; color: #000080; font-weight: 700; } 
+/* Semua nilai teks kini berwarna Dark Slate (#0f172a) */
+.bento-value { font-size: 0.95rem; color: #0f172a; font-weight: 700; } 
 
-/* KARTU 2: Vertical Timeline Pendidikan */
 .edu-timeline { display: flex; flex-direction: column; gap: 20px; position: relative; padding-left: 12px; }
 .edu-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: #e2e8f0; border-radius: 2px; }
 .timeline-item { position: relative; padding-left: 20px; }
-.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #000080; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
+/* Titik timeline dan teks menggunakan Dark Slate (#0f172a) */
+.timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #0f172a; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
 .timeline-content { display: flex; flex-direction: column; gap: 4px; }
-/* Institusi tetap Navy tebal */
-.timeline-content strong { font-size: 0.95rem; color: #000080; font-weight: 700; }
-/* JURUSAN DIUBAH JADI ABU-ABU KALEM (#94a3b8) */
-.timeline-content span { font-size: 0.85rem; color: #94a3b8; font-weight: 600; }
+.timeline-content strong { font-size: 0.95rem; color: #0f172a; font-weight: 700; }
+.timeline-content span { font-size: 0.85rem; color: #94a3b8; font-weight: 600; } 
 
 /* KARTU 3: Tombol Cerita Editorial */
 .story-cta-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; text-decoration: none; justify-content: space-between; overflow: hidden; border: none; }
 .story-cta-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25); }
 .story-content-wrapper { display: flex; gap: 20px; align-items: flex-start; z-index: 2; }
-/* Ikon diubah ke Navy (#000080) dengan background putih agar menonjol di kartu gelap */
-.story-icon-bg { font-size: 2rem; color: #000080; background: #ffffff; padding: 14px; border-radius: 12px; }
+/* Ikon Buku dikembalikan ke warna aslinya (Cyan / #00E5FF) */
+.story-icon-bg { font-size: 2rem; color: #00E5FF; background: rgba(0, 229, 255, 0.1); padding: 14px; border-radius: 12px; }
 .story-text strong { display: block; font-size: 1.15rem; margin-bottom: 6px; font-weight: 700; }
 .story-text span { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; display: block; }
-/* Tombol "Buka" diubah ke warna putih & Navy */
-.story-action { margin-top: 24px; align-self: flex-end; background: #ffffff; color: #000080; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.3s; z-index: 2; }
-.story-cta-card:hover .story-action { background: #000080; color: #ffffff; border: 1px solid #ffffff; }
+/* Tombol "Buka" dikembalikan ke warna aslinya (Cyan / #00E5FF) */
+.story-action { margin-top: 24px; align-self: flex-end; background: rgba(255,255,255,0.1); color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s; z-index: 2; }
+.story-cta-card:hover .story-action { background: #00E5FF; color: #0f172a; }
 
 /* KARTU 4: AI Widget Modern */
 .bento-card.ai-card { padding: 0; justify-content: space-between; }
@@ -150,16 +119,13 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .ai-header-title { display: flex; align-items: center; gap: 14px; }
 .ai-mascot { width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #e2e8f0; }
 .ai-title-text strong { display: block; font-size: 0.95rem; color: #0f172a; font-weight: 700; }
-/* Subteks Bareng AI diubah ke Navy */
-.ai-title-text span { font-size: 0.7rem; color: #000080; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.ai-title-text span { font-size: 0.7rem; color: #0f172a; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 .ai-chat-area { padding: 20px 24px; display: none; }
 .ai-input-wrapper { padding: 16px 24px; border-top: 1px solid #e2e8f0; background: #ffffff; display: flex; gap: 10px; }
-/* Border input saat diklik diubah ke Navy */
 .ai-input { width: 100%; height: 45px; padding: 12px 16px; font-size: 0.9rem; border: 1px solid #cbd5e1; border-radius: 8px; resize: none; background: #f8fafc; transition: all 0.3s; }
-.ai-input:focus { border-color: #000080; outline: none; background: #ffffff; box-shadow: 0 0 0 3px rgba(0, 0, 128, 0.1); }
-/* Tombol kirim pesawat kertas diubah ke Navy */
-.send-ai-btn { background: #f1f5f9; color: #000080; border: none; border-radius: 8px; width: 45px; cursor: pointer; font-size: 16px; transition: 0.2s; display: none; justify-content: center; align-items: center; }
-.send-ai-btn:hover { background: #000080; color: #ffffff; transform: translateY(-2px); }
+.ai-input:focus { border-color: #0f172a; outline: none; background: #ffffff; box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1); }
+.send-ai-btn { background: #f1f5f9; color: #0f172a; border: none; border-radius: 8px; width: 45px; cursor: pointer; font-size: 16px; transition: 0.2s; display: none; justify-content: center; align-items: center; }
+.send-ai-btn:hover { background: #0f172a; color: #ffffff; transform: translateY(-2px); }
 
 /* ==========================================
    RIWAYAT PEKERJAAN (MODERN CARDS)
