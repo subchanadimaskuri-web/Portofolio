@@ -29,54 +29,59 @@
           <a href="https://www.instagram.com/subchanadi.m//" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://wa.me/+6285143709909" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-        <div class="social-note">Klik Icon Untuk Berinteraksi</div>
       </div>
     </div>
 
-  <!-- 2. WIDGET INTERAKTIF & TEKS (Kiri Bawah) -->
+ <!-- 2. WIDGET INTERAKTIF & TEKS (Kiri Bawah) -->
     <div class="hero-container">
       <div class="hero-content">
         
-        <!-- TEKS PERKENALAN -->
+        <!-- TEKS PERKENALAN (Lebih Ringkas & Padat) -->
         <span class="hero-eyebrow"><i class="fa-solid fa-briefcase"></i> Open To Work</span>
         <h1 class="hero-title">Subchan Adi Maskuri</h1>
-        <p class="hero-description" style="margin-bottom: 10px;">
-          "Saya sangat berterimakasih apabila Bapak/Ibu mewujudkan mimpi saya berkarir di Human Capital dengan kesempatan magang ataupun berkontribusi di perusahaan Bapak/Ibu."
+        <p class="hero-description" style="margin-bottom: 20px;">
+          Mendedikasikan tata kelola sistem dan pengembangan potensi manusia menuju efektivitas organisasi.
         </p>
 
-        <!-- KARTU AI WIDGET (Transparan/Glassmorphism) -->
-        <div class="hero-ai-widget" id="aiWidget">
-          <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+        <!-- FLEX ROW: TOMBOL CERITA & SEARCH PILL AI BERSAMPINGAN -->
+        <div class="hero-cta-row">
           
-          <div class="ai-header">
-            <div class="ai-header-title">
-              <img src="Robot_AI.png" alt="Maskot" class="ai-mascot">
-              <div class="ai-title-text">
-                <strong>Ngegibahin Mas Subchan Adi Maskuri</strong>
-                <span>BARENG AI INTERACTIVE 🤖</span>
+          <!-- Tombol Cerita -->
+          <a href="Tentang%20Saya/cerita-saya/cerita.html" class="hero-story-btn">
+            <i class="fa-solid fa-book-open-reader"></i> Baca Cerita ↗
+          </a>
+
+          <!-- Pill AI Widget -->
+          <div class="hero-ai-pill" id="aiWidget">
+            <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+            
+            <div class="ai-header">
+              <div class="ai-header-title">
+                <img src="Robot_AI.png" alt="Maskot" class="ai-mascot">
+                <div class="ai-title-text">
+                  <strong>Ngegibahin Mas Subchan Adi Maskuri</strong>
+                  <span>BARENG AI INTERACTIVE 🤖</span>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div class="ai-chat-area" id="aiChatArea">
-            <div class="chat-message ai-msg">
-              <strong>Subchan AI:</strong> Halo! Aku kloningan AI-nya Mas Subchan. Ada yang mau digibahin atau ditanyain soal kualifikasi Mas Subchan? Ketik aja di bawah! 👇
+            
+            <div class="ai-chat-area" id="aiChatArea">
+              <div class="chat-message ai-msg">
+                <strong>Subchan AI:</strong> Halo! Aku kloningan AI-nya Mas Subchan. Ada yang mau digibahin atau ditanyain soal kualifikasi Mas Subchan? Ketik aja di bawah! 👇
+              </div>
+            </div>
+            
+            <div class="ai-input-wrapper" id="aiInputWrapper">
+              <!-- Placeholder diubah agar cocok dengan bentuk Pill -->
+              <textarea class="ai-input" id="aiInput" placeholder="Tanya AI tentang kualifikasi saya..." rows="1"></textarea>
+              <button id="sendAiBtn" class="send-ai-btn" title="Kirim Pesan"><i class="fa-solid fa-sparkles"></i></button>
             </div>
           </div>
-          
-          <div class="ai-input-wrapper" id="aiInputWrapper">
-            <textarea class="ai-input" id="aiInput" placeholder="Ketik pertanyaan di sini..."></textarea>
-            <button id="sendAiBtn" class="send-ai-btn" title="Kirim Pesan"><i class="fa-solid fa-paper-plane"></i></button>
-          </div>
-        </div>
 
-        <!-- LINK CERITA (Teks Melayang) -->
-        <a href="Tentang%20Saya/cerita-saya/cerita.html" class="hero-text-link">
-          <i class="fa-solid fa-book-open-reader"></i> Baca Kumpulan Cerita Saya <i class="fa-solid fa-arrow-right-long" style="margin-left: 5px;"></i>
-        </a>
+        </div> <!-- Akhir Flex Row -->
 
       </div>
-    </div>
+    </div> 
   </header>
   <!-- ========================================== -->
   
