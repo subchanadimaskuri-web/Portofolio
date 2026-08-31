@@ -9,17 +9,79 @@
 </head>
 <body>
 
-  <!-- ==========================================
-       MODERN HERO BANNER (TAHAP 1)
-       ========================================== -->
-  <!-- ==========================================
-       MODERN HERO BANNER
+ <!-- ==========================================
+       MODERN HERO BANNER & FLOATING TOP BAR
        ========================================== -->
   <header class="hero-section">
-      <!-- Teks dan tombol sengaja dikosongkan agar visual Dasbor 3D tampil sempurna -->
+    
+    <!-- 1. MENU MELAYANG DI ATAS BANNER -->
+    <div class="nav-social-bar">
+      <div class="nav-menu">
+        <a href="index.html" class="active">Tentang Saya</a>
+        <a href="portofolio/index.html">Portofolio</a>
+        <a href="epustaka/index.html">Epustaka & Podcast</a>
+      </div>
+      <div class="social-icons-wrapper">
+        <div class="social-icons">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=subchanadimaskuri@gmail.com" target="_blank">
+            <i class="fa-solid fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/subchanadimaskuri/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/subchanadi.m//" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/+6285143709909" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="social-note">Klik Icon Untuk Berinteraksi</div>
+      </div>
+    </div>
+
+    <!-- 2. WIDGET INTERAKTIF (Kiri Bawah) -->
+    <div class="hero-container">
+      <div class="hero-content">
+        
+        <!-- KARTU CERITA (Dipindah ke Banner) -->
+        <a href="Tentang%20Saya/cerita-saya/cerita.html" class="bento-card story-cta-card hero-widget">
+          <div class="story-content-wrapper">
+            <div class="story-icon-bg">
+              <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <div class="story-text">
+              <strong>Baca Kumpulan Cerita Saya</strong>
+              <span>Catatan Karir HC/OD, Rekayasa Sistem, & Pengalaman Organisasi</span>
+            </div>
+          </div>
+          <div class="story-action">
+            Buka <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- KARTU AI WIDGET (Dipindah ke Banner & Teks Diupdate) -->
+        <div class="bento-card ai-card hero-widget" id="aiWidget">
+          <button id="closeAiBtn" class="close-ai-btn" title="Kecilkan Tampilan">&times;</button>
+          <div class="ai-header">
+            <div class="ai-header-title">
+              <img src="Robot_AI.png" alt="Maskot" class="ai-mascot">
+              <div class="ai-title-text">
+                <strong>Ngegibahin Mas Subchan Adi Maskuri</strong>
+                <span>BARENG AI INTERACTIVE 🤖</span>
+              </div>
+            </div>
+          </div>
+          <div class="ai-chat-area" id="aiChatArea">
+            <div class="chat-message ai-msg">
+              <strong>Subchan AI:</strong> Halo! Aku kloningan AI-nya Mas Subchan. Ada yang mau digibahin atau ditanyain soal kualifikasi Mas Subchan? Ketik aja di bawah! 👇
+            </div>
+          </div>
+          <div class="ai-input-wrapper" id="aiInputWrapper">
+            <textarea class="ai-input" id="aiInput" placeholder="Ketik pertanyaan di sini..."></textarea>
+            <button id="sendAiBtn" class="send-ai-btn" title="Kirim Pesan"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </header>
   <!-- ========================================== -->
-<div class="container">
+  
+  <div class="container">
   
   <div class="nav-social-bar">
     <div class="nav-menu">
