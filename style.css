@@ -156,17 +156,35 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .nav-arrow { font-size: 24px; cursor: pointer; color: #64748b; transition: color 0.2s; z-index: 2; }
 .nav-arrow:hover { color: #ffffff; }
 
-/* Konsol Audio Terintegrasi (Menempel tanpa margin) */
+/* Konsol Audio Terintegrasi (Terkalibrasi Elegan) */
 .dossier-audio-console {
   display: flex; align-items: center; gap: 15px; 
   background: var(--color-alabaster); 
-  padding: 16px 30px; 
-  border-bottom: 1px solid #e2e8f0;
+  padding: 18px 30px; 
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
-.dossier-audio-console i { font-size: 24px; cursor: pointer; color: var(--color-terracotta); transition: transform 0.2s, text-shadow 0.2s; }
-.dossier-audio-console i:hover { transform: scale(1.1); text-shadow: 0 0 8px rgba(217, 119, 6, 0.4); }
-#seekSlider { flex: 1; cursor: pointer; accent-color: var(--color-terracotta); }
-.audio-time { font-size: 13px; color: #64748b; font-weight: 600; min-width: 85px; text-align: right; }
+.dossier-audio-console i { 
+  font-size: 22px; 
+  cursor: pointer; 
+  color: #334155; /* Slate Neutral yang tenang dan menyatu */
+  transition: transform 0.2s, color 0.2s; 
+}
+.dossier-audio-console i:hover { 
+  transform: scale(1.1); 
+  color: var(--color-kinetic-cyan); 
+}
+#seekSlider { 
+  flex: 1; 
+  cursor: pointer; 
+  accent-color: #B45309; /* Muted Amber gelap dengan saturasi rendah */
+}
+.audio-time { 
+  font-size: 13px; 
+  color: #64748b; 
+  font-weight: 600; 
+  min-width: 85px; 
+  text-align: right; 
+}
 
 /* Teks Narasi */
 .dossier-narrative {
@@ -179,8 +197,22 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 /* ==========================================
    TAHAP 3: BENTO GRID LAYOUT
    ========================================== */
-.bento-grid-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
-.bento-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+.bento-grid-layout { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 24px; 
+  margin-bottom: 28px; /* Disamakan agar ritme vertikal seragam */
+}
+.bento-card { 
+  background: #ffffff; 
+  border: 1px solid rgba(15, 23, 42, 0.08); /* Garis batas transparan lembut */
+  border-radius: 16px; 
+  padding: 28px; /* Padding inner simetris untuk bobot visual sejajar */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  display: flex; 
+  flex-direction: column; 
+}
 .bento-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
 .bento-title { font-size: 1.1rem; color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; font-weight: 700; }
 .bento-title i { color: #0f172a; font-size: 1.25rem; } 
@@ -196,7 +228,7 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 .timeline-dot { position: absolute; left: -16px; top: 6px; width: 12px; height: 12px; background: #0f172a; border: 2px solid #ffffff; border-radius: 50%; box-shadow: 0 0 0 2px #e2e8f0; }
 .timeline-content { display: flex; flex-direction: column; gap: 4px; }
 .timeline-content strong { font-size: 0.95rem; color: #0f172a; font-weight: 700; }
-.timeline-content span { font-size: 0.85rem; color: #94a3b8; font-weight: 600; } 
+.timeline-content span { font-size: 0.85rem; color: #94a3b8; font-weight: 600; }
 
 /* KARTU 3: Tombol Cerita Editorial */
 .story-cta-card { background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; text-decoration: none; justify-content: space-between; overflow: hidden; border: none; }
