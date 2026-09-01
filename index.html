@@ -88,28 +88,34 @@
   <div class="container">
   
   <!-- ==========================================
-       MENU LAMA DI SINI SUDAH SAYA HAPUS AGAR TIDAK DOUBLE
+       WORKSPACE: UNIFIED DOSSIER CARD
        ========================================== -->
-
-  <div class="gallery-audio-section">
-    <div class="slider-container">
-      <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
-      <div class="slider-wrapper" id="sliderWrapper"></div>
-      <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
+  <div class="unified-dossier-card">
+    
+    <!-- Lapisan Atas: Jendela Visual -->
+    <div class="dossier-viewfinder">
+      <div class="slider-container">
+        <i class="fa-solid fa-angles-left nav-arrow left-arrow"></i>
+        <div class="slider-wrapper" id="sliderWrapper"></div>
+        <i class="fa-solid fa-angles-right nav-arrow right-arrow"></i>
+      </div>
     </div>
-    <div class="audio-player">
+
+    <!-- Lapisan Tengah: Konsol Audio Terintegrasi -->
+    <div class="dossier-audio-console">
       <i id="playBtn" class="fa-regular fa-circle-play"></i>
       <i class="fa-solid fa-volume-high"></i>
       <input type="range" id="seekSlider" value="0" min="0" step="1">
       <div class="audio-time"><span id="currentTime">00:00</span> / <span id="durationTime">--:--</span></div>
       <audio id="perkenalanAudio" src="Tentang%20Saya/Perkenalan.mp3"></audio>
     </div>
-  </div>
 
-  <div class="narasi-text">
-    "Perkenalkan saya Subchan Adi Maskuri, saya alumni Filsafat Islam UIN Datokarama Palu, sejak awal saya sangat bermimpi berkarir di dunia HR dan Organisational Devlopment, saya paham bahwa perjalanan pada akhirnya membawa saya ke takdir lain yang tampak tidak linier, namun saya mempunyai cerita bagaimana inlinieritas itu tetap saya gunakan dalam kerangka mimpi saya, dan kini setelah takdir membawa saya sebagai Supervisor General Affair di Pertambangan Nikel Sulawesi tenggara, saya dengan penuh keyakinan dan keberanian memilih untuk tidak melanjutkan kontrak dan mendedikasikan beberapa waktu untuk hibernasi mewujudkan impian lama di dunia HC/OD. Di Portofolio ini saya telah menguraikan secara detail cerita pendek perjalanan saya melalui konten video dan sebuah cerpen.. jika anda tertarik untuk berbagi pengalaman silahkan kunjungi "Cerita Saya" dibawah ini."
+    <!-- Lapisan Bawah: Catatan Refleksi -->
+    <div class="dossier-narrative">
+      "Perkenalkan saya Subchan Adi Maskuri, saya alumni Filsafat Islam UIN Datokarama Palu, sejak awal saya sangat bermimpi berkarir di dunia HR dan Organisational Devlopment, saya paham bahwa perjalanan pada akhirnya membawa saya ke takdir lain yang tampak tidak linier, namun saya mempunyai cerita bagaimana inlinieritas itu tetap saya gunakan dalam kerangka mimpi saya, dan kini setelah takdir membawa saya sebagai Supervisor General Affair di Pertambangan Nikel Sulawesi tenggara, saya dengan penuh keyakinan dan keberanian memilih untuk tidak melanjutkan kontrak dan mendedikasikan beberapa waktu untuk hibernasi mewujudkan impian lama di dunia HC/OD. Di Portofolio ini saya telah menguraikan secara detail cerita pendek perjalanan saya melalui konten video dan sebuah cerpen.. jika anda tertarik untuk berbagi pengalaman silahkan kunjungi 'Cerita Saya' dibawah ini."
+    </div>
   </div>
-
+    
   <!-- ==========================================
        TAHAP 3: BENTO GRID LAYOUT (Tinggal 2 Kartu Saja)
        ========================================== -->
