@@ -129,7 +129,7 @@ document.querySelector('.left-arrow')?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => { renderSlider(); });
 
 // ==========================================
-// 3. FITUR AI CHATBOT - METODE FULL-CONTEXT & AUTO-FALLBACK
+// 3. FITUR AI CHATBOT - METODE HYBRID JSON RAG & DUAL COGNITION
 // ==========================================
 const aiWidget = document.getElementById('aiWidget');
 const aiInput = document.getElementById('aiInput');
@@ -138,82 +138,69 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
+// ⚠️ API Key untuk tahap testing lokal. Nanti kita amankan di Serverless Function.
 const API_KEY = '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'; 
 
 let conversationHistory = [];
+const MAX_HISTORY_LENGTH = 7; // Mencegah memory leak & error token batas API
 
-// 1. Konsep "Buku Panduan" dari Prompt Engineer
-let SYSTEM_PROMPT = `Kamu adalah 'Subchan AI', agen asisten di portofolio Subchan Adi Maskuri.
+// 1. Injeksi Otak AI (Kognisi Ganda & JSON)
+async function bangunIngatanAI() {
+    let systemPromptBase = `Anda adalah "Subchan AI", representasi intelektual dan asisten virtual pihak ketiga untuk portofolio Subchan Adi Maskuri. Audiens Anda adalah rekruter Human Capital (HC), Organizational Development (OD), dan profesional perusahaan.
 
-PERANMU SEBAGAI PUSTAKAWAN & HR:
-Di bawah instruksi ini, terdapat "Buku Panduan Rekam Jejak Subchan". Setiap kali rekruter bertanya, tugasmu adalah MENCARI, MEMBACA, dan MENYINTESIS informasi HANYA dari Buku Panduan tersebut.
+KARAKTER & GAYA BAHASA:
+1. Analitis & Filosofis-Operasional: Gunakan bahasa yang elegan, tenang, dan analitis. Anda boleh menggunakan terminologi filsafat/sistem, namun harus membumi pada penyelesaian masalah praktis.
+2. Rendah Hati & Profesional: Jangan melebih-lebihkan. Bersikaplah sebagai negosiator yang objektif dan berbasis data.
+3. Naratif: Jawab menggunakan paragraf yang mengalir (storytelling logis). Kurangi penggunaan poin-poin kecuali sangat diperlukan.
 
-ATURAN MENJAWAB:
-1. Pahami makna tersirat dari pertanyaan rekruter dan hubungkan dengan cerita di Buku Panduan.
-2. Jelaskan benang merah perjalanan Subchan menuju minat utamanya: Human Capital & Organizational Development.
-3. Jawab HANYA berdasarkan Buku Panduan. Jika tidak ada di buku, katakan dengan sopan: "Maaf, catatan mengenai hal tersebut tidak ada di memori saya. Silakan hubungi Mas Subchan langsung via ikon kontak."
-4. Jawab dengan asyik, terstruktur (gunakan poin-poin), dan tidak bertele-tele.
-5. [WAJIB] Di akhir jawaban, sebutkan dari Bab/Fase mana kamu membaca informasi tersebut.
+ATURAN KOGNISI GANDA (DUAL COGNITION):
+1. FAKTA PERSONAL (TERKUNCI MUTLAK): Untuk pertanyaan terkait riwayat kerja, proyek, alasan karir, atau keahlian teknis Subchan, Anda HANYA BOLEH menggunakan data dari JSON di bawah. Jangan pernah mengarang riwayat kerja atau pengalaman fiktif.
+2. WAWASAN TEORETIS (FLEKSIBEL & ELABORATIF): Jika ditanya tentang istilah filsafat, teori, atau tokoh (misal: "Apa itu Epistemologi?", "Root Cause Analysis?"), gunakan pengetahuan umum cerdas Anda untuk menjelaskannya secara mendalam. NAMUN, setelah menjelaskan, Anda WAJIB mengaitkan konsep tersebut dengan bagaimana Subchan mengaplikasikannya di lapangan berdasarkan data JSON.
+3. BATASAN PRIVASI: Jika ditanya hal di luar ranah profesional (misal: ekspektasi gaji, privasi), jawab elegan: "Maaf, parameter mengenai hal tersebut tidak tersedia di arsitektur memori saya. Mengingat saya adalah program AI yang masih terus disempurnakan, saya sarankan Anda menghubungi Mas Subchan secara langsung melalui ikon kontak di laman utama."
 
-==================================================
-📖 BUKU PANDUAN REKAM JEJAK SUBCHAN:
-==================================================
+ATURAN WAJIB SITASI (REFERENSI SUMBER):
+Setiap kali Anda menyajikan fakta dari JSON, WAJIB sisipkan sitasi direktori sumber di akhir kalimat/paragraf.
+Format mutlak: [source: Tentang Saya/cerita-saya/faseX.html]
+(Contoh: Jika data dari "fase_id": "001", tulis [source: Tentang Saya/cerita-saya/fase1.html]. Jika dari "fase_id": "006_007", tulis [source: Tentang Saya/cerita-saya/fase6.html] atau fase7.html).
+
+=== MEMORI DATABASE JSON (FASE 001 - 010) ===
 `;
 
-// Ganti array daftarFaseCerita Anda dengan yang ini:
-const daftarFaseCerita = [
-  "Tentang Saya/cerita-saya/fase1.txt",
-  "Tentang Saya/cerita-saya/fase2.txt",
-  "Tentang Saya/cerita-saya/fase3.txt",
-  "Tentang Saya/cerita-saya/fase4.txt",
-  "Tentang Saya/cerita-saya/fase5.txt",
-  "Tentang Saya/cerita-saya/fase6.txt",
-  "Tentang Saya/cerita-saya/fase7.txt",
-  "Tentang Saya/cerita-saya/fase8.txt"
-];
+    // Daftar lokasi file JSON Anda di GitHub/Local
+    const daftarJson = [
+        'Tentang%20Saya/cerita-saya/grub1.json',
+        'Tentang%20Saya/cerita-saya/grub2.json',
+        'Tentang%20Saya/cerita-saya/grub3.json'
+    ];
 
-// 2. Memuat seluruh isi file dan menjadikannya SATU BUKU UTUH (Dengan Alarm Detektif)
-async function bangunIngatanAI() {
-    let isiBukuPanduan = "";
-    let jumlahBerhasil = 0; // Alat penghitung file yang sukses
-    
-    for (let path of daftarFaseCerita) {
-        try {
-            const response = await fetch(encodeURI(path)); 
-            if (response.ok) {
-                const teks = await response.text();
-                let namaFile = path.split('/').pop(); 
-                let namaFase = namaFile.replace('.txt', '').replace(/fase/i, 'Fase ');
-                
-                // Menggabungkan setiap teks dengan judul Bab-nya
-                isiBukuPanduan += `\n\n--- BAB: ${namaFase} ---\n${teks.trim()}`;
-                jumlahBerhasil++; // Tambah hitungan jika sukses
-            } else {
-                console.error("Gagal menemukan file (Cek nama folder/huruf besar-kecil):", path);
+    try {
+        const responses = await Promise.all(daftarJson.map(path => fetch(path)));
+        let jumlahBerhasil = 0;
+
+        for (let res of responses) {
+            if (res.ok) {
+                const jsonData = await res.json();
+                systemPromptBase += JSON.stringify(jsonData, null, 2) + "\n\n"; 
+                jumlahBerhasil++;
             }
-        } catch (error) {
-            console.error("Network error:", path, error);
         }
-    }
-    
-    // Menyuntikkan seluruh buku ke dalam sistem otak AI
-    SYSTEM_PROMPT += isiBukuPanduan;
-    conversationHistory = [{ role: 'system', content: SYSTEM_PROMPT }];
-    
-    // ALARM DETEKTIF: Akan muncul pop-up di layar jika gagal total
-    if (jumlahBerhasil === 0) {
-        alert("🚨 GAWAT: AI tidak bisa menemukan file teks cerita (fase1-8)! Pastikan nama folder, file, dan huruf besar/kecil di 'daftarFaseCerita' sudah sama persis dengan yang ada di GitHub.");
-    } else {
-        console.log(`[Sistem AI] Sukses! Berhasil memuat ${jumlahBerhasil} file cerita ke dalam memori.`);
+        
+        conversationHistory = [{ role: 'system', content: systemPromptBase }];
+        
+        if (jumlahBerhasil === 0) {
+            alert("🚨 GAWAT: AI gagal memuat file JSON (grub1-3). Pastikan path foldernya benar.");
+        } else {
+            console.log(`[Sistem AI] Berhasil menyuntikkan ${jumlahBerhasil} file JSON ke memori.`);
+        }
+
+    } catch (error) {
+        console.error("Gagal membangun ingatan AI:", error);
     }
 }
 
-// BAGIAN LINGKARAN MERAH ANDA (Tombol Starter)
-document.addEventListener('DOMContentLoaded', () => { 
-    bangunIngatanAI(); 
-});
+document.addEventListener('DOMContentLoaded', () => { bangunIngatanAI(); });
 
-// UI Controls
+// 2. UI Controls AI Widget
 function bukaAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.add('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.add('active');
@@ -226,79 +213,68 @@ if (aiInput) aiInput.addEventListener('focus', bukaAiLayarPenuh);
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
 
-// 3. Logika API Call dengan Auto-Fallback Loop
+// 3. Manajemen Memori Obrolan
+function kelolaMemori(pesanBaru) {
+    conversationHistory.push(pesanBaru);
+    if (conversationHistory.length > MAX_HISTORY_LENGTH + 1) {
+        conversationHistory.splice(1, 2); 
+    }
+}
+
+// 4. Logika API Call dengan Balapan Model (Promise.any)
 async function sendMessage() {
     const userText = aiInput.value.trim();
     if (!userText) return;
 
     appendMessage('User', userText, 'user-msg');
     aiInput.value = ''; 
+    const loadingId = appendMessage('Subchan AI', 'Memproses arsitektur data...', 'ai-msg chat-loading');
 
-    const loadingId = appendMessage('Subchan AI', 'Sebentar, menganalisis rekam jejak secara menyeluruh...', 'ai-msg chat-loading');
+    kelolaMemori({ role: 'user', content: userText });
 
-    // Menambahkan pertanyaan user ke riwayat obrolan
-    conversationHistory.push({ role: 'user', content: userText });
-
-    // Daftar Prioritas Model AI (Gratis, Memori Besar, & Stabil)
-    const daftarModelPrioritas = [
-        'nvidia/nemotron-3-ultra-550b-a55b:free', // Prioritas 1: Memori super besar (1M), sangat cerdas
-        'liquid/lfm-2.5-2.6b:free',                      // Prioritas 2: Cepat dan stabil
-        'openrouter/free'             // Prioritas 3: Cadangan paling tangguh
+    // 3 Model Andalan OpenRouter: Gemma (Cerdas), Liquid (Cepat), Nemotron (Logika Besar)
+    const models = [
+        'google/gemma-4-31b:free',
+        'liquid/lfm-2.5-2.6b:free',
+        'nvidia/nemotron-3-ultra:free'
     ];
 
-    let success = false;
-    let aiReply = "";
-
-    // Loop Auto-Fallback (Mencari server yang tidak sibuk)
-    for (let modelName of daftarModelPrioritas) {
-        try {
-            console.log(`[AI Agent] Mengirim request ke server: ${modelName}...`);
-            
-            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${API_KEY}`,
-                    'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
-                    'X-Title': 'Portofolio Subchan', 
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    model: modelName, 
-                    messages: conversationHistory 
-                })
-            });
-
-            const data = await response.json();
-
-            // Jika ada respons dan tidak error (server merespons dengan baik)
+    const requests = models.map(modelName => 
+        fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: modelName, 
+                messages: conversationHistory,
+                temperature: 0.4 // Keseimbangan antara akurasi JSON & keluwesan filosofis
+            })
+        }).then(async res => {
+            if (!res.ok) throw new Error(`Model ${modelName} gagal.`);
+            const data = await res.json();
             if (data.choices && data.choices.length > 0) {
-                aiReply = data.choices[0].message.content;
-                success = true;
-                console.log(`[AI Agent] Berhasil mendapatkan respons dari: ${modelName}`);
-                break; // Hentikan loop pencarian model, kita sudah dapat jawaban!
-            } else {
-                throw new Error("Server mengembalikan error atau sibuk.");
+                console.log(`[AI Engine] Menang balapan: ${modelName}`);
+                return data.choices[0].message.content;
             }
-        } catch (error) {
-            console.warn(`[AI Agent] Server ${modelName} sibuk/gagal. Otomatis beralih ke model cadangan...`);
-        }
-    }
+            throw new Error(`Data kosong dari ${modelName}`);
+        })
+    );
 
-    // Menghapus animasi "Sebentar, menganalisis..."
-    document.getElementById(loadingId).remove();
+    try {
+        const aiReply = await Promise.any(requests);
+        document.getElementById(loadingId).remove();
+        
+        let formattedReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        appendMessage('Subchan AI', formattedReply, 'ai-msg');
+        
+        kelolaMemori({ role: 'assistant', content: aiReply });
 
-    if (success) {
-        // Tampilkan jawaban
-        aiReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-        appendMessage('Subchan AI', aiReply, 'ai-msg');
-        
-        // Simpan jawaban ke riwayat agar AI tidak amnesia untuk pertanyaan berikutnya
-        conversationHistory.push({ role: 'assistant', content: aiReply });
-    } else {
-        // Jika SEMUA (ketiga) model server sedang down/sibuk
-        appendMessage('Subchan AI', 'Maaf, server AI di seluruh jaringan sedang mengalami kepadatan tinggi. Mohon coba beberapa saat lagi, atau klik ikon kontak untuk berbincang langsung dengan Mas Subchan ya.', 'ai-msg');
-        
-        // Hapus pesan user dari riwayat agar tidak bertumpuk error
+    } catch (error) {
+        document.getElementById(loadingId).remove();
+        appendMessage('Subchan AI', 'Maaf, server AI sedang mengalami kepadatan lintas jaringan. Mohon coba beberapa saat lagi, atau klik ikon kontak untuk berbincang langsung dengan Mas Subchan ya.', 'ai-msg');
         conversationHistory.pop(); 
     }
 }
@@ -309,11 +285,8 @@ function appendMessage(sender, text, className) {
     msgDiv.id = msgId;
     msgDiv.className = `chat-message ${className}`;
     
-    if(sender === 'User') {
-        msgDiv.innerHTML = `${text}`;
-    } else {
-        msgDiv.innerHTML = `<strong>${sender}:</strong><br>${text}`;
-    }
+    if(sender === 'User') { msgDiv.innerHTML = `${text}`; } 
+    else { msgDiv.innerHTML = `<strong>${sender}:</strong><br>${text}`; }
     
     if (aiChatArea) {
         aiChatArea.appendChild(msgDiv);
@@ -323,11 +296,7 @@ function appendMessage(sender, text, className) {
 }
 
 if (sendAiBtn) sendAiBtn.addEventListener('click', sendMessage);
-if (aiInput) {
-    aiInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-    });
-}
+if (aiInput) aiInput.addEventListener('keypress', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }});
 
 // ==========================================
 // 4. FITUR POPUP PDF RIWAYAT PEKERJAAN
