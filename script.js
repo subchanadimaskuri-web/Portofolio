@@ -234,9 +234,9 @@ async function sendMessage() {
 
     // 3 Model Andalan OpenRouter: Gemma (Cerdas), Liquid (Cepat), Nemotron (Logika Besar)
     const models = [
-        'google/gemma-4-31b:free',
+        'google/gemma-4-31b-it:free',
         'liquid/lfm-2.5-2.6b:free',
-        'nvidia/nemotron-3-ultra:free'
+        'nvidia/nemotron-3-ultra-550b-a55b:free'
     ];
 
     const requests = models.map(modelName => 
