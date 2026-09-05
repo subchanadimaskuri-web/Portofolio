@@ -1,0 +1,52 @@
+{
+  "grup_3": {
+    "tema_utama": "Skalabilitas Kepemimpinan, Rantai Pasok Terisolir, dan Transisi Menuju Arsitek Human Capital",
+    "fase_008_009_010": {
+      "fase_id": "008_009_010",
+      "judul": "Fondasi Strategis Tapak Tolala, Rekayasa Rantai Pasok Swakelola, dan Hibernasi Taktis Menuju Arsitek Human Capital",
+      "elevasi_kepemimpinan_dan_tata_kelola_tolala": {
+        "promosi_dan_lingkup": "Dipromosikan resmi oleh manajemen pada Mei 2025 dari posisi General Affairs & Administrator di pelabuhan batubara Balikpapan menjadi General Affairs Supervisor pada proyek ekspansi tambang nikel PT Mangkuraja Karya Gemilang di Tolala, Kolaka, Sulawesi Tenggara.",
+        "rentang_kendali_16_personel": "Memimpin 16 personel GA yang terbagi ke dalam tiga pilar fungsional di bawah koordinasi staf sektoral: Logistik Konsumsi, Bahan Bakar (Fuel), serta Fasilitas & Aset.",
+        "jalur_komando_dan_asimilasi_teknis": "Berada di bawah koordinasi langsung Projectsite Operational (PJO) dan mandat khusus manajemen puncak; mendelegasikan variabel teknis jam kerja alat (Hour Meter) dan administrasi tambang ke tim Mine Plan Engineering sembari menyerap logika perancangan tambang (mine plan) secara mandiri."
+      },
+      "matriks_pengadaan_dan_rantai_pasok_terisolir": {
+        "tantangan_geografis": "Lokasi tapak terpencil yang berjarak 2–3 jam perjalanan darat dari kota terdekat dengan ketersediaan barang terbatas, menuntut mitigasi bottleneck logistik secara presisi.",
+        "formulasi_rab_rutinan": "Melakukan pendampingan pengisian formulir kebutuhan lapangan dari pintu ke pintu bersama staf fasilitas untuk menghitung baseline kebutuhan pokok riil dan menyusun Rencana Anggaran Biaya (RAB) rutinan antardepartemen.",
+        "klasifikasi_alur_pengadaan": {
+          "pengadaan_rutinan_dan_non_kritis": "Dikelola dan dieksekusi langsung oleh tim GA di lapangan berdasarkan pagu RAB rutinan setelah disetujui Manajer Keuangan.",
+          "pengadaan_kritis_berskala_besar": "Diproses via Purchase Order (PO) langsung oleh PJO dan Manajer Keuangan untuk suku cadang alat berat dan material tambang utama, didukung tim GA dalam penjemputan fisik dan pengawalan kargo."
+        },
+        "jaringan_pemasok_multikota": "Menerapkan sistem pemesanan di awal (pre-order) berbasis database toko lokal di kota penyedia, serta memperluas kerja sama distribusi dengan vendor kargo darat dari Makassar dan Kendari untuk material dengan spesifikasi teknis khusus."
+      },
+      "rekayasa_dapur_swakelola_dan_mitigasi_rca": {
+        "manajemen_konsumsi_mandiri": "Mengelola dapur umum secara swakelola (in-house) untuk menyuplai ratusan pekerja tambang melalui pendekatan koordinasi cair dan persuasif bersama juru masak lokal.",
+        "riset_gramatur_dan_proyeksi_pengadaan": "Mengunci baseline ratio bahan baku mentah per porsi nasi bungkus untuk menyusun formula resep baku sekaligus kalkulasi rasio kebutuhan belanja/pengadaan bahan pangan dalam rentang dua minggu sekali.",
+        "siklus_menu_dan_stock_opname": "Penerapan rotasi menu dua mingguan untuk empat periode makan (pagi, siang, sore, malam) yang disinkronkan dengan pencatatan pengambilan bahan harian dan audit stock opname berkala guna meniadakan susut persediaan.",
+        "analisis_akar_masalah_chiller_genset": "Menggunakan Root Cause Analysis (RCA) pada kasus sayur busuk; membuktikan kegagalan pendinginan dipicu pemadaman listrik berkala desa, lalu menyajikan kalkulasi finansial akumulasi kerugian bahan pangan untuk meyakinkan manajemen menyetujui CAPEX pengadaan unit genset khusus dapur.",
+        "integrasi_pangan_lokal": "Memetakan serapan hasil tani dan tangkapan nelayan desa lingkar tambang sebagai buffer stock saat jalur kota terputus cuaca ekstrem, mengamankan kesinambungan pangan sekaligus membangun relasi sosial harmonis."
+      },
+      "arsitektur_data_berjenjang_dan_kultur_tim": {
+        "infrastruktur_data_dua_gerbang": {
+          "kanal_daring_google_workspace": "Konsolidasi real-time absensi shift, alokasi konsumsi, status fasilitas, dan jadwal armada dinas ke dalam dasbor satu pintu lintas departemen.",
+          "kanal_luring_localhost_lan": "Pengarsipan luring terenkripsi kata sandi di jaringan lokal site untuk melindungi data rahasia perusahaan, termasuk data pengujian kadar nikel divisi QA/QC."
+        },
+        "kebugaran_mental_dan_resolusi_kolektif": "Rapat internal GA difokuskan pada pembedahan anomali via RCA dan diagram Pareto; merawat kekerabatan melalui rekreasi mandiri (self-funded) di hari libur sebagai ruang aman (safe space) evaluasi diri dan pencegahan burnout.",
+        "transisi_profesional_terukur": "Mendanai peningkatan kapasitas mandiri (data analysis, data science, business development) yang bermuara pada ranah HC/OD; mengantongi sertifikasi BNSP Human Capital Supervisor; mengajukan pengunduran diri 1 bulan sebelum PKWT usai dan mendampingi suksesor hingga operasional stabil sebelum purnatugas pada Juni 2026."
+      },
+      "epoche_dan_navigasi_mandiri_human_capital": {
+        "tujuan_strategis_2027": "Menetapkan dropdown vision menjadi praktisi HC berbasis Business Development dengan ketajaman analisis akar masalah (RCA), perancangan matriks ukur, dan tata kelola organisasi.",
+        "lima_kpi_kompetensi": [
+          "Penguasaan analisis validitas instrumen ukur psikologi dari kacamata sosiologis dan filosofis.",
+          "Pendalaman hubungan industrial, regulasi ketenagakerjaan, dan sistem standardisasi ISO.",
+          "Peningkatan Management System Awareness.",
+          "Adaptabilitas taktis terhadap teknologi kecerdasan buatan (AI).",
+          "Aktualisasi kompetensi terbukti melalui web portofolio interaktif dan esai analitis."
+        ],
+        "eksplorasi_kurikulum_dan_audit_epistemologis": "Menelaah kurikulum psikologi industri dan analisis organisasi yang diakses secara terbuka di internet (Oxford, UGM, UNAIR, Telkom University, Arellano University Filipina) menggunakan triad Ontologi, Epistemologi, dan Aksiologi untuk menakar landasan validitas alat ukur.",
+        "dialektika_profesional": "Keterlibatan aktif dan pertanyaan kritis di forum profesional memantik antusiasme seorang dosen psikologi sekaligus asesor senior (30+ tahun pengalaman) untuk berdiskusi di jalur personal, saling menguji validitas alat ukur serta instrumen analisisnya.",
+        "aktualisasi_portofolio": "Merakit web portofolio interaktif terintegrasi dasbor operasional dan asisten AI sebagai 'perpustakaan mini' pembuktian kompetensi holistik yang melampaui batasan format CV konvensional."
+      },
+      "relevansi_hc_od": "Menunjukkan profil profesional yang utuh: memiliki kapasitas kepemimpinan manajerial multi-sektor, ketajaman penyusunan anggaran (RAB rutinan), mitigasi risiko rantai pasok swakelola, orkestrasi data tingkat lanjut, serta landasan epistemologis yang matang dalam tata kelola talenta dan efektivitas organisasi."
+    }
+  }
+}
