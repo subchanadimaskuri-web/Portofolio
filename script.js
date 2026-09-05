@@ -139,7 +139,7 @@ const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
 // ⚠️ API Key untuk tahap testing lokal. Nanti kita amankan di Serverless Function.
-const API_KEY = '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'; 
+const API_KEY = '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'; 
 
 let conversationHistory = [];
 const MAX_HISTORY_LENGTH = 7; // Mencegah memory leak & error token batas API
