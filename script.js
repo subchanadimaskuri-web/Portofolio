@@ -234,7 +234,7 @@ async function sendMessage() {
 
     // Daftar 3 Model Terandal (Dicoba satu per satu berurutan)
     const models = [
-        'nvidia/nemotron-3-ultra-550b-a55b:free',
+        'meta-llama/llama-3.1-8b-instruct:free',
         'google/gemma-2-9b-it:free',
         'liquid/lfm-2.5-2.6b:free'
     ];
