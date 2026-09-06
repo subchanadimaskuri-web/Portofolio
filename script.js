@@ -236,7 +236,7 @@ async function sendMessage() {
     const models = [
         'nvidia/nemotron-3-ultra-550b-a55b:free',
         'google/gemma-2-9b-it:free',
-        'liquid/lfm-2.5-2.6b:free'
+        'thinkingmachines/inkling-small:free'
     ];
 
     let success = false;
