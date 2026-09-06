@@ -138,35 +138,35 @@ const closeAiBtn = document.getElementById('closeAiBtn');
 const aiChatArea = document.getElementById('aiChatArea');
 const sendAiBtn = document.getElementById('sendAiBtn');
 
-// ⚠️ API Key untuk tahap testing lokal. Nanti kita amankan di Serverless Function.
+// ⚠️ API Key dipertahankan sesuai instruksi.
 const API_KEY = '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'; 
 
 let conversationHistory = [];
 const MAX_HISTORY_LENGTH = 7; // Mencegah memory leak & error token batas API
 
-// 1. Injeksi Otak AI (Kognisi Ganda & JSON)
+// 1. Injeksi Otak AI (Kognisi Ganda & Aturan UI)
 async function bangunIngatanAI() {
     let systemPromptBase = `Anda adalah "Subchan AI", representasi intelektual dan asisten virtual pihak ketiga untuk portofolio Subchan Adi Maskuri. Audiens Anda adalah rekruter Human Capital (HC), Organizational Development (OD), dan profesional perusahaan.
 
 KARAKTER & GAYA BAHASA:
-1. Analitis & Filosofis-Operasional: Gunakan bahasa yang elegan, tenang, dan analitis. Anda boleh menggunakan terminologi filsafat/sistem, namun harus membumi pada penyelesaian masalah praktis.
-2. Rendah Hati & Profesional: Jangan melebih-lebihkan. Bersikaplah sebagai negosiator yang objektif dan berbasis data.
+1. Analitis & Filosofis-Operasional: Gunakan bahasa yang elegan, tenang, dan analitis. Boleh gunakan terminologi filsafat/sistem, namun harus membumi pada penyelesaian masalah praktis.
+2. Rendah Hati & Profesional: Jangan melebih-lebihkan (overselling). Bersikaplah sebagai negosiator objektif berbasis data.
 3. Naratif: Jawab menggunakan paragraf yang mengalir (storytelling logis). Kurangi penggunaan poin-poin kecuali sangat diperlukan.
 
 ATURAN KOGNISI GANDA (DUAL COGNITION):
-1. FAKTA PERSONAL (TERKUNCI MUTLAK): Untuk pertanyaan terkait riwayat kerja, proyek, alasan karir, atau keahlian teknis Subchan, Anda HANYA BOLEH menggunakan data dari JSON di bawah. Jangan pernah mengarang riwayat kerja atau pengalaman fiktif.
-2. WAWASAN TEORETIS (FLEKSIBEL & ELABORATIF): Jika ditanya tentang istilah filsafat, teori, atau tokoh (misal: "Apa itu Epistemologi?", "Root Cause Analysis?"), gunakan pengetahuan umum cerdas Anda untuk menjelaskannya secara mendalam. NAMUN, setelah menjelaskan, Anda WAJIB mengaitkan konsep tersebut dengan bagaimana Subchan mengaplikasikannya di lapangan berdasarkan data JSON.
-3. BATASAN PRIVASI: Jika ditanya hal di luar ranah profesional (misal: ekspektasi gaji, privasi), jawab elegan: "Maaf, parameter mengenai hal tersebut tidak tersedia di arsitektur memori saya. Mengingat saya adalah program AI yang masih terus disempurnakan, saya sarankan Anda menghubungi Mas Subchan secara langsung melalui ikon kontak di laman utama."
+1. FAKTA PERSONAL (TERKUNCI MUTLAK): Untuk riwayat kerja, proyek, alasan karir, atau keahlian teknis Subchan, Anda HANYA BOLEH menggunakan data JSON di bawah. Jangan pernah mengarang riwayat kerja fiktif.
+2. WAWASAN TEORETIS (FLEKSIBEL): Jika ditanya istilah filsafat/teori (misal: "Apa itu Epistemologi?"), jelaskan secara cerdas, LALU kaitkan dengan bagaimana Subchan mengaplikasikannya di lapangan berdasarkan data.
+3. BATASAN PRIVASI: Jika ditanya hal privasi atau ekspektasi gaji, jawab: "Maaf, parameter tersebut tidak tersedia di memori saya. Silakan hubungi Mas Subchan secara langsung melalui ikon kontak (Email/LinkedIn/WhatsApp) di laman utama."
 
-ATURAN WAJIB SITASI (REFERENSI SUMBER):
-Setiap kali Anda menyajikan fakta dari JSON, WAJIB sisipkan sitasi direktori sumber di akhir kalimat/paragraf.
-Format mutlak: [source: Tentang Saya/cerita-saya/faseX.html]
-(Contoh: Jika data dari "fase_id": "001", tulis [source: Tentang Saya/cerita-saya/fase1.html]. Jika dari "fase_id": "006_007", tulis [source: Tentang Saya/cerita-saya/fase6.html] atau fase7.html).
+ATURAN NAVIGASI UI & CALL-TO-ACTION (PENTING!):
+Anda DILARANG KERAS mencetak sumber file statis (seperti [source: fase1.html]). Sebagai gantinya, Anda WAJIB mengarahkan audiens untuk berinteraksi dengan website ini secara natural di dalam jawaban Anda:
+- Jika membahas Pendidikan/Sertifikasi (SMKN 1 Sigi, UIN, BNSP): "Anda dapat melihat detailnya di bagian 'Pendidikan & Sertifikasi' pada web ini."
+- Jika membahas Pengalaman Kerja (CV. Mangkuraja, PT. Mangkuraja, dll): "Silakan klik judul pekerjaan tersebut di bagian 'Riwayat Pekerjaan' untuk membuka rincian tugas dan portofolio PDF-nya."
+- Jika membahas Proyek/Karya Tambahan: "Anda dapat melihat hasil nyata dari proyek ini di tab menu 'Portofolio' atau 'Epustaka & Podcast' di bagian atas halaman."
 
 === MEMORI DATABASE JSON (FASE 001 - 010) ===
 `;
 
-    // Daftar lokasi file JSON Anda di GitHub/Local
     const daftarJson = [
         'Tentang%20Saya/cerita-saya/grub1.json',
         'Tentang%20Saya/cerita-saya/grub2.json',
@@ -221,7 +221,7 @@ function kelolaMemori(pesanBaru) {
     }
 }
 
-// 4. Logika API Call dengan Balapan Model (Promise.any)
+// 4. Logika API Call (Metode Sequential Fallback / Hemat Token)
 async function sendMessage() {
     const userText = aiInput.value.trim();
     if (!userText) return;
@@ -232,50 +232,65 @@ async function sendMessage() {
 
     kelolaMemori({ role: 'user', content: userText });
 
-    // 3 Model Andalan OpenRouter: Gemma (Cerdas), Liquid (Cepat), Nemotron (Logika Besar)
+    // Daftar 3 Model Terandal (Dicoba satu per satu berurutan)
     const models = [
-        'google/gemma-4-31b-it:free',
-        'liquid/lfm-2.5-2.6b:free',
-        'nvidia/nemotron-3-ultra-550b-a55b:free'
+        'meta-llama/llama-3.1-8b-instruct:free',
+        'google/gemma-2-9b-it:free',
+        'liquid/lfm-2.5-2.6b:free'
     ];
 
-    const requests = models.map(modelName => 
-        fetch('https://openrouter.ai/api/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${API_KEY}`,
-                'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: modelName, 
-                messages: conversationHistory,
-                temperature: 0.4 // Keseimbangan antara akurasi JSON & keluwesan filosofis
-            })
-        }).then(async res => {
-            if (!res.ok) throw new Error(`Model ${modelName} gagal.`);
-            const data = await res.json();
-            if (data.choices && data.choices.length > 0) {
-                console.log(`[AI Engine] Menang balapan: ${modelName}`);
-                return data.choices[0].message.content;
+    let success = false;
+    let aiReply = "";
+
+    for (let i = 0; i < models.length; i++) {
+        let modelName = models[i];
+        
+        try {
+            // Animasi Loading Dinamis (Berubah Teks Jika Pindah Server)
+            if (i > 0) {
+                document.getElementById(loadingId).innerHTML = `<em>Server penuh, mengalihkan ke model cadangan (${i+1}/3)...</em>`;
+            } else {
+                document.getElementById(loadingId).innerHTML = `<em>Menelusuri database rekam jejak...</em>`;
             }
-            throw new Error(`Data kosong dari ${modelName}`);
-        })
-    );
 
-    try {
-        const aiReply = await Promise.any(requests);
-        document.getElementById(loadingId).remove();
-        
-        let formattedReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`,
+                    'HTTP-Referer': 'https://subchanadimaskuri-web.github.io/', 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: modelName, 
+                    messages: conversationHistory,
+                    temperature: 0.4 // Keseimbangan antara akurasi JSON & keluwesan filosofis
+                })
+            });
+
+            if (!response.ok) throw new Error(`Server ${modelName} sibuk/menolak.`);
+            
+            const data = await response.json();
+            if (data.choices && data.choices.length > 0) {
+                aiReply = data.choices[0].message.content;
+                success = true;
+                console.log(`[AI Engine] Berhasil menggunakan model: ${modelName}`);
+                break; // Keluar dari loop pencarian model karena sudah sukses
+            }
+        } catch (error) {
+            console.warn(`[AI Engine] Model ${modelName} gagal, mencoba jalur berikutnya...`);
+        }
+    }
+
+    // Menghapus elemen loading setelah proses selesai (sukses/gagal)
+    document.getElementById(loadingId).remove();
+
+    if (success) {
+        let formattedReply = aiReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
         appendMessage('Subchan AI', formattedReply, 'ai-msg');
-        
         kelolaMemori({ role: 'assistant', content: aiReply });
-
-    } catch (error) {
-        document.getElementById(loadingId).remove();
-        appendMessage('Subchan AI', 'Maaf, server AI sedang mengalami kepadatan lintas jaringan. Mohon coba beberapa saat lagi, atau klik ikon kontak untuk berbincang langsung dengan Mas Subchan ya.', 'ai-msg');
-        conversationHistory.pop(); 
+    } else {
+        appendMessage('Subchan AI', 'Maaf, seluruh jaringan server AI sedang mengalami kepadatan tinggi. Mohon coba beberapa saat lagi, atau klik ikon kontak untuk berbincang langsung dengan Mas Subchan ya.', 'ai-msg');
+        conversationHistory.pop(); // Hapus pesan agar user bisa mencoba lagi tanpa error bertumpuk
     }
 }
 
