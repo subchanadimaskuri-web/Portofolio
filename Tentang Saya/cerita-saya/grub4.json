@@ -1,0 +1,251 @@
+{
+  "kandidat": {
+    "nama": "Subchan Adi Maskuri",
+    "fokus_profesional": "Human Capital & Organizational Development",
+    "pendekatan_inti": "Philosophical Design Analysis & Systemic Engineering"
+  },
+  "cognitive_toolkit_index": [
+    {
+      "fase_id": "FASE-01",
+      "kategori": "Fondasi Paradigma & Sistem Operasi Kognitif",
+      "deskripsi": "Pemetaan kajian antroposentris, instrumen tokoh, dan triad metodologi sebagai pisau analisis kualitatif dan rekayasa desain sistemik.",
+      "tahap_1_topik_kajian": [
+        {
+          "nama_kajian": "Filsafat Politik",
+          "fungsi_analitis": "Mengaudit distribusi kekuasaan dan hegemoni terselubung.",
+          "rekayasa_desain": "Merancang structural governance untuk memastikan kesetaraan partisipasi."
+        },
+        {
+          "nama_kajian": "Filsafat Sosial",
+          "fungsi_analitis": "Membaca habitus dan tegangan antara agen dan struktur.",
+          "rekayasa_desain": "Mengonstruksi ekosistem asimilasi kultural organik tanpa paksaan instruksional."
+        },
+        {
+          "nama_kajian": "Kajian Pemikiran",
+          "fungsi_analitis": "Melacak genealogi dan validitas batas gagasan.",
+          "rekayasa_desain": "Menyeleksi dan merakit ulang konsep (eklektisisme metodologis) menjadi framework intervensi sistemik."
+        },
+        {
+          "nama_kajian": "Filsafat Bahasa",
+          "fungsi_analitis": "Mendiagnosis struktur sintaksis yang mendistorsi motif penutur.",
+          "rekayasa_desain": "Merekayasa knowledge codification dan protokol komunikasi yang presisi."
+        },
+        {
+          "nama_kajian": "Filsafat Modern dan Postmodern",
+          "fungsi_analitis": "Menelusuri pergeseran dari nalar stabil menuju subjek terfragmentasi.",
+          "rekayasa_desain": "Membangun instrumen evaluasi luwes yang merawat toleransi terhadap anomali struktural."
+        },
+        {
+          "nama_kajian": "Filsafat Sejarah, Budaya, dan Pop Culture",
+          "fungsi_analitis": "Membedah reproduksi mitos kultural dan nilai artifisial.",
+          "rekayasa_desain": "Merancang adaptasi budaya yang menjembatani nilai lama dengan ekspektasi zaman."
+        },
+        {
+          "nama_kajian": "Filsafat Humaniora",
+          "fungsi_analitis": "Mengurai spektrum rasionalitas, emosi, dan dorongan eksistensial.",
+          "rekayasa_desain": "Menyusun kerangka penguatan psychological safety yang mengakomodasi kerentanan manusia."
+        },
+        {
+          "nama_kajian": "Filsafat Nilai (Aksiologi)",
+          "fungsi_analitis": "Mendiagnosis hierarki nilai yang menggerakkan prioritas keputusan.",
+          "rekayasa_desain": "Melakukan value-alignment melalui panduan batasan etis (soft constraint)."
+        },
+        {
+          "nama_kajian": "Psikoanalisa",
+          "fungsi_analitis": "Melacak subteks simptomatik represi dan defense mechanism.",
+          "rekayasa_desain": "Mengalihkan kecenderungan defensif menuju artikulasi penyelesaian masalah yang konstruktif."
+        }
+      ],
+      "tahap_2_tokoh_dan_paradigma": [
+        {
+          "nama_instrumen": "Empirisme & Teori Lego Pengalaman (Locke & Hume)",
+          "fungsi_analitis": "Memetakan batas kognitif subjek berdasarkan paparan inderawi.",
+          "rekayasa_desain": "Mengganti doktrin teoretis dengan experiential engineering (simulasi, rotasi peran)."
+        },
+        {
+          "nama_instrumen": "Materialisme Dialektik & Faktisitas (Heidegger & Marx)",
+          "fungsi_analitis": "Mendiagnosis keterlemparan subjek dalam batas infrastruktur material dan corak produksi.",
+          "rekayasa_desain": "Memodifikasi basis material dan infrastruktur digital untuk memicu adaptasi perilaku mekanis."
+        },
+        {
+          "nama_instrumen": "Psikoanalisa Simbolik (Jacques Lacan)",
+          "fungsi_analitis": "Membedah narasi kecemasan laten di balik keluhan performatif.",
+          "rekayasa_desain": "Mendekonstruksi tuntutan irasional dengan tatanan simbolik baru sebagai ruang artikulasi fungsional."
+        },
+        {
+          "nama_instrumen": "Filsafat Bahasa (Wittgenstein)",
+          "fungsi_analitis": "Mengaudit klaim bahasa sebagai language games yang terus bergeser maknanya.",
+          "rekayasa_desain": "Menggeser parameter evaluasi menjadi interogasi silang antara teks dan konteks pembuktian material."
+        },
+        {
+          "nama_instrumen": "Hegemoni Kultural (Antonio Gramsci)",
+          "fungsi_analitis": "Mengidentifikasi produksi konsensus semu tanpa paksaan fisik.",
+          "rekayasa_desain": "Merekayasa narasi tandingan rasional agar pergeseran aturan diadopsi sebagai kewajaran baru."
+        },
+        {
+          "nama_instrumen": "Relasi Kuasa & Disiplin (Michel Foucault)",
+          "fungsi_analitis": "Memetakan anatomi kekuasaan yang menyebar melalui prosedur pengawasan.",
+          "rekayasa_desain": "Mendesain disiplin internal (technologies of the self) di mana transparansi adalah pilihan paling rasional."
+        },
+        {
+          "nama_instrumen": "Habitus, Modal, & Kekerasan Simbolik (Pierre Bourdieu)",
+          "fungsi_analitis": "Mengurai habitus dan pertarungan modal yang menciptakan faksi.",
+          "rekayasa_desain": "Mendesain arena (field) baru yang mendistribusi insentif modal secara egaliter."
+        },
+        {
+          "nama_instrumen": "Tindakan Komunikatif (Jürgen Habermas)",
+          "fungsi_analitis": "Mendiagnosis kebuntuan akibat distorsi nalar instrumental.",
+          "rekayasa_desain": "Mendesain forum ideal speech situation yang memprioritaskan argumen logis di atas hierarki otoritas."
+        },
+        {
+          "nama_instrumen": "Kritik Nalar Instrumental & Sinisme Ideologis (Mazhab Frankfurt & Žižek)",
+          "fungsi_analitis": "Menyingkap ilusi efisiensi mekanis dan sinisme kepatuhan.",
+          "rekayasa_desain": "Mengintervensi rutinitas sinikal dengan kalibrasi utilitas yang melindungi batas biologis pekerja."
+        },
+        {
+          "nama_instrumen": "Simulakra & Hiperrealitas (Jean Baudrillard)",
+          "fungsi_analitis": "Memetakan matrik performatif yang telah menggantikan kinerja riil.",
+          "rekayasa_desain": "Membangun sistem filtrasi untuk meruntuhkan proyeksi simbolik dengan uji pembuktian faktual."
+        },
+        {
+          "nama_instrumen": "Hermeneutika & Semiotika Dekonstruktif (Gadamer, Derrida, Barthes)",
+          "fungsi_analitis": "Membongkar asumsi biner dan menafsirkan subteks laten.",
+          "rekayasa_desain": "Menyusun ulang metodologi pembacaan data formal menjadi audit-silang presisi bebas asumsi cacat."
+        }
+      ],
+      "tahap_3_triad_metodologi": [
+        {
+          "nama_instrumen": "ONTOLOGI (Pemetaan Realitas Multi-Variabel & Metateks)",
+          "fungsi_analitis": "Membaca jaring realitas terselubung, tautan kausalitas, dan benturan antar-variabel kompleks.",
+          "rekayasa_desain": "Menyusun systems architecture blueprint yang tangguh terhadap guncangan eksternal."
+        },
+        {
+          "nama_instrumen": "EPISTEMOLOGI (Audit Validitas & Instrumen Kognisi)",
+          "fungsi_analitis": "Menguji validitas pengetahuan dan membongkar bias kognitif atau logical fallacy.",
+          "rekayasa_desain": "Membangun information filtering mechanics yang kedap manipulasi untuk pengambilan keputusan."
+        },
+        {
+          "nama_instrumen": "AKSIOLOGI (Rekayasa Nilai & Penggerak Perilaku)",
+          "fungsi_analitis": "Mendiagnosis landasan etis yang mendikte motivasi dan memicu kecemasan eksistensial.",
+          "rekayasa_desain": "Melakukan value-driven engineering pada arsitektur insentif agar selaras dengan penggerak psikologis."
+        }
+      ]
+    },
+    {
+      "fase_id": "FASE-02",
+      "kategori": "Laboratorium Inkubasi Organisasi & Rekayasa Sistem (HMJ)",
+      "kapabilitas_hc_od": [
+        {
+          "nama_kapabilitas": "Synthetic Crisis Engineering & Ego Aikido",
+          "konteks_operasional": "Memitigasi resistensi senioritas melalui rekayasa krisis terkontrol untuk menyublimasi hasrat dominasi menjadi solidaritas kolektif."
+        },
+        {
+          "nama_kapabilitas": "Behavioral Gamification & Structural De-escalation",
+          "konteks_operasional": "Mentransformasi orientasi intimidatif menjadi 'Pasar Gagasan' berbasis tawar-menawar solusi lintas kelompok."
+        },
+        {
+          "nama_kapabilitas": "Reverse-Engineering KPI & Outcome-Based Planning",
+          "konteks_operasional": "Merumuskan perencanaan dari akar masalah perilaku menjadi prasyarat kompetensi terukur tanpa vanity metrics."
+        },
+        {
+          "nama_kapabilitas": "Zero-Budget L&D & Cross-Functional Talent Sourcing",
+          "konteks_operasional": "Mengakuisisi narasumber via lobi informal untuk menghidupkan ekosistem organisasi pembelajar organik (peer-learning)."
+        },
+        {
+          "nama_kapabilitas": "Talent Lifecycle Management & Policy Institutionalization",
+          "konteks_operasional": "Merevisi AD/ART untuk mengunci meritokrasi kaderisasi berjenjang (Fase 1-3) dan mitigasi brain drain melalui Dewan Senior."
+        }
+      ]
+    },
+    {
+      "fase_id": "FASE-03",
+      "kategori": "Inkubasi Ekosistem Pembelajar Mandiri (Sophia Institute)",
+      "kapabilitas_hc_od": [
+        {
+          "nama_kapabilitas": "Strategic Merger & Founder's Ego Suppression",
+          "konteks_operasional": "Meleburkan gagasan komunitas Academus ke dalam LSF Sophia, memilih posisi arsitek sistem (sekretaris) dibanding panggung ketua umum."
+        },
+        {
+          "nama_kapabilitas": "Dual Leadership & Matrix Internal Inspectorate",
+          "konteks_operasional": "Membagi poros pimpinan operasional dan redaksi, serta mendekonstruksi kesekretariatan menjadi data-driven compliance (inspektorat internal)."
+        },
+        {
+          "nama_kapabilitas": "Governance Firewall & Pre-boarding Cultural Alignment",
+          "konteks_operasional": "Mengunci Mubes tertutup berbasis aristokrasi-intelektual (3 tahun) dan seleksi ekspektasi via kelompok diskursus (sandbox) pra-keanggotaan."
+        },
+        {
+          "nama_kapabilitas": "Quality Baseline Seeding & Peer-to-Peer Learning",
+          "konteks_operasional": "Mengalibrasi standar logika perintis via dosen hulu, sebelum mendelegasikan arsitektur pembelajaran setara pada Kelas 1–6."
+        },
+        {
+          "nama_kapabilitas": "Soft Constraint Performance Management",
+          "konteks_operasional": "Mengganti sanksi pemecatan dengan arsitektur konsekuensi logis; ketidakaktifan otomatis menahan mobilitas vertikal kelas anggota."
+        }
+      ]
+    },
+    {
+      "fase_id": "FASE-04",
+      "kategori": "Sentralisme Demokrasi Berbasis Data & Advokasi Kerakyatan (LMND-DN & GMNI)",
+      "kapabilitas_hc_od": [
+        {
+          "nama_kapabilitas": "Advanced Spreadsheet Modeling & Federated Data Architecture",
+          "konteks_operasional": "Merancang sistem pelaporan terintegrasi lintas-komisariat via Google Workspace untuk memantau performa unit otonom dalam satu dasbor."
+        },
+        {
+          "nama_kapabilitas": "Domain-Driven Governance & Two-Way Democratic Centralism",
+          "konteks_operasional": "Membagi fokus advokasi berbasis kepakaran rumpun keilmuan kampus dengan evaluasi mingguan partisipatoris bottom-up."
+        },
+        {
+          "nama_kapabilitas": "Participatory Research & Anti-Elitist Needs Analysis",
+          "konteks_operasional": "Menjalankan human-centered research dan pendidikan politik empiris dengan mendengarkan penderitaan material akar rumput tanpa arogansi elitis."
+        },
+        {
+          "nama_kapabilitas": "Data-Driven Succession & Continuous Policy Institutionalization",
+          "konteks_operasional": "Mengubah Konferensi Cabang dari panggung retorika menjadi audit kinerja objektif historis guna mengunci program berdampak menjadi warisan wajib."
+        }
+      ]
+    },
+    {
+      "fase_id": "FASE-05",
+      "kategori": "Rekayasa Operasional & Tata Kelola Korporat (CV. Mangkuraja Samudra & PT. Mangkuraja Karya Gemilang)",
+      "keterampilan_teknis": [
+        "Dasbor Visual Interaktif (Looker Studio)",
+        "Advanced Spreadsheet Modeling (FILTER, INDEX MATCH, IMPORTRANGE)",
+        "Hybrid Data Architecture (Cloud & Offline Localhost LAN)",
+        "Root Cause Analysis (5 Whys, Fishbone, Pareto)",
+        "Fleet & Fuel Auditing (Full-to-Full & Geometric Sounding)",
+        "Supply Chain (Bulk Procurement, Pre-Order Sourcing, Stock Opname)"
+      ],
+      "kapabilitas_hc_od": [
+        {
+          "nama_kapabilitas": "Biological Needs Modeling & Lean Utility Procurement",
+          "konteks_operasional": "Menyelesaikan defisit air mes via kalkulasi matematis biologis riil (105L/hari) dan mengubah pengadaan suplemen menjadi bulk procurement bersisa SiLPA."
+        },
+        {
+          "nama_kapabilitas": "Precision Fuel Geometry & Root Cause Analysis (RCA)",
+          "konteks_operasional": "Mengaudit penerimaan solar via rumus geometri volume (sounding celup), merombak kuota shift menjadi full-to-full, dan membedah anomali konsumsi liter/HM."
+        },
+        {
+          "nama_kapabilitas": "Interactive Operational Dashboard Architecture",
+          "konteks_operasional": "Mengotomatisasi aliran data lapangan (personalia, jam kerja, petty cash, solar, delay time) ke dalam visualisasi Looker Studio lintas horizon waktu."
+        },
+        {
+          "nama_kapabilitas": "Remote Supply Chain Resilience & Pre-Order Sourcing",
+          "konteks_operasional": "Memetakan pengadaan tambang terisolir Tolala dengan pra-pemesanan distributor kota besar, memisahkan rute belanja rutin, insidental, dan barang kritis."
+        },
+        {
+          "nama_kapabilitas": "Hybrid Data Architecture & Information Security",
+          "konteks_operasional": "Membangun sistem informasi GA daring (Google Sheets kolaboratif) dan luring (Excel LAN terenkripsi) demi melindungi kerahasiaan data uji kadar nikel."
+        },
+        {
+          "nama_kapabilitas": "Autonomous Food Supply Chain & Infrastructure RCA",
+          "konteks_operasional": "Menyusun gramatur dapur swakelola tanpa koersi; melacak sayur busuk akibat chiller padam menjadi rasionalisasi finansial belanja modal genset baru."
+        },
+        {
+          "nama_kapabilitas": "Psychological Safety Culture & Planned Succession Handover",
+          "konteks_operasional": "Memadukan audit masalah RCA dengan ruang santai mingguan untuk menampung beban kerja tim. Mengajukan penghentian kontrak terencana untuk transisi pengetahuan ke suksesor."
+        }
+      ]
+    }
+  ]
+}
