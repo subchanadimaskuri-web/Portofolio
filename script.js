@@ -333,3 +333,44 @@ jobLinks.forEach(link => {
         }
     });
 });
+// ==========================================
+// 5. MODAL MATRIKS KOMPETENSI (TAB & POP-UP)
+// ==========================================
+const btnOpenModal = document.getElementById('openCompetencyModal');
+const btnCloseModal = document.getElementById('closeCompetencyModal');
+const competencyModal = document.getElementById('competencyModal');
+const competencyOverlay = document.getElementById('competencyOverlay');
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// Fungsi Buka & Tutup Modal
+if (btnOpenModal && competencyModal && competencyOverlay) {
+  btnOpenModal.addEventListener('click', () => {
+    competencyModal.classList.add('active');
+    competencyOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Matikan scroll latar
+  });
+
+  const closeModal = () => {
+    competencyModal.classList.remove('active');
+    competencyOverlay.classList.remove('active');
+    document.body.style.overflow = ''; // Nyalakan scroll latar
+  };
+
+  btnCloseModal.addEventListener('click', closeModal);
+  competencyOverlay.addEventListener('click', closeModal);
+}
+
+// Logika Perpindahan Tab tanpa reload
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // 1. Hapus class 'active' dari semua tombol & konten
+    tabButtons.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    // 2. Tambah class 'active' ke tombol yang diklik & konten targetnya
+    btn.classList.add('active');
+    const targetId = btn.getAttribute('data-target');
+    document.getElementById(targetId).classList.add('active');
+  });
+});
