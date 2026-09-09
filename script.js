@@ -169,16 +169,13 @@ Anda DILARANG KERAS mencetak sumber file statis (seperti [source: fase1.html]). 
 === MEMORI DATABASE JSON (FASE 001 - 010 & COGNITIVE TOOLKIT) ===
 `;
 
-=== MEMORI DATABASE JSON (FASE 001 - 010) ===
-`;
-
     const daftarJson = [
         'Tentang%20Saya/cerita-saya/grub1.json',
         'Tentang%20Saya/cerita-saya/grub2.json',
         'Tentang%20Saya/cerita-saya/grub3.json',
         'Tentang%20Saya/cerita-saya/grub4.json'
     ];
-
+    
     try {
         const responses = await Promise.all(daftarJson.map(path => fetch(path)));
         let jumlahBerhasil = 0;
@@ -215,7 +212,13 @@ function tutupAiLayarPenuh() {
     if (aiWidget) aiWidget.classList.remove('fullscreen-mode');
     if (aiBackdrop) aiBackdrop.classList.remove('active');
 }
+
 if (aiInput) aiInput.addEventListener('focus', bukaAiLayarPenuh);
+
+// TAMBAHAN: Membuat seluruh badan kapsul AI bisa diklik
+const aiInputWrapper = document.getElementById('aiInputWrapper');
+if (aiInputWrapper) aiInputWrapper.addEventListener('click', bukaAiLayarPenuh);
+
 if (closeAiBtn) closeAiBtn.addEventListener('click', tutupAiLayarPenuh);
 if (aiBackdrop) aiBackdrop.addEventListener('click', tutupAiLayarPenuh);
 
