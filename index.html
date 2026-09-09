@@ -129,6 +129,11 @@
         <li><span class="bento-label">TTL</span><span class="bento-value">Jember, 01 Oktober 1999</span></li>
         <li><span class="bento-label">Alamat</span><span class="bento-value">Palu, Sulawesi Tengah</span></li>
       </ul>
+      
+      <!-- TAMBAHAN TOMBOL PEMICU MODAL -->
+      <button id="openCompetencyModal" class="btn-outline-modal">
+        <i class="fa-solid fa-layer-group"></i> Lihat Matriks Kompetensi
+      </button>
     </div>
     
     <!-- KARTU 2: PENDIDIKAN (Timeline) -->
@@ -210,6 +215,138 @@
   <div class="lightbox-content" id="lightboxContent"></div>
 </div>
 
+  <!-- ==========================================
+     MODAL MATRIKS KOMPETENSI (POP-UP)
+     ========================================== -->
+<div id="competencyOverlay" class="competency-overlay"></div>
+<div id="competencyModal" class="competency-modal">
+  
+  <div class="modal-header">
+    <h3 class="modal-title">Matriks Kualifikasi & Kapabilitas</h3>
+    <button id="closeCompetencyModal" class="close-modal-btn">&times;</button>
+  </div>
+
+  <div class="modal-tabs">
+    <button class="tab-btn active" data-target="tab-kompetensi">Kompetensi</button>
+    <button class="tab-btn" data-target="tab-pelatihan">Riwayat Pelatihan</button>
+  </div>
+
+  <div class="modal-body">
+    <!-- TAB 1: KOMPETENSI -->
+    <div id="tab-kompetensi" class="tab-content active">
+      <h4 class="table-section-title">Kerangka Arsitektur Sistem (Hard Skills)</h4>
+      <div class="table-responsive">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>Tata Kelola Data & Logika Sistem</th>
+              <th>Tata Kelola Manusia & Dinamika Kelompok</th>
+              <th>Tata Kelola Operasional & Fasilitas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Data Visualization (Looker Studio)</strong><br>Membangun dasbor terpusat satu pintu dengan mengintegrasikan laporan harian dari tim eksekutor (staf logistik, fuel, dan aset), sehingga direksi dan manajer proyek dapat melihat metrik operasional strategis secara seketika.</td>
+              <td><strong>Perancangan Struktur & SOP Lintas Tim</strong><br>Membangun tata kelola dari nol di organisasi mahasiswa (HMJ/Sophia), serta merancang dan melembagakan SOP operasional harian untuk tim GA (logistik, konsumsi, dan fuel) agar para staf memiliki standar kerja terintegrasi.</td>
+              <td><strong>Manajemen Rantai Pasok & Riset Suplier</strong><br>Berada di level strategis untuk meriset suplier, memetakan vendor kota terdekat, dan membangun hubungan mitra guna mengamankan jalur logistik area terisolir yang kemudian dieksekusi harian oleh staf logistik.</td>
+            </tr>
+            <tr>
+              <td><strong>Advanced Spreadsheet Modeling</strong><br>Merakit arsitektur pelaporan shared ledger lintas komisariat di GMNI/LMND, serta menggunakan formula relasional (FILTER, INDEX MATCH) untuk mengonsolidasikan data dari seluruh lini staf GA ke dalam satu laporan terpadu.</td>
+              <td><strong>Rekayasa Perilaku & Resolusi Konflik</strong><br>Membedah tradisi senioritas di himpunan mahasiswa untuk membelokkan ego menjadi "Pasar Gagasan", serta meredam potensi gesekan antar-sektoral staf di lapangan menjadi ruang koordinasi tim yang solid.</td>
+              <td><strong>Audit Neraca Fisik & Pengendalian Susut</strong><br>Mengoordinasikan staf fuel untuk mengeksekusi audit celup (sounding) berbasis rumus presisi geometri menggunakan bilah bambu dan pasta air guna mencegah kebocoran aset berisiko (solar) di pelabuhan muat Balikpapan.</td>
+            </tr>
+            <tr>
+              <td><strong>Root Cause Analysis (RCA)</strong><br>Memimpin investigasi masalah tingkat lanjut bersama staf menggunakan 5 Whys dan Fishbone. Contoh: menemukan kerusakan sayur dapur Tolala akibat chiller mati (bukan kelalaian staf), lalu memakai data kerugian tersebut untuk menjustifikasi genset ke manajemen.</td>
+              <td><strong>Penyusunan Panduan & Pelembagaan</strong><br>Mengunci program wajib organisasi melalui konferensi cabang agar tidak dirombak sepihak, serta menyusun buku saku serah-terima shift fisik terintegrasi untuk menjaga keberlanjutan kerja antar staf lapangan.</td>
+              <td><strong>Pengendalian Utilitas & Fasilitas Dasar</strong><br>Menganalisis sistem belanja eceran menjadi grosir agar sisa anggaran menutupi kebutuhan alat kebersihan, memantau laporan fasilitas dari staf, dan merumuskan siklus menu masakan agar tidak membebani rutinitas juru masak lokal.</td>
+            </tr>
+            <tr>
+              <td><strong>Logika Infrastruktur & Komputasi Dasar</strong><br>Berbekal pengalaman teknisi membedah motherboard di CV Medion dan eksplorasi pemrograman mandiri via Mimo, saya mengefisienkan logika arsitektur tata kelola administrasi untuk mempermudah alur pelaporan tim.</td>
+              <td><strong>Mediasi & Penyelarasan Ekspektasi</strong><br>Menjembatani arah kebijakan pemotongan anggaran dari manajemen dengan hak kesejahteraan dasar staf lapangan melalui perhitungan biologis presisi (kalkulasi kebutuhan 105 liter air/hari untuk menjustifikasi keberadaan fasilitas mes).</td>
+              <td><strong>Strategi Pengadaan & Utilisasi Armada</strong><br>Menyelaraskan kontrol mobilitas kendaraan harian yang dijalankan staf, dan berhasil menekan anggaran bahan bakar armada hingga 30% menggunakan metode ukur full-to-full yang divalidasi dengan dokumentasi odometer.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 class="table-section-title" style="margin-top: 35px;">Kapabilitas Perilaku (Soft Skills)</h4>
+      <div class="table-responsive">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>Kapabilitas Perilaku</th>
+              <th>Rincian Riwayat & Bukti Operasional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Systemic Problem Solving</strong></td>
+              <td>Mendiagnosis krisis lapangan dengan memetakan kerusakan pada sistem dan prosedur lintas sektor, alih-alih sekadar menyalahkan staf eksekutor di garis depan saat terjadi anomali operasional.</td>
+            </tr>
+            <tr>
+              <td><strong>Membangun Ruang Aman (Psychological Safety)</strong></td>
+              <td>Menginisiasi agenda kumpul santai dan patungan mandiri bersama tim staf (fuel, logistik, fasilitas) sebagai ruang netral agar mereka berani melaporkan kendala kerja tanpa takut pada ancaman hierarki jabatan.</td>
+            </tr>
+            <tr>
+              <td><strong>Observasi Empiris & Anti-Elitisme</strong></td>
+              <td>Turun langsung memantau dinamika lapangan—mulai dari meriset kebutuhan buruh tani (GMNI) hingga ikut mengupas bawang di dapur umum tambang (Tolala)—demi memahami hambatan riil tanpa melepaskan fungsi kontrol manajerial.</td>
+            </tr>
+            <tr>
+              <td><strong>Adaptabilitas Belajar Otodidak</strong></td>
+              <td>Berangkat dari pengalaman pengemudi ojek online dan teknisi solder perangkat keras, menyisihkan penghasilan secara spartan untuk menempuh berbagai sertifikasi strategis (termasuk BNSP) demi meretas jalan ke arsitektur sistem SDM.</td>
+            </tr>
+            <tr>
+              <td><strong>Eksekusi Berbasis Hasil (Outcome-Based Execution)</strong></td>
+              <td>Membedah aturan main organisasi (AD/ART) dengan mendirikan Dewan Senior, serta mengarahkan ritme kerja departemen GA dengan berpijak pada target capaian akhir untuk merancang setiap tahapan taktis, memastikan fungsi integrasi lintas tim berjalan mulus.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 2: RIWAYAT PELATIHAN -->
+    <div id="tab-pelatihan" class="tab-content">
+      <div class="table-responsive">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>Nama Program / Sertifikasi</th>
+              <th>Penyelenggara</th>
+              <th>Penjabaran Eksplorasi Keilmuan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sertifikasi BNSP Supervisor Sumber Daya Manusia (Human Capital Supervisor)</strong></td>
+              <td>Lembaga Sertifikasi Profesi MSDM Universal</td>
+              <td>Pengesahan formal atas praktik empiris lapangan; mencakup penyusunan uraian jabatan, pembuatan SOP MSDM, desain sistem remunerasi, identifikasi kebutuhan L&D, hingga perumusan kesepakatan kerja.</td>
+            </tr>
+            <tr>
+              <td><strong>eBootcamp HR: Dasar / Basic (Admin & Staff HR)</strong></td>
+              <td>ManajemenSDM.net</td>
+              <td>Penguatan fondasi administrasi HR harian (pengelolaan HRIS & metrik payroll), alur rekrutmen praktis, pemahaman dasar Hubungan Industrial (regulasi cuti, SP, pesangon), hingga pengantar analitik SDM (People Analytics).</td>
+            </tr>
+            <tr>
+              <td><strong>Certified Mastery of Human Resources & General Affairs for Mining (CHARGAM)</strong></td>
+              <td>Multi Tasking Training</td>
+              <td>Tata kelola spesifik operasional HR & GA di lingkungan keras pertambangan; mencakup pemetaan skill matrix, pengaturan sistem kerja roster, manajemen vendor/aset, dan efisiensi operasional.</td>
+            </tr>
+            <tr>
+              <td><strong>HR Competency Regular Class</strong></td>
+              <td>Human Capital University</td>
+              <td>Eksplorasi pilar talent management, job analysis, teknik rekrutmen (Interview BEI, tes teknis), penyusunan SOP (ISO 9001), dan perumusan KPI berbasis Balanced Scorecard.</td>
+            </tr>
+            <tr>
+              <td><strong>Workshop Full Day Hubungan Industrial</strong></td>
+              <td>Human Capital University</td>
+              <td>Pendalaman arsitektur legal ketenagakerjaan; mencakup penyusunan Peraturan Perusahaan, legal drafting sanksi/Surat Peringatan, kalkulasi pesangon kompensasi, dan navigasi UU Cipta Kerja.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
