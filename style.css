@@ -443,3 +443,86 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; }
 }
 .modern-table tbody tr:hover { background: rgba(248, 250, 252, 0.5); }
 .modern-table td strong { color: var(--color-slate-navy); display: block; margin-bottom: 6px; font-size: 0.95rem; }
+
+/* ==========================================
+   DESAIN TAB 3: CLEAN ACCORDION
+   ========================================== */
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.accordion-item {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+}
+.accordion-item:hover {
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+  border-color: var(--color-kinetic-cyan);
+}
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-slate-navy);
+  transition: background 0.3s ease;
+}
+.accordion-header.active {
+  background: var(--color-alabaster);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+.acc-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding-right: 15px;
+}
+.acc-icon {
+  font-size: 1rem;
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+.accordion-header.active .acc-icon {
+  transform: rotate(180deg);
+  color: var(--color-kinetic-cyan);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: #ffffff;
+}
+.acc-content-inner {
+  padding: 24px;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.acc-content-inner strong {
+  color: var(--color-slate-navy);
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 6px;
+}
+.acc-content-inner p {
+  margin-bottom: 16px;
+}
+.acc-content-inner p:last-child {
+  margin-bottom: 0;
+}
+.acc-divider {
+  border: 0;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.06);
+  margin: 18px 0;
+}
