@@ -241,14 +241,10 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; overflo
 .acc-divider { border: 0; height: 1px; background: rgba(15, 23, 42, 0.06); margin: 18px 0; }
 
 /* ==========================================
-   HALAMAN PORTOFOLIO: COMPACT HERO
+   HALAMAN PORTOFOLIO: COMPACT HERO & GRID
    ========================================== */
-.portfolio-hero { min-height: 350px; align-items: center; padding-bottom: 0; margin-bottom: 0; }
-.portfolio-container { padding-top: 100px; }
 
-/* ==========================================
-   FILTER RUBRIK (HORIZONTAL SCROLL)
-   ========================================== */
+/* FILTER RUBRIK (HORIZONTAL SCROLL) */
 .portfolio-filter-bar {
   display: flex; gap: 12px; overflow-x: auto; padding: 20px 0 30px 0; margin-bottom: 20px;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08); -ms-overflow-style: none; scrollbar-width: none;
@@ -258,9 +254,7 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; overflo
 .filter-btn:hover { border-color: #94a3b8; color: #0f172a; }
 .filter-btn.active { background: var(--color-slate-navy); color: #ffffff; border-color: var(--color-slate-navy); box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2); }
 
-/* ==========================================
-   EDITORIAL SPLIT GRID (65% : 35%)
-   ========================================== */
+/* EDITORIAL SPLIT GRID (65% : 35%) */
 .editorial-grid { display: grid; grid-template-columns: 1.85fr 1.15fr; gap: 50px; margin-bottom: 60px; align-items: start; }
 
 /* KARTU PROYEK (KOLOM KIRI) */
@@ -303,9 +297,7 @@ body { background-color: #f8fafc; color: #334155; padding: 0; margin: 0; overflo
 
 @media (max-width: 768px) {
   .hero-section { min-height: auto; background-position: 75% center; align-items: flex-end; padding-bottom: 30px; background-image: linear-gradient(to top, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.7) 45%, transparent 100%), url('Header%20Cover.png'); }
-  .portfolio-hero { min-height: 320px; align-items: flex-end; padding-bottom: 30px; }
   .hero-container { padding-top: 180px; padding-left: 20px; padding-right: 20px; } 
-  .portfolio-container { padding-top: 120px; }
   .hero-content { max-width: 100%; gap: 20px; } 
 
   .nav-social-bar { flex-direction: column; justify-content: flex-start; align-items: center; padding: 20px 15px; gap: 15px; }
