@@ -5,35 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio & Jurnal - Subchan's Hub</title>
   
-  <!-- TRIK ANTI-CACHE: Tambahan ?v=99 akan memaksa browser memuat desain baru -->
-  <link rel="stylesheet" href="../style.css?v=99">
+  <!-- CSS Utama (Hanya untuk warna dasar & font) -->
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
-    /* 1. MATIKAN SEMUA ELEMEN AI */
+    /* 1. KEMBALIKAN UKURAN HEADER & MATIKAN AI */
     #aiBackdrop, #aiWidget, .hero-ai-pill { display: none !important; }
     
-    /* 2. HEADER SUPER RINGKAS */
-    .portfolio-hero { min-height: 220px !important; align-items: flex-end; padding-bottom: 25px; }
-    .portfolio-container { padding-top: 80px; }
-    .hero-title { font-size: 2rem !important; margin-bottom: 5px; }
+    .portfolio-hero { min-height: 420px !important; align-items: flex-end; padding-bottom: 30px; }
+    .portfolio-container { padding-top: 100px; }
+    .hero-title { font-size: 2.2rem !important; margin-bottom: 5px; }
     
     @media (max-width: 768px) { 
-      .portfolio-hero { min-height: 180px !important; padding-bottom: 20px; } 
-      .portfolio-container { padding-top: 70px; }
+      .portfolio-hero { min-height: 350px !important; padding-bottom: 20px; } 
     }
     
-    /* 3. SEARCH BAR MINIMALIS */
+    /* 2. SEARCH BAR BISA DIKLIK */
     .portfolio-search-bar {
-      margin-top: 15px;
-      display: flex;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      padding: 8px 16px;
-      max-width: 350px;
-      align-items: center;
+      margin-top: 15px; display: flex; background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px;
+      padding: 8px 16px; max-width: 350px; align-items: center;
     }
     .portfolio-search-bar input {
       flex: 1; background: transparent; border: none; color: #fff; font-size: 0.9rem; outline: none;
@@ -41,6 +34,52 @@
     .portfolio-search-bar input::placeholder { color: #94a3b8; }
     .portfolio-search-bar button {
       background: transparent; color: #00E5FF; border: none; cursor: pointer; font-size: 1.1rem; padding: 0;
+    }
+
+    /* ==========================================
+       3. CSS GRID LANGSUNG DI HTML (ANTI-CACHE)
+       ========================================== */
+    .portfolio-filter-bar {
+      display: flex; gap: 12px; overflow-x: auto; padding: 20px 0 30px 0; margin-bottom: 20px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08); -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .portfolio-filter-bar::-webkit-scrollbar { display: none; }
+    .filter-btn { background: #ffffff; color: #64748b; border: 1px solid #e2e8f0; padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s ease; }
+    .filter-btn:hover { border-color: #94a3b8; color: #0f172a; }
+    .filter-btn.active { background: #0F172A; color: #ffffff; border-color: #0F172A; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2); }
+
+    .editorial-grid { display: grid; grid-template-columns: 1.85fr 1.15fr; gap: 50px; margin-bottom: 60px; align-items: start; }
+
+    .project-card-modern { display: flex; gap: 24px; background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid rgba(15,23,42,0.05); margin-bottom: 24px; transition: transform 0.3s, box-shadow 0.3s; }
+    .project-card-modern:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: rgba(15,23,42,0.1); }
+    .project-thumb { width: 220px; flex-shrink: 0; position: relative; border-radius: 8px; overflow: hidden; }
+    .project-thumb img { width: 100%; height: 140px; object-fit: cover; transition: transform 0.5s; }
+    .project-card-modern:hover .project-thumb img { transform: scale(1.05); }
+    .project-tag { position: absolute; top: 10px; left: 10px; background: rgba(15,23,42,0.8); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; backdrop-filter: blur(4px); text-transform: uppercase; }
+    .project-info { display: flex; flex-direction: column; justify-content: center; }
+    .project-title { font-size: 1.15rem; color: #0F172A; margin-bottom: 10px; line-height: 1.3; }
+    .project-desc { font-size: 0.9rem; color: #475569; margin-bottom: 15px; line-height: 1.6; }
+    .project-action { font-size: 0.85rem; font-weight: 700; color: #0284C7; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; }
+    .project-action:hover { color: #0F172A; }
+
+    .editorial-right { position: sticky; top: 20px; }
+    .journal-card-modern { padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid rgba(15,23,42,0.08); }
+    .journal-card-modern:last-child { border-bottom: none; }
+    .journal-meta { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px; }
+    .journal-title { font-family: 'Merriweather', Georgia, serif; font-size: 1.15rem; color: #0f172a; line-height: 1.4; margin-bottom: 10px; cursor: pointer; transition: color 0.2s; }
+    .journal-title:hover { color: #0284C7; }
+    .journal-excerpt { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; }
+    .journal-readmore { font-size: 0.85rem; font-weight: 700; color: #0F172A; text-decoration: none; transition: 0.2s; }
+    .journal-readmore:hover { color: #0284C7; padding-left: 5px; }
+
+    .filterable-item.hide-item { display: none !important; }
+
+    @media (max-width: 900px) {
+      .editorial-grid { grid-template-columns: 1fr; gap: 40px; }
+      .editorial-right { position: relative; top: 0; }
+      .project-card-modern { flex-direction: column; gap: 16px; }
+      .project-thumb { width: 100%; }
+      .project-thumb img { height: 200px; }
     }
   </style>
 </head>
@@ -65,8 +104,10 @@
     <div class="hero-container portfolio-container">
       <div class="hero-content">
         <h1 class="hero-title">Portofolio & Jurnal</h1>
+        
+        <!-- Search Bar Sekarang BISA DIKLIK (Atribut 'disabled' Dihapus) -->
         <div class="portfolio-search-bar">
-          <input type="text" placeholder="Cari karya atau jurnal..." disabled>
+          <input type="text" placeholder="Ketik pencarian proyek...">
           <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </div>
@@ -85,8 +126,8 @@
     <div class="editorial-grid">
       <!-- KOLOM KIRI: PROYEK -->
       <div class="editorial-left">
-        <div class="section-title-line">
-          <h3>Karya Operasional & Tata Kelola</h3>
+        <div class="section-title-line" style="margin-bottom: 24px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+          <h3 style="color: #0f172a; margin: 0;">Karya Operasional & Tata Kelola</h3>
         </div>
 
         <div class="project-card-modern filterable-item" data-category="data">
@@ -128,8 +169,8 @@
 
       <!-- KOLOM KANAN: JURNAL -->
       <div class="editorial-right">
-        <div class="section-title-line">
-          <h3>Jurnal & Opini</h3>
+        <div class="section-title-line" style="margin-bottom: 24px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+          <h3 style="color: #0f172a; margin: 0;">Jurnal & Opini</h3>
         </div>
 
         <div class="journal-card-modern filterable-item" data-category="filsafat">
@@ -165,7 +206,7 @@
     </div> 
   </div>
 
-  <!-- Script Mandiri Khusus Filter (TIDAK LAGI MEMANGGIL SCRIPT UTAMA) -->
+  <!-- SCRIPT LOGIKA FILTER -->
   <script>
     const filterBtns = document.querySelectorAll('.filter-btn');
     const filterItems = document.querySelectorAll('.filterable-item');
