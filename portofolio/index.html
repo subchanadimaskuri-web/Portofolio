@@ -3,84 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio & Jurnal - Subchan's Hub</title>
+  <title>Arsip Profesional & Jurnal - Subchan's Hub</title>
   
-  <!-- CSS Utama (Hanya untuk warna dasar & font) -->
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style.css?v=101">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-    /* 1. KEMBALIKAN UKURAN HEADER & MATIKAN AI */
+    /* ==========================================
+       1. OVERRIDE DASAR & MATIKAN AI
+       ========================================== */
     #aiBackdrop, #aiWidget, .hero-ai-pill { display: none !important; }
+    body { background-color: #F8FAFC; font-family: 'Inter', sans-serif; }
     
-    .portfolio-hero { min-height: 420px !important; align-items: flex-end; padding-bottom: 30px; }
+    .portfolio-hero { min-height: 280px !important; align-items: flex-end; padding-bottom: 35px; background-position: center 20%; }
     .portfolio-container { padding-top: 100px; }
-    .hero-title { font-size: 2.2rem !important; margin-bottom: 5px; }
+    .hero-title { font-size: 2.4rem !important; margin-bottom: 8px; letter-spacing: -0.5px; }
+    @media (max-width: 768px) { .portfolio-hero { min-height: 240px !important; padding-bottom: 25px; } }
     
-    @media (max-width: 768px) { 
-      .portfolio-hero { min-height: 350px !important; padding-bottom: 20px; } 
-    }
-    
-    /* 2. SEARCH BAR BISA DIKLIK */
-    .portfolio-search-bar {
-      margin-top: 15px; display: flex; background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px;
-      padding: 8px 16px; max-width: 350px; align-items: center;
-    }
-    .portfolio-search-bar input {
-      flex: 1; background: transparent; border: none; color: #fff; font-size: 0.9rem; outline: none;
-    }
-    .portfolio-search-bar input::placeholder { color: #94a3b8; }
-    .portfolio-search-bar button {
-      background: transparent; color: #00E5FF; border: none; cursor: pointer; font-size: 1.1rem; padding: 0;
-    }
+    /* SEARCH BAR ELEGANT */
+    .portfolio-search-bar { margin-top: 15px; display: flex; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 50px; padding: 10px 20px; max-width: 380px; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .portfolio-search-bar input { flex: 1; background: transparent; border: none; color: #fff; font-size: 0.95rem; outline: none; }
+    .portfolio-search-bar input::placeholder { color: #e2e8f0; font-weight: 300; }
+    .portfolio-search-bar button { background: transparent; color: #00E5FF; border: none; cursor: pointer; font-size: 1.1rem; padding: 0; transition: transform 0.3s; }
+    .portfolio-search-bar button:hover { transform: scale(1.1); }
 
     /* ==========================================
-       3. CSS GRID LANGSUNG DI HTML (ANTI-CACHE)
+       2. FILTER NAVIGATION (UI PREMIUM)
        ========================================== */
-    .portfolio-filter-bar {
-      display: flex; gap: 12px; overflow-x: auto; padding: 20px 0 30px 0; margin-bottom: 20px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08); -ms-overflow-style: none; scrollbar-width: none;
-    }
-    .portfolio-filter-bar::-webkit-scrollbar { display: none; }
-    .filter-btn { background: #ffffff; color: #64748b; border: 1px solid #e2e8f0; padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s ease; }
-    .filter-btn:hover { border-color: #94a3b8; color: #0f172a; }
-    .filter-btn.active { background: #0F172A; color: #ffffff; border-color: #0F172A; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2); }
+    .filter-wrapper { margin-bottom: 50px; }
+    
+    /* Tier 1 */
+    .primary-tabs { display: flex; gap: 20px; border-bottom: 1px solid #E2E8F0; padding-bottom: 15px; margin-bottom: 20px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+    .primary-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { background: none; border: none; font-size: 1.05rem; font-weight: 600; color: #64748B; cursor: pointer; padding: 8px 4px; position: relative; transition: color 0.3s ease; white-space: nowrap; }
+    .tab-btn:hover { color: #0F172A; }
+    .tab-btn.active { color: #0284C7; font-weight: 700; }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: -16px; left: 0; width: 100%; height: 3px; background: #0284C7; border-radius: 3px 3px 0 0; }
 
-    .editorial-grid { display: grid; grid-template-columns: 1.85fr 1.15fr; gap: 50px; margin-bottom: 60px; align-items: start; }
+    /* Tier 2 */
+    .secondary-filters { display: flex; gap: 12px; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; animation: fadeIn 0.4s ease; padding: 5px 0; }
+    .secondary-filters::-webkit-scrollbar { display: none; }
+    .pill-btn { background: #FFFFFF; color: #64748B; border: 1px solid #E2E8F0; padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 500; white-space: nowrap; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .pill-btn:hover { border-color: #CBD5E1; color: #0F172A; box-shadow: 0 4px 6px rgba(0,0,0,0.04); transform: translateY(-1px); }
+    .pill-btn.active { background: #0F172A; color: #FFFFFF; border-color: #0F172A; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15); font-weight: 600; }
 
-    .project-card-modern { display: flex; gap: 24px; background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid rgba(15,23,42,0.05); margin-bottom: 24px; transition: transform 0.3s, box-shadow 0.3s; }
-    .project-card-modern:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: rgba(15,23,42,0.1); }
-    .project-thumb { width: 220px; flex-shrink: 0; position: relative; border-radius: 8px; overflow: hidden; }
-    .project-thumb img { width: 100%; height: 140px; object-fit: cover; transition: transform 0.5s; }
-    .project-card-modern:hover .project-thumb img { transform: scale(1.05); }
-    .project-tag { position: absolute; top: 10px; left: 10px; background: rgba(15,23,42,0.8); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; backdrop-filter: blur(4px); text-transform: uppercase; }
-    .project-info { display: flex; flex-direction: column; justify-content: center; }
-    .project-title { font-size: 1.15rem; color: #0F172A; margin-bottom: 10px; line-height: 1.3; }
-    .project-desc { font-size: 0.9rem; color: #475569; margin-bottom: 15px; line-height: 1.6; }
-    .project-action { font-size: 0.85rem; font-weight: 700; color: #0284C7; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; }
-    .project-action:hover { color: #0F172A; }
+    /* ==========================================
+       3. PREMIUM CARD GRID (AESTHETIC)
+       ========================================== */
+    .premium-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; margin-bottom: 80px; align-items: stretch; }
+    
+    .premium-card { background: #FFFFFF; border-radius: 20px; border: none; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04), 0 8px 10px -6px rgba(15, 23, 42, 0.02); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); animation: fadeIn 0.6s ease forwards; }
+    .premium-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12); }
+    
+    /* Project Card */
+    .project-card .card-thumb { position: relative; width: 100%; height: 220px; overflow: hidden; background: #E2E8F0; }
+    .project-card .card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .premium-card:hover .card-thumb img { transform: scale(1.05); }
+    
+    /* Glassmorphism Badge */
+    .card-badge { position: absolute; top: 16px; left: 16px; background: rgba(255, 255, 255, 0.85); color: #0F172A; font-size: 0.7rem; font-weight: 700; padding: 6px 14px; border-radius: 50px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); text-transform: uppercase; letter-spacing: 0.5px; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    
+    /* Article Card */
+    .article-card { border-top: 4px solid #0284C7; padding-top: 5px; }
+    .article-card .card-badge { position: static; display: inline-block; background: #F0F9FF; color: #0284C7; margin-bottom: 18px; box-shadow: none; border: 1px solid #BAE6FD; }
 
-    .editorial-right { position: sticky; top: 20px; }
-    .journal-card-modern { padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid rgba(15,23,42,0.08); }
-    .journal-card-modern:last-child { border-bottom: none; }
-    .journal-meta { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px; }
-    .journal-title { font-family: 'Merriweather', Georgia, serif; font-size: 1.15rem; color: #0f172a; line-height: 1.4; margin-bottom: 10px; cursor: pointer; transition: color 0.2s; }
-    .journal-title:hover { color: #0284C7; }
-    .journal-excerpt { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 15px; }
-    .journal-readmore { font-size: 0.85rem; font-weight: 700; color: #0F172A; text-decoration: none; transition: 0.2s; }
-    .journal-readmore:hover { color: #0284C7; padding-left: 5px; }
+    /* Content Area */
+    .card-content { padding: 30px; display: flex; flex-direction: column; flex: 1; }
+    .card-meta { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; color: #94A3B8; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+    .card-title { font-size: 1.25rem; color: #0F172A; margin-bottom: 14px; line-height: 1.4; font-weight: 700; letter-spacing: -0.01em; }
+    .article-card .card-title { font-family: 'Merriweather', Georgia, serif; font-size: 1.35rem; font-weight: 700; letter-spacing: 0; }
+    .card-desc { font-size: 0.95rem; color: #475569; margin-bottom: 25px; line-height: 1.6; flex: 1; font-weight: 400; }
+    
+    /* Elegant Action Link */
+    .card-action { margin-top: auto; font-size: 0.9rem; font-weight: 600; color: #0284C7; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+    .card-action i { transition: transform 0.3s ease; }
+    .card-action:hover { color: #0F172A; }
+    .card-action:hover i { transform: translateX(4px) translateY(-4px); } /* Bergerak ke atas-kanan */
+    .card-action-drive:hover i { transform: translateX(4px); } /* Bergerak ke kanan saja */
 
-    .filterable-item.hide-item { display: none !important; }
-
-    @media (max-width: 900px) {
-      .editorial-grid { grid-template-columns: 1fr; gap: 40px; }
-      .editorial-right { position: relative; top: 0; }
-      .project-card-modern { flex-direction: column; gap: 16px; }
-      .project-thumb { width: 100%; }
-      .project-thumb img { height: 200px; }
-    }
+    .hide-item { display: none !important; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -103,11 +106,9 @@
 
     <div class="hero-container portfolio-container">
       <div class="hero-content">
-        <h1 class="hero-title">Portofolio & Jurnal</h1>
-        
-        <!-- Search Bar Sekarang BISA DIKLIK (Atribut 'disabled' Dihapus) -->
+        <h1 class="hero-title">Arsip & Publikasi</h1>
         <div class="portfolio-search-bar">
-          <input type="text" placeholder="Ketik pencarian proyek...">
+          <input type="text" placeholder="Temukan karya atau jurnal...">
           <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </div>
@@ -115,117 +116,165 @@
   </header>
 
   <div class="container">
-    <div class="portfolio-filter-bar">
-      <button class="filter-btn active" data-filter="all">Semua Akses</button>
-      <button class="filter-btn" data-filter="sop">Sistem & Tata Kelola</button>
-      <button class="filter-btn" data-filter="data">Data & Dasbor</button>
-      <button class="filter-btn" data-filter="hc">Human Capital & OD</button>
-      <button class="filter-btn" data-filter="filsafat">Jurnal Filsafat</button>
+    
+    <!-- FILTER DUA TINGKAT -->
+    <div class="filter-wrapper">
+      
+      <!-- Tier 1 -->
+      <div class="primary-tabs">
+        <button class="tab-btn active" data-main="all"><i class="fa-solid fa-layer-group"></i> Semua Akses</button>
+        <button class="tab-btn" data-main="project"><i class="fa-solid fa-briefcase"></i> Project Aktual</button>
+        <button class="tab-btn" data-main="artikel"><i class="fa-solid fa-pen-nib"></i> Artikel & Opini</button>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="secondary-filters" id="subFilterAll"></div>
+
+      <div class="secondary-filters hide-item" id="subFilterProject">
+        <button class="pill-btn active" data-sub="all">Semua Project</button>
+        <button class="pill-btn" data-sub="tata-kelola">Sistem & Tata Kelola</button>
+        <button class="pill-btn" data-sub="data">Data & Dasbor</button>
+        <button class="pill-btn" data-sub="hc">Human Capital & OD</button>
+      </div>
+
+      <div class="secondary-filters hide-item" id="subFilterArtikel">
+        <button class="pill-btn active" data-sub="all">Semua Artikel</button>
+        <button class="pill-btn" data-sub="filsafat">Coretan Filsafat</button>
+        <button class="pill-btn" data-sub="psikologi">Psikologi Organisasi</button>
+      </div>
+
     </div>
 
-    <div class="editorial-grid">
-      <!-- KOLOM KIRI: PROYEK -->
-      <div class="editorial-left">
-        <div class="section-title-line" style="margin-bottom: 24px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
-          <h3 style="color: #0f172a; margin: 0;">Karya Operasional & Tata Kelola</h3>
+    <!-- MASONRY GRID -->
+    <div class="premium-grid" id="contentGrid">
+      
+      <!-- PROJECT: DRIVE LINK -->
+      <div class="premium-card project-card filter-item" data-main="project" data-sub="data">
+        <div class="card-thumb">
+          <span class="card-badge">Data & Dasbor</span>
+          <img src="../images/nick-karvounis-78711.jpg" alt="Dasbor Logistik" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'">
         </div>
+        <div class="card-content">
+          <h4 class="card-title">Rekayasa Sistem Dasbor Logistik & Pemantauan Utilitas</h4>
+          <p class="card-desc">Arsitektur dasbor Looker Studio untuk memantau rasio pemakaian solar secara real-time guna menekan kebocoran anggaran operasional.</p>
+          <a href="https://drive.google.com/" target="_blank" rel="noopener" class="card-action card-action-drive">
+            <i class="fa-brands fa-google-drive"></i> Buka Dokumen Drive <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
 
-        <div class="project-card-modern filterable-item" data-category="data">
-          <div class="project-thumb">
-            <img src="../images/nick-karvounis-78711.jpg" alt="Dasbor Logistik" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'">
-            <span class="project-tag">Data & Dasbor</span>
-          </div>
-          <div class="project-info">
-            <h4 class="project-title">Rekayasa Sistem Dasbor Logistik & Pemantauan Utilitas Tambang</h4>
-            <p class="project-desc">Membangun arsitektur dasbor Looker Studio untuk memantau rasio pemakaian solar dan utilitas fasilitas secara real-time guna menekan kebocoran anggaran operasional.</p>
-            <a href="#" class="project-action"><i class="fa-solid fa-file-pdf"></i> Buka Dokumen</a>
-          </div>
+      <!-- PROJECT: DRIVE LINK -->
+      <div class="premium-card project-card filter-item" data-main="project" data-sub="tata-kelola">
+        <div class="card-thumb">
+          <span class="card-badge">Tata Kelola</span>
+          <img src="../images/science-578x362.jpg" alt="SOP GA" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'">
         </div>
+        <div class="card-content">
+          <h4 class="card-title">Standardisasi SOP Departemen General Affairs</h4>
+          <p class="card-desc">Perumusan prosedur dari nol untuk manajemen fasilitas, jadwal mobilitas, dan tata kelola dapur umum yang berlandaskan analisis lapangan.</p>
+          <a href="https://drive.google.com/" target="_blank" rel="noopener" class="card-action card-action-drive">
+            <i class="fa-brands fa-google-drive"></i> Buka Dokumen Drive <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
 
-        <div class="project-card-modern filterable-item" data-category="sop">
-          <div class="project-thumb">
-            <img src="../images/science-578x362.jpg" alt="SOP GA" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'">
-            <span class="project-tag">Tata Kelola</span>
+      <!-- ARTIKEL: EXTERNAL LINK -->
+      <div class="premium-card article-card filter-item" data-main="artikel" data-sub="filsafat">
+        <div class="card-content">
+          <div class="card-meta">
+            <span>24 Sep 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 5 Min Read</span>
           </div>
-          <div class="project-info">
-            <h4 class="project-title">Standardisasi SOP & Alur Kerja Departemen General Affairs</h4>
-            <p class="project-desc">Perumusan standar operasional prosedur dari nol untuk manajemen fasilitas, jadwal mobilitas, dan tata kelola dapur umum yang berlandaskan analisis keterbatasan lapangan.</p>
-            <a href="#" class="project-action"><i class="fa-solid fa-file-pdf"></i> Buka Dokumen</a>
-          </div>
+          <span class="card-badge"><i class="fa-solid fa-newspaper"></i> Mojok.co</span>
+          <h4 class="card-title">Paradigma Foucault dalam Analisis Keterbatasan Regulasi SDM</h4>
+          <p class="card-desc">Tinjauan filosofis mengenai bagaimana tata bahasa kebijakan dan rezim kebenaran (regimes of truth) memicu kepatuhan artifisial.</p>
+          <a href="https://mojok.co/" target="_blank" rel="noopener" class="card-action">
+            Baca Artikel <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
-        
-        <div class="project-card-modern filterable-item" data-category="hc">
-          <div class="project-thumb">
-            <img src="../images/ryan-moreno-98837.jpg" alt="Skema HC" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop'">
-            <span class="project-tag">HC & OD</span>
-          </div>
-          <div class="project-info">
-            <h4 class="project-title">Matriks Evaluasi Kinerja & Desain Intervensi Burnout</h4>
-            <p class="project-desc">Membedah indikator performa staf lapangan dan menerapkan metode psikoanalisis untuk membedakan antara resistensi kerja sistemik dengan pelanggaran indisipliner murni.</p>
-            <a href="#" class="project-action"><i class="fa-solid fa-file-pdf"></i> Buka Dokumen</a>
-          </div>
-        </div>
-      </div> 
+      </div>
 
-      <!-- KOLOM KANAN: JURNAL -->
-      <div class="editorial-right">
-        <div class="section-title-line" style="margin-bottom: 24px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
-          <h3 style="color: #0f172a; margin: 0;">Jurnal & Opini</h3>
+      <!-- PROJECT: DRIVE LINK -->
+      <div class="premium-card project-card filter-item" data-main="project" data-sub="hc">
+        <div class="card-thumb">
+          <span class="card-badge">Human Capital</span>
+          <img src="../images/ryan-moreno-98837.jpg" alt="Skema HC" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop'">
         </div>
+        <div class="card-content">
+          <h4 class="card-title">Matriks Evaluasi Kinerja & Desain Intervensi Burnout</h4>
+          <p class="card-desc">Membedah indikator performa staf dan menerapkan psikoanalisis untuk membedakan antara resistensi kerja sistemik dengan pelanggaran murni.</p>
+          <a href="https://drive.google.com/" target="_blank" rel="noopener" class="card-action card-action-drive">
+            <i class="fa-brands fa-google-drive"></i> Buka Dokumen Drive <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
 
-        <div class="journal-card-modern filterable-item" data-category="filsafat">
-          <div class="journal-meta">
-            <span class="journal-date">24 Sep 2026</span>
-            <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 5 Min Read</span>
+      <!-- ARTIKEL: EXTERNAL LINK -->
+      <div class="premium-card article-card filter-item" data-main="artikel" data-sub="psikologi">
+        <div class="card-content">
+          <div class="card-meta">
+            <span>12 Agu 2026</span>
+            <span><i class="fa-regular fa-clock"></i> 7 Min Read</span>
           </div>
-          <h4 class="journal-title">Paradigma Foucault dalam Analisis Keterbatasan Regulasi SDM</h4>
-          <p class="journal-excerpt">Bagaimana tata bahasa kebijakan dan rezim kebenaran sering kali memicu kepatuhan artifisial dan ketegangan psikis.</p>
-          <a href="#" class="journal-readmore">Baca Artikel ↗</a>
+          <span class="card-badge"><i class="fa-solid fa-newspaper"></i> Kompasiana</span>
+          <h4 class="card-title">Kekerasan Simbolik di Area Kerja: Sebuah Tinjauan Kasus</h4>
+          <p class="card-desc">Mendiagnosis resistensi operasional yang berakar dari benturan sistem modern dengan kultur lokal yang telah lama menubuh di kalangan pekerja.</p>
+          <a href="https://kompasiana.com/" target="_blank" rel="noopener" class="card-action">
+            Baca Artikel <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
+      </div>
 
-        <div class="journal-card-modern filterable-item" data-category="filsafat">
-          <div class="journal-meta">
-            <span class="journal-date">12 Agu 2026</span>
-            <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 7 Min Read</span>
-          </div>
-          <h4 class="journal-title">Kekerasan Simbolik di Area Kerja: Sebuah Tinjauan Bourdieu</h4>
-          <p class="journal-excerpt">Mendiagnosis resistensi yang berakar dari benturan sistem baru dengan Habitus kultural di lapangan.</p>
-          <a href="#" class="journal-readmore">Baca Artikel ↗</a>
-        </div>
-
-        <div class="journal-card-modern filterable-item" data-category="hc">
-          <div class="journal-meta">
-            <span class="journal-date">05 Jul 2026</span>
-            <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 4 Min Read</span>
-          </div>
-          <h4 class="journal-title">Menerapkan Kerendahan Hati Epistemik pada Root Cause Analysis</h4>
-          <p class="journal-excerpt">Menolak kecenderungan menyalahkan eksekutor garis depan dengan menyadari batas kognisi manajerial.</p>
-          <a href="#" class="journal-readmore">Baca Artikel ↗</a>
-        </div>
-      </div> 
     </div> 
   </div>
 
-  <!-- SCRIPT LOGIKA FILTER -->
   <script>
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const filterItems = document.querySelectorAll('.filterable-item');
+    const primaryBtns = document.querySelectorAll('.tab-btn');
+    const secondaryWrappers = document.querySelectorAll('.secondary-filters');
+    const pillBtns = document.querySelectorAll('.pill-btn');
+    const allCards = document.querySelectorAll('.filter-item');
 
-    if (filterBtns.length > 0 && filterItems.length > 0) {
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const filterValue = btn.getAttribute('data-filter');
-          
-          filterItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-              item.classList.remove('hide-item');
-            } else {
-              item.classList.add('hide-item');
-            }
-          });
-        });
+    let activeMainCategory = 'all';
+
+    primaryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        primaryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeMainCategory = btn.getAttribute('data-main');
+
+        secondaryWrappers.forEach(wrap => wrap.classList.add('hide-item'));
+        if (activeMainCategory === 'project') {
+          document.getElementById('subFilterProject').classList.remove('hide-item');
+          document.querySelectorAll('#subFilterProject .pill-btn').forEach(p => p.classList.remove('active'));
+          document.querySelector('#subFilterProject .pill-btn[data-sub="all"]').classList.add('active');
+        } else if (activeMainCategory === 'artikel') {
+          document.getElementById('subFilterArtikel').classList.remove('hide-item');
+          document.querySelectorAll('#subFilterArtikel .pill-btn').forEach(p => p.classList.remove('active'));
+          document.querySelector('#subFilterArtikel .pill-btn[data-sub="all"]').classList.add('active');
+        }
+        filterCards(activeMainCategory, 'all');
+      });
+    });
+
+    pillBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const parentWrapper = this.closest('.secondary-filters');
+        parentWrapper.querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        const activeSubCategory = this.getAttribute('data-sub');
+        filterCards(activeMainCategory, activeSubCategory);
+      });
+    });
+
+    function filterCards(mainCat, subCat) {
+      allCards.forEach(card => {
+        const cardMain = card.getAttribute('data-main');
+        const cardSub = card.getAttribute('data-sub');
+        let matchMain = (mainCat === 'all') || (cardMain === mainCat);
+        let matchSub = (subCat === 'all') || (cardSub === subCat);
+
+        if (matchMain && matchSub) { card.classList.remove('hide-item'); } 
+        else { card.classList.add('hide-item'); }
       });
     }
   </script>
