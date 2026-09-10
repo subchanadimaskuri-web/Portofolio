@@ -5,62 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio & Jurnal - Subchan's Hub</title>
   
-  <!-- Memanggil CSS Utama dari folder luar -->
-  <link rel="stylesheet" href="../style.css">
+  <!-- TRIK ANTI-CACHE: Tambahan ?v=99 akan memaksa browser memuat desain baru -->
+  <link rel="stylesheet" href="../style.css?v=99">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Font khusus Editorial (Merriweather) untuk judul Jurnal -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
-    /* Mencegah eksekusi script AI di halaman portofolio */
-    #aiBackdrop, #aiWidget { display: none !important; }
+    /* 1. MATIKAN SEMUA ELEMEN AI */
+    #aiBackdrop, #aiWidget, .hero-ai-pill { display: none !important; }
     
-    /* Memperpendek Hero Banner khusus di halaman ini */
-    .portfolio-hero { min-height: 280px !important; }
-    @media (max-width: 768px) { .portfolio-hero { min-height: 250px !important; } }
+    /* 2. HEADER SUPER RINGKAS */
+    .portfolio-hero { min-height: 220px !important; align-items: flex-end; padding-bottom: 25px; }
+    .portfolio-container { padding-top: 80px; }
+    .hero-title { font-size: 2rem !important; margin-bottom: 5px; }
     
-    /* Desain Search Bar sederhana pengganti AI */
+    @media (max-width: 768px) { 
+      .portfolio-hero { min-height: 180px !important; padding-bottom: 20px; } 
+      .portfolio-container { padding-top: 70px; }
+    }
+    
+    /* 3. SEARCH BAR MINIMALIS */
     .portfolio-search-bar {
-      margin-top: 25px;
+      margin-top: 15px;
       display: flex;
-      background: rgba(15, 23, 42, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      border-radius: 50px;
-      padding: 8px 12px 8px 20px;
-      max-width: 400px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 8px 16px;
+      max-width: 350px;
+      align-items: center;
     }
     .portfolio-search-bar input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
+      flex: 1; background: transparent; border: none; color: #fff; font-size: 0.9rem; outline: none;
     }
-    .portfolio-search-bar input::placeholder { color: #cbd5e1; }
+    .portfolio-search-bar input::placeholder { color: #94a3b8; }
     .portfolio-search-bar button {
-      background: #00E5FF;
-      color: #0F172A;
-      border: none;
-      border-radius: 50px;
-      padding: 8px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .portfolio-search-bar button:hover {
-      background: #ffffff;
-      transform: translateY(-2px);
+      background: transparent; color: #00E5FF; border: none; cursor: pointer; font-size: 1.1rem; padding: 0;
     }
   </style>
-
 </head>
 <body>
 
-  <!-- ==========================================
-       COMPACT HERO BANNER (Tanpa AI)
-       ========================================== -->
   <header class="hero-section portfolio-hero">
     <div class="nav-social-bar">
       <div class="nav-menu">
@@ -79,46 +64,33 @@
 
     <div class="hero-container portfolio-container">
       <div class="hero-content">
-        <h1 class="hero-title" style="margin-bottom: 10px;">Portofolio & Jurnal</h1>
-        
-        <!-- Search Bar Pengganti AI -->
+        <h1 class="hero-title">Portofolio & Jurnal</h1>
         <div class="portfolio-search-bar">
-          <input type="text" placeholder="Cari proyek atau jurnal..." disabled>
-          <button type="button"><i class="fa-solid fa-magnifying-glass"></i> Cari</button>
+          <input type="text" placeholder="Cari karya atau jurnal..." disabled>
+          <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-
       </div>
     </div> 
   </header>
 
   <div class="container">
-    
-    <!-- ==========================================
-         FILTER RUBRIK (HORIZONTAL SCROLL)
-         ========================================== -->
     <div class="portfolio-filter-bar">
       <button class="filter-btn active" data-filter="all">Semua Akses</button>
       <button class="filter-btn" data-filter="sop">Sistem & Tata Kelola</button>
-      <button class="filter-btn" data-filter="data">Data & Dasbor Operasional</button>
+      <button class="filter-btn" data-filter="data">Data & Dasbor</button>
       <button class="filter-btn" data-filter="hc">Human Capital & OD</button>
-      <button class="filter-btn" data-filter="filsafat">Jurnal Filsafat Terapan</button>
+      <button class="filter-btn" data-filter="filsafat">Jurnal Filsafat</button>
     </div>
 
-    <!-- ==========================================
-         EDITORIAL SPLIT-GRID (65% : 35%)
-         ========================================== -->
     <div class="editorial-grid">
-      
-      <!-- KOLOM KIRI (65%): PROYEK AKTUAL (Visual Heavy) -->
+      <!-- KOLOM KIRI: PROYEK -->
       <div class="editorial-left">
         <div class="section-title-line">
           <h3>Karya Operasional & Tata Kelola</h3>
         </div>
 
-        <!-- Dummy Proyek 1 -->
         <div class="project-card-modern filterable-item" data-category="data">
           <div class="project-thumb">
-            <!-- Gunakan gambar apa saja sebagai dummy -->
             <img src="../images/nick-karvounis-78711.jpg" alt="Dasbor Logistik" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'">
             <span class="project-tag">Data & Dasbor</span>
           </div>
@@ -129,11 +101,10 @@
           </div>
         </div>
 
-        <!-- Dummy Proyek 2 -->
         <div class="project-card-modern filterable-item" data-category="sop">
           <div class="project-thumb">
-            <img src="../images/science-578x362.jpg" alt="SOP General Affairs" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'">
-            <span class="project-tag">Sistem & Tata Kelola</span>
+            <img src="../images/science-578x362.jpg" alt="SOP GA" onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop'">
+            <span class="project-tag">Tata Kelola</span>
           </div>
           <div class="project-info">
             <h4 class="project-title">Standardisasi SOP & Alur Kerja Departemen General Affairs</h4>
@@ -142,11 +113,10 @@
           </div>
         </div>
         
-        <!-- Dummy Proyek 3 -->
         <div class="project-card-modern filterable-item" data-category="hc">
           <div class="project-thumb">
             <img src="../images/ryan-moreno-98837.jpg" alt="Skema HC" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop'">
-            <span class="project-tag">Human Capital & OD</span>
+            <span class="project-tag">HC & OD</span>
           </div>
           <div class="project-info">
             <h4 class="project-title">Matriks Evaluasi Kinerja & Desain Intervensi Burnout</h4>
@@ -154,53 +124,69 @@
             <a href="#" class="project-action"><i class="fa-solid fa-file-pdf"></i> Buka Dokumen</a>
           </div>
         </div>
+      </div> 
 
-      </div> <!-- Akhir Kolom Kiri -->
-
-      <!-- KOLOM KANAN (35%): JURNAL & ESAI (Text Heavy) -->
+      <!-- KOLOM KANAN: JURNAL -->
       <div class="editorial-right">
         <div class="section-title-line">
           <h3>Jurnal & Opini</h3>
         </div>
 
-        <!-- Dummy Esai 1 -->
         <div class="journal-card-modern filterable-item" data-category="filsafat">
           <div class="journal-meta">
             <span class="journal-date">24 Sep 2026</span>
             <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 5 Min Read</span>
           </div>
           <h4 class="journal-title">Paradigma Foucault dalam Analisis Keterbatasan Regulasi SDM</h4>
-          <p class="journal-excerpt">Bagaimana tata bahasa kebijakan dan rezim kebenaran (regimes of truth) sering kali memicu kepatuhan artifisial dan ketegangan psikis di lapangan operasional.</p>
+          <p class="journal-excerpt">Bagaimana tata bahasa kebijakan dan rezim kebenaran sering kali memicu kepatuhan artifisial dan ketegangan psikis.</p>
           <a href="#" class="journal-readmore">Baca Artikel ↗</a>
         </div>
 
-        <!-- Dummy Esai 2 -->
         <div class="journal-card-modern filterable-item" data-category="filsafat">
           <div class="journal-meta">
             <span class="journal-date">12 Agu 2026</span>
             <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 7 Min Read</span>
           </div>
           <h4 class="journal-title">Kekerasan Simbolik di Area Kerja: Sebuah Tinjauan Bourdieu</h4>
-          <p class="journal-excerpt">Mendiagnosis resistensi yang berakar dari benturan sistem baru dengan Habitus kultural yang telah lama menubuh di kalangan pekerja tambang.</p>
+          <p class="journal-excerpt">Mendiagnosis resistensi yang berakar dari benturan sistem baru dengan Habitus kultural di lapangan.</p>
           <a href="#" class="journal-readmore">Baca Artikel ↗</a>
         </div>
 
-        <!-- Dummy Esai 3 -->
         <div class="journal-card-modern filterable-item" data-category="hc">
           <div class="journal-meta">
             <span class="journal-date">05 Jul 2026</span>
             <span class="journal-readtime"><i class="fa-regular fa-clock"></i> 4 Min Read</span>
           </div>
           <h4 class="journal-title">Menerapkan Kerendahan Hati Epistemik pada Root Cause Analysis</h4>
-          <p class="journal-excerpt">Menolak kecenderungan menyalahkan eksekutor garis depan dengan menyadari batas kognisi manajerial terhadap realitas fisik lapangan.</p>
+          <p class="journal-excerpt">Menolak kecenderungan menyalahkan eksekutor garis depan dengan menyadari batas kognisi manajerial.</p>
           <a href="#" class="journal-readmore">Baca Artikel ↗</a>
         </div>
-
-      </div> <!-- Akhir Kolom Kanan -->
-
-    </div> <!-- Akhir Editorial Grid -->
+      </div> 
+    </div> 
   </div>
 
-  <script src="../script.js"></script> 
+  <!-- Script Mandiri Khusus Filter (TIDAK LAGI MEMANGGIL SCRIPT UTAMA) -->
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterItems = document.querySelectorAll('.filterable-item');
+
+    if (filterBtns.length > 0 && filterItems.length > 0) {
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filterValue = btn.getAttribute('data-filter');
+          
+          filterItems.forEach(item => {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+              item.classList.remove('hide-item');
+            } else {
+              item.classList.add('hide-item');
+            }
+          });
+        });
+      });
+    }
+  </script>
 </body>
 </html>
