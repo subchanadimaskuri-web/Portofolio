@@ -378,3 +378,27 @@ tabButtons.forEach(btn => {
     document.getElementById(targetId).classList.add('active');
   });
 });
+// ==========================================
+// 6. LOGIKA ACCORDION (TAB 3 FONDASI AKADEMIS)
+// ==========================================
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+accordionHeaders.forEach(header => {
+  header.addEventListener('click', function() {
+    // Tutup accordion lain jika ada yang terbuka agar layar tidak terlalu panjang
+    const activeHeader = document.querySelector('.accordion-header.active');
+    if (activeHeader && activeHeader !== this) {
+      activeHeader.classList.remove('active');
+      activeHeader.nextElementSibling.style.maxHeight = null;
+    }
+
+    // Buka/Tutup accordion yang diklik
+    this.classList.toggle('active');
+    const body = this.nextElementSibling;
+    if (this.classList.contains('active')) {
+      body.style.maxHeight = body.scrollHeight + "px";
+    } else {
+      body.style.maxHeight = null;
+    }
+  });
+});
